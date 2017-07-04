@@ -1,0 +1,8 @@
+
+.normal {
+  position: absolute;
+  width: 320px;
+  top: 50%;
+  left: 50%;
+  margin: -220px 0 0 -160px;
+}
