@@ -24,7 +24,8 @@
     "import/no-unresolved": [0],
     "require-yield": [1],
     "class-methods-use-this": "off",
-    "no-useless-constructor": "off"
+    "no-useless-constructor": "off",
+    "indent": ["error", 4]
   },
   "parserOptions": {
     "ecmaFeatures": {

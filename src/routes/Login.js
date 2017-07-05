@@ -6,42 +6,42 @@ import styles from './Login.css';
 import LoginForm from '../components/login/LoginForm';
 
 const Login = ({
-  login,
-  dispatch,
-}) => {
-  const onSuccess = (msg) => {
-    message.success(msg);
-  };
-
-  const onError = (msg) => {
-    message.error(msg);
-  };
-
-  const onLogin = (values) => {
-    dispatch({ type: 'login/login', payload: values, onSuccess, onError });
-  };
-
-  const onChange = (values) => {
-    dispatch({ type: 'login/triggerCheckBox', checked: values });
-  };
-
-  const loginFormProps = {
     login,
-    onLogin,
-    onChange,
-    usernameText: '用户名',
-    passwordText: '密码',
-    rememberMeText: '记住密码',
-    forgetPasswdText: '忘记密码',
-    loginButtonText: '登录',
-    registerText: '现在注册',
-  };
+    dispatch,
+}) => {
+    const onSuccess = (msg) => {
+        message.success(msg);
+    };
 
-  return (
-    <div className={styles.normal}>
-      <LoginForm {...loginFormProps} />
-    </div>
-  );
+    const onError = (msg) => {
+        message.error(msg);
+    };
+
+    const onLogin = (values) => {
+        dispatch({ type: 'login/login', payload: values, onSuccess, onError });
+    };
+
+    const onChange = (values) => {
+        dispatch({ type: 'login/triggerCheckBox', checked: values });
+    };
+
+    const loginFormProps = {
+        login,
+        onLogin,
+        onChange,
+        usernameText: '用户名',
+        passwordText: '密码',
+        rememberMeText: '记住密码',
+        forgetPasswdText: '忘记密码',
+        loginButtonText: '登录',
+        registerText: '现在注册',
+    };
+
+    return (
+      <div className={styles.normal}>
+        <LoginForm {...loginFormProps} />
+      </div>
+    );
 };
 
 const mapStateToProps = ({ login }) => ({ login });
