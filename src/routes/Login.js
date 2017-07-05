@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'dva';
+import { message } from 'antd';
+
 import styles from './Login.css';
+
 
 import LoginForm from '../components/login/LoginForm';
 
@@ -12,11 +15,15 @@ const Login = ({
     dispatch({ type: 'login/login', payload: values });
   };
 
+  const loginSuccess = () => {
+    message.success('Login successfully :)');
+  };
+
   const onChange = (values) => {
     dispatch({ type: 'login/triggerCheckBox', checked: values });
   };
 
-  const prop = {
+  const loginFormProps = {
     login,
     onLogin,
     onChange,
@@ -30,13 +37,11 @@ const Login = ({
 
   return (
     <div className={styles.normal}>
-      <LoginForm {...prop} />
+      <LoginForm {...loginFormProps} />
     </div>
   );
 };
 
-// function mapStateToProps() {
-//   return {};
-// }
+const mapStateToProps = ({ login }) => ({ login });
 
-export default connect(({ login }) => ({ login }))(Login);
+export default connect(mapStateToProps)(Login);

@@ -1,3 +1,5 @@
+import { routerRedux } from 'dva/router';
+
 import { fetchLogin } from '../services/login';
 
 export default {
@@ -52,6 +54,11 @@ export default {
       if (data.success) {
         const { username } = payload;
         yield put({ type: 'loginSuccess', payload: { username } });
+        yield put(routerRedux.push({
+          state: {},
+          pathname: '/dashboard',
+          query: {},
+        }));
       } else {
         yield put({ type: 'loginFail' });
       }

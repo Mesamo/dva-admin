@@ -24,9 +24,7 @@ const LoginForm = ({
 
   const handleChange = (e) => {
     e.stopPropagation();
-    if (onChange) {
-      onChange(e.target.checked);
-    }
+    onChange(e.target.checked);
   };
 
   const handleLogin = (e) => {
@@ -35,9 +33,7 @@ const LoginForm = ({
       if (errors) {
         return;
       }
-      if (onLogin) {
-        onLogin(values);
-      }
+      onLogin(values);
     });
   };
 
