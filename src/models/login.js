@@ -46,7 +46,7 @@ export default {
     },
   },
   effects: {
-    *login({ payload }, { call, put }) {
+    *login({ payload, onSuccess, onError }, { call, put }) {
       yield put({
         type: 'showButtonLoading',
       });
@@ -54,6 +54,9 @@ export default {
       if (data.success) {
         const { username } = payload;
         yield put({ type: 'loginSuccess', payload: { username } });
+        if (onSuccess && typeof onSuccess === 'function') {
+          yield onSuccess('Login success : )');
+        }
         yield put(routerRedux.push({
           state: {},
           pathname: '/dashboard',
@@ -61,6 +64,9 @@ export default {
         }));
       } else {
         yield put({ type: 'loginFail' });
+        if (onError && typeof onError === 'function') {
+          yield onError('Login fail : (');
+        }
       }
     },
   },

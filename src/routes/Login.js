@@ -3,20 +3,22 @@ import { connect } from 'dva';
 import { message } from 'antd';
 
 import styles from './Login.css';
-
-
 import LoginForm from '../components/login/LoginForm';
 
 const Login = ({
   login,
   dispatch,
 }) => {
-  const onLogin = (values) => {
-    dispatch({ type: 'login/login', payload: values });
+  const onSuccess = (msg) => {
+    message.success(msg);
   };
 
-  const loginSuccess = () => {
-    message.success('Login successfully :)');
+  const onError = (msg) => {
+    message.error(msg);
+  };
+
+  const onLogin = (values) => {
+    dispatch({ type: 'login/login', payload: values, onSuccess, onError });
   };
 
   const onChange = (values) => {
