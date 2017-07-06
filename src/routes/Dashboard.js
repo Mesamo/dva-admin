@@ -11,8 +11,8 @@ function Dashboard({ dashboard }) {
     );
 }
 
-function mapStateToProps({ dashboard }) {
-    return { dashboard };
-}
+const mapStateToProps = state => ({
+    dashboard: state.dashboard,
+});
 
 export default connect(mapStateToProps)(Dashboard);

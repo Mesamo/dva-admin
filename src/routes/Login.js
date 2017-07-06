@@ -7,6 +7,7 @@ import LoginForm from '../components/login/LoginForm';
 
 const Login = ({
     login,
+    loading,
     dispatch,
 }) => {
     const onSuccess = (msg) => {
@@ -18,7 +19,7 @@ const Login = ({
     };
 
     const onLogin = (values) => {
-        dispatch({ type: 'login/login', payload: values, onSuccess, onError });
+        dispatch({ type: 'login/login', payload: { values, onSuccess, onError } });
     };
 
     const onChange = (values) => {
@@ -27,6 +28,7 @@ const Login = ({
 
     const loginFormProps = {
         login,
+        loading,
         onLogin,
         onChange,
         usernameText: '用户名',
@@ -44,6 +46,9 @@ const Login = ({
     );
 };
 
-const mapStateToProps = ({ login }) => ({ login });
+const mapStateToProps = state => ({
+    login: state.login,
+    loading: state.loading.models.login,
+});
 
 export default connect(mapStateToProps)(Login);

@@ -7,21 +7,22 @@ const FormItem = Form.Item;
 
 const LoginForm = ({
     login,
+    loading: loginButtonLoading,
+    onLogin,
+    onChange,
     usernameText,
     passwordText,
     rememberMeText,
     forgetPasswdText,
     loginButtonText,
     registerText,
-    onLogin,
-    onChange,
     form: {
         getFieldsError,
         getFieldDecorator,
         validateFieldsAndScroll,
     },
 }) => {
-    const { loginButtonLoading, rememberMe } = login;
+    const { rememberMe } = login;
 
     const handleChange = (e) => {
         e.stopPropagation();
