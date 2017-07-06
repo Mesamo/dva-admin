@@ -5,7 +5,7 @@ import IndexPage from './routes/IndexPage';
 import Login from './routes/Login.js';
 import Dashboard from './routes/Dashboard.js';
 
-function RouterConfig({ history }) {
+const RouterConfig = ({ history }) => {
     return (
       <Router history={history}>
         <Route path="/" component={IndexPage} />
@@ -13,6 +13,6 @@ function RouterConfig({ history }) {
         <Route path="/dashboard" component={Dashboard} />
       </Router>
     );
-}
+};
 
 export default RouterConfig;
