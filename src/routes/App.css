@@ -1,0 +1,26 @@
+
+.normal {
+    height: 100%;
+}
+
+.logo {
+    text-align: center;
+    height: 50px;
+    margin: 25px 0;
+    overflow: hidden;
+}
+
+.dva {
+    width: 50px;
+}
+
+.title {
+    vertical-align: text-bottom;
+    font-size: 16px;
+    text-transform: uppercase;
+    display: inline;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    color: #999;
+}

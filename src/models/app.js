@@ -1,10 +1,20 @@
 
 export default {
-    namespace: 'dashboard',
+    namespace: 'app',
     state: {
-        title: 'Dashboard',
+        title: 'App',
+        collapsed: false,
+        mode: 'inline',
+        theme: 'dark',
     },
-    reducers: {},
+    reducers: {
+        toggleCollapse(state, action) {
+            return {
+                ...state,
+                ...action.payload,
+            };
+        },
+    },
     effects: {
     },
     subscriptions: {

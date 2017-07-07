@@ -48,7 +48,7 @@ export default {
                     if (rememberMe) {
                         yield put({ type: 'cacheUser', payload: { ...values } });
                     }
-                    yield put(routerRedux.push({ pathname: '/dashboard' }));
+                    yield put(routerRedux.push({ pathname: '/app' }));
                 } else {
                     yield put({ type: 'loginFail' });
                     if (onError && typeof onError === 'function') {
