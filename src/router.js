@@ -5,6 +5,7 @@ import {
     IndexPage,
     Login,
     App,
+    Error,
 } from './routes';
 
 const RouterConfig = ({ history }) => {
@@ -13,6 +14,7 @@ const RouterConfig = ({ history }) => {
             <Route path="/" component={IndexPage} />
             <Route path="/login" component={Login} />
             <Route path="/app" component={App} />
+            <Route path="*" component={Error} />
         </Router>
     );
 };
