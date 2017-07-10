@@ -44,41 +44,41 @@ const LoginForm = ({
     };
 
     return (
-      <Form className={styles.normal}>
-        <div className={styles.dva} />
-        <FormItem hasFeedback>
-          {getFieldDecorator('username', {
-              rules: [
-                  {
-                      required: true,
-                      message: 'please enter username',
-                  },
-              ],
-          })(<Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder={usernameText} />)}
-        </FormItem>
-        <FormItem hasFeedback>
-          {getFieldDecorator('password', {
-              rules: [
-                  {
-                      required: true,
-                      message: 'please enter password',
-                  },
-              ],
-          })(<Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder={passwordText} />)}
-        </FormItem>
-        <FormItem>
-          <Checkbox onChange={handleChange} checked={rememberMe}>{rememberMeText}</Checkbox>
-          <a className={styles.forgot}>{forgetPasswdText}</a>
-          <Button
-            type="primary" size="large" htmlType="submit" className={styles.button}
-            onClick={handleLogin} loading={loginButtonLoading}
-            disabled={hasErrors(getFieldsError())}
-          >
-            {loginButtonText}
-          </Button>
-          <a>{registerText}</a>
-        </FormItem>
-      </Form>
+        <Form className={styles.normal}>
+            <div className={styles.dva} />
+            <FormItem hasFeedback>
+                {getFieldDecorator('username', {
+                    rules: [
+                        {
+                            required: true,
+                            message: 'please enter username',
+                        },
+                    ],
+                })(<Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder={usernameText} />)}
+            </FormItem>
+            <FormItem hasFeedback>
+                {getFieldDecorator('password', {
+                    rules: [
+                        {
+                            required: true,
+                            message: 'please enter password',
+                        },
+                    ],
+                })(<Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder={passwordText} />)}
+            </FormItem>
+            <FormItem>
+                <Checkbox onChange={handleChange} checked={rememberMe}>{rememberMeText}</Checkbox>
+                <a className={styles.forgot}>{forgetPasswdText}</a>
+                <Button
+                    type="primary" size="large" htmlType="submit" className={styles.button}
+                    onClick={handleLogin} loading={loginButtonLoading}
+                    disabled={hasErrors(getFieldsError())}
+                >
+                    {loginButtonText}
+                </Button>
+                <a>{registerText}</a>
+            </FormItem>
+        </Form>
     );
 };
 

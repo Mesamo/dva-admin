@@ -10,6 +10,8 @@
     "import/prefer-default-export": [0],
     "react/jsx-no-bind": [0],
     "react/prop-types": [0],
+    "react/jsx-indent": ["warn", 4],
+    "react/jsx-indent-props": ["warn", 4],
     "react/prefer-stateless-function": [0],
     "no-else-return": [0],
     "no-restricted-syntax": [0],
@@ -25,11 +27,12 @@
     "require-yield": [1],
     "class-methods-use-this": "off",
     "no-useless-constructor": "off",
-    "indent": ["error", 4]
+    "indent": ["warn", 4]
   },
   "parserOptions": {
     "ecmaFeatures": {
-      "experimentalObjectRestSpread": true
+      "experimentalObjectRestSpread": true,
+      "jsx": true
     }
   }
 }

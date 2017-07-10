@@ -40,9 +40,9 @@ const Login = ({
     };
 
     return (
-      <div className={styles.normal}>
-        <LoginForm {...loginFormProps} />
-      </div>
+        <div className={styles.normal}>
+            <LoginForm {...loginFormProps} />
+        </div>
     );
 };
 
