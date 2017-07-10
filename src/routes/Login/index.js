@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'dva';
 import { message } from 'antd';
 
-import styles from './index.css';
 import { LoginForm } from '../../components';
+import styles from './index.less';
 
 const Login = ({
     login,

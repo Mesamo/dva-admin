@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 
-import styles from './index.css';
+import styles from './index.less';
 
 const FormItem = Form.Item;
 
@@ -22,7 +23,7 @@ const LoginForm = ({
         validateFieldsAndScroll,
     },
 }) => {
-    const { rememberMe } = login;
+    const { rememberMe, username, password } = login;
 
     const handleChange = (e) => {
         e.stopPropagation();
@@ -46,17 +47,22 @@ const LoginForm = ({
     return (
         <Form className={styles.normal}>
             <div className={styles.dva} />
-            <FormItem hasFeedback>
+            <FormItem hasFeedback >
                 {getFieldDecorator('username', {
                     rules: [
                         {
                             required: true,
                             message: 'please enter username',
                         },
+                        {
+                            whitespace: true,
+                            message: 'please enter username without whitespace',
+                        },
                     ],
+                    initialValue: username,
                 })(<Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder={usernameText} />)}
             </FormItem>
-            <FormItem hasFeedback>
+            <FormItem hasFeedback >
                 {getFieldDecorator('password', {
                     rules: [
                         {
@@ -64,11 +70,12 @@ const LoginForm = ({
                             message: 'please enter password',
                         },
                     ],
+                    initialValue: password,
                 })(<Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder={passwordText} />)}
             </FormItem>
             <FormItem>
                 <Checkbox onChange={handleChange} checked={rememberMe}>{rememberMeText}</Checkbox>
-                <a className={styles.forgot}>{forgetPasswdText}</a>
+                <Link className={styles.forgot} to="/error">{forgetPasswdText}</Link>
                 <Button
                     type="primary" size="large" htmlType="submit" className={styles.button}
                     onClick={handleLogin} loading={loginButtonLoading}
@@ -76,8 +83,12 @@ const LoginForm = ({
                 >
                     {loginButtonText}
                 </Button>
-                <a>{registerText}</a>
+                <Link to="/error">{registerText}</Link>
             </FormItem>
+            <p>
+                <span>{usernameText}: test</span>
+                <span>{passwordText}: test</span>
+            </p>
         </Form>
     );
 };

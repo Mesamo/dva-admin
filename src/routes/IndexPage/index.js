@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'dva';
 import { Link } from 'react-router';
 
-import styles from './index.css';
+import styles from './index.less';
 
 function IndexPage() {
     return (
