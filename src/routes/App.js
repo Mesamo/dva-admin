@@ -5,7 +5,6 @@ import { Layout, Menu } from 'antd';
 import styles from './App.css';
 
 const { Header, Content, Footer, Sider } = Layout;
-// const SubMenu = Menu.SubMenu;
 
 const App = ({ app, dispatch, children }) => {
     const { collapsed, mode, theme } = app;
@@ -35,12 +34,6 @@ const App = ({ app, dispatch, children }) => {
             <Menu.Item>test</Menu.Item>
             <Menu.Item>test</Menu.Item>
           </Menu>
-          {/* <Switch
-            checked={theme === 'dark'}
-            onChange={changeTheme}
-            checkedChildren="Dark"
-            unCheckedChildren="Light"
-          />*/}
         </Sider>
         <Layout>
           <Header style={{ background: '#fff' }} />
