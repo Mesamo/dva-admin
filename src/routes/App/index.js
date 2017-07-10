@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'dva';
 import { Layout, Menu } from 'antd';
 
-import styles from './App.css';
+import styles from './index.css';
 
 const { Header, Content, Footer, Sider } = Layout;
 

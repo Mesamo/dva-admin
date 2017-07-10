@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 
-import styles from './LoginForm.css';
+import styles from './index.css';
 
 const FormItem = Form.Item;
 
