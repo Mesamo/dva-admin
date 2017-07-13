@@ -6,6 +6,12 @@
 # production
 /dist
 
+# Intellij Idea
+/.idea
+
+# vscode
+/.vscode
+
 # misc
 .DS_Store
 npm-debug.log*
