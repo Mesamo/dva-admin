@@ -11,7 +11,7 @@ const LoginForm = ({
     loading: loginButtonLoading,
     onLogin,
     onChange,
-    usernameText,
+    emailText,
     passwordText,
     rememberMeText,
     forgetPasswdText,
@@ -23,7 +23,7 @@ const LoginForm = ({
         validateFieldsAndScroll,
     },
 }) => {
-    const { rememberMe, username, password } = login;
+    const { rememberMe, email } = login;
 
     const handleChange = (e) => {
         e.stopPropagation();
@@ -36,7 +36,7 @@ const LoginForm = ({
             if (errors) {
                 return;
             }
-            onLogin(values);
+            onLogin(values.email, values.password);
         });
     };
 
@@ -48,19 +48,23 @@ const LoginForm = ({
         <Form className={styles.normal}>
             <div className={styles.dva} />
             <FormItem hasFeedback >
-                {getFieldDecorator('username', {
+                {getFieldDecorator('email', {
                     rules: [
                         {
                             required: true,
-                            message: 'please enter username',
+                            message: 'please enter email',
+                        },
+                        {
+                            type: 'email',
+                            message: 'please enter correct email address',
                         },
                         {
                             whitespace: true,
-                            message: 'please enter username without whitespace',
+                            message: 'please enter email without whitespace',
                         },
                     ],
-                    initialValue: username,
-                })(<Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder={usernameText} />)}
+                    initialValue: email,
+                })(<Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder={emailText} />)}
             </FormItem>
             <FormItem hasFeedback >
                 {getFieldDecorator('password', {
@@ -70,7 +74,6 @@ const LoginForm = ({
                             message: 'please enter password',
                         },
                     ],
-                    initialValue: password,
                 })(<Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder={passwordText} />)}
             </FormItem>
             <FormItem>
@@ -86,15 +89,15 @@ const LoginForm = ({
                 <Link to="/error">{registerText}</Link>
             </FormItem>
             <p>
-                <span>{usernameText}: test</span>
-                <span>{passwordText}: test</span>
+                <span>{emailText}: dva-admin@test.com</span>
+                <span>{passwordText}: 123456</span>
             </p>
         </Form>
     );
 };
 
 LoginForm.defaultProps = {
-    usernameText: 'Username',
+    emailText: 'Email',
     passwordText: 'Password',
     rememberMeText: 'Remember me',
     forgetPasswdText: 'Forget Password',
@@ -103,7 +106,7 @@ LoginForm.defaultProps = {
 };
 
 LoginForm.propTypes = {
-    usernameText: PropTypes.string,
+    emailText: PropTypes.string,
     passwordText: PropTypes.string,
     rememberMeText: PropTypes.string,
     forgetPasswdText: PropTypes.string,

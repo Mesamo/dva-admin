@@ -2,7 +2,10 @@ import dva from 'dva';
 import { browserHistory } from 'dva/router';
 import { createLogger } from 'redux-logger';
 import createLoading from 'dva-loading';
+import * as firebase from 'firebase';
 import './index.css';
+
+require('firebase/auth');
 
 // 1. Initialize
 const app = dva({
@@ -28,3 +31,11 @@ app.router(require('./router'));
 
 // 5. Start
 app.start('#root');
+
+const config = {
+    apiKey: 'AIzaSyCJU9v5f1ygHyvrUGOxueN9OV18VIEuFWA',
+    authDomain: 'dva-admin.firebaseapp.com',
+    // databaseURL: 'https://<DATABASE_NAME>.firebaseio.com',
+    // storageBucket: '<BUCKET>.appspot.com',
+};
+firebase.initializeApp(config);

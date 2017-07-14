@@ -34,5 +34,8 @@
       "experimentalObjectRestSpread": true,
       "jsx": true
     }
+  },
+  "globals": {
+    "localStorage": true
   }
 }

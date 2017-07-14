@@ -1,30 +1,58 @@
-// import { request } from '../utils';
+import * as firebase from 'firebase';
 
-export async function fetchLogin(params) {
-    const result = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            if (params.username === 'test' && params.password === 'test') {
-                resolve({ ...params, success: true });
-            } else {
-                reject({ ...params, success: false, message: 'invalid username or password' });
-            }
-        }, 2000);
-    });
-    return result;
+/**
+ * 用户登录
+ *
+ * @export
+ * @param {string} email 邮箱地址
+ * @param {string} password 密码
+ * @returns {Promise<any>}
+ */
+export async function fetchLogin(email, password) {
+    return firebase.auth().signInWithEmailAndPassword(email, password);
 }
 
-// export async function logout(params) {
-//     return request('/api/logout', {
-//         method: 'post',
-//         data: params,
-//     });
-// }
+/**
+ * 用户退出
+ *
+ * @export
+ * @returns {Promise<any>}
+ */
+export async function fetchLogout() {
+    return firebase.auth().signOut();
+}
 
-export async function fetchLogout(params) {
-    const result = new Promise((resolve) => {
-        setTimeout(() => {
-            resolve({ ...params, success: true });
-        }, 2000);
-    });
-    return result;
+/**
+ * 用户注册
+ *
+ * @export
+ * @param {any} email 邮箱地址
+ * @param {any} password 密码
+ * @returns {Promise<any>}
+ */
+export async function fetchRegiste(email, password) {
+    return firebase.auth().createUserWithEmailAndPassword(email, password);
+}
+
+/**
+ * 发送重置密码邮件
+ *
+ * @export
+ * @param {any} email 邮箱地址
+ * @returns {Promise<any>}
+ */
+export async function sendResetPasswordEmail(email) {
+    return firebase.auth().sendPasswordResetEmail(email);
+}
+
+/**
+ * 重置密码
+ *
+ * @export
+ * @param {any} code 代码
+ * @param {any} newPassword 新密码
+ * @returns {Promise<any>}
+ */
+export async function passwordReset(code, newPassword) {
+    return firebase.auth().confirmPasswordReset(code, newPassword);
 }

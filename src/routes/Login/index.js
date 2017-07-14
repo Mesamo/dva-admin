@@ -10,16 +10,18 @@ const Login = ({
     loading,
     dispatch,
 }) => {
+    const messageDuration = 5;
+
     const onSuccess = (msg) => {
-        message.success(msg);
+        message.success(msg, messageDuration);
     };
 
     const onError = (msg) => {
-        message.error(msg);
+        message.error(msg, messageDuration);
     };
 
-    const onLogin = (values) => {
-        dispatch({ type: 'login/login', payload: { values, onSuccess, onError } });
+    const onLogin = (email, password) => {
+        dispatch({ type: 'login/login', payload: { email, password, onSuccess, onError } });
     };
 
     const onChange = (values) => {
@@ -31,9 +33,9 @@ const Login = ({
         loading,
         onLogin,
         onChange,
-        usernameText: '用户名',
+        emailText: '邮箱',
         passwordText: '密码',
-        rememberMeText: '记住密码',
+        rememberMeText: '记住邮箱',
         forgetPasswdText: '忘记密码',
         loginButtonText: '登录',
         registerText: '现在注册',
