@@ -8,7 +8,7 @@ export default {
     state: {
         login: false,
         email: '',
-        rememberMe: false,
+        rememberMe: true,
     },
     reducers: {
         triggerCheckBox(state, action) {

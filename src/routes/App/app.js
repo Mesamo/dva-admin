@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'dva';
 import { Layout, Menu } from 'antd';
 
-import styles from './index.less';
+import styles from './app.less';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -38,7 +38,7 @@ const App = ({ app, dispatch, children }) => {
             <Layout>
                 <Header style={{ background: '#fff' }} />
                 <Content>
-                    {children}
+                    { children }
                 </Content>
                 <Footer />
             </Layout>

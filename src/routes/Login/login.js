@@ -3,21 +3,21 @@ import { connect } from 'dva';
 import { message } from 'antd';
 
 import { LoginForm } from '../../components';
-import styles from './index.less';
+import styles from './login.less';
 
 const Login = ({
     login,
     loading,
     dispatch,
 }) => {
-    const messageDuration = 5;
+    const MSG_DURATION = 5;
 
     const onSuccess = (msg) => {
-        message.success(msg, messageDuration);
+        message.success(msg, MSG_DURATION);
     };
 
     const onError = (msg) => {
-        message.error(msg, messageDuration);
+        message.error(msg, MSG_DURATION);
     };
 
     const onLogin = (email, password) => {

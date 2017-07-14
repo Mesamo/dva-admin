@@ -2,7 +2,6 @@
 export default {
     namespace: 'app',
     state: {
-        title: 'App',
         collapsed: false,
         mode: 'inline',
         theme: 'dark',
@@ -18,12 +17,12 @@ export default {
     effects: {
     },
     subscriptions: {
-        setup({ dispatch, history }) {
-            history.listen((location) => {
-                if (location.pathname === '/dashboard') {
-                    dispatch({ type: 'checkLogin' });
-                }
-            });
-        },
+        // setup({ dispatch, history }) {
+        //     history.listen((location) => {
+        //         if (location.pathname === '/dashboard') {
+        //             dispatch({ type: 'checkLogin' });
+        //         }
+        //     });
+        // },
     },
 };
