@@ -25,7 +25,7 @@ const Login = ({
     };
 
     const onChange = (values) => {
-        dispatch({ type: 'login/triggerCheckBox', checked: values });
+        dispatch({ type: 'login/triggerCheckBox', payload: { rememberMe: values } });
     };
 
     const loginFormProps = {

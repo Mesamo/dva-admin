@@ -27,6 +27,7 @@
     "require-yield": [1],
     "class-methods-use-this": "off",
     "no-useless-constructor": "off",
+    "no-underscore-dangle": "off",
     "indent": ["warn", 4]
   },
   "parserOptions": {
@@ -36,6 +37,7 @@
     }
   },
   "globals": {
-    "localStorage": true
+    "localStorage": true,
+    "sessionStorage": true
   }
 }

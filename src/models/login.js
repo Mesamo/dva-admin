@@ -3,33 +3,32 @@ import { routerRedux } from 'dva/router';
 import { fetchLogin } from '../services/login';
 import { write, read, remove } from '../utils/localstorge';
 
+const authorizedUrl = [
+    '/',
+    '',
+];
+
 export default {
     namespace: 'login',
     state: {
-        login: false,
         email: '',
+        attemptedUrl: '/',
         rememberMe: true,
     },
     reducers: {
         triggerCheckBox(state, action) {
             return {
                 ...state,
-                rememberMe: action.checked,
+                ...action.payload,
             };
         },
-        loginSuccess(state) {
+        cacheEmail(state, action) {
             return {
                 ...state,
-                login: true,
+                ...action.payload,
             };
         },
-        loginFail(state) {
-            return {
-                ...state,
-                login: false,
-            };
-        },
-        cacheUser(state, action) {
+        saveAttemptedUrl(state, action) {
             return {
                 ...state,
                 ...action.payload,
@@ -40,25 +39,22 @@ export default {
         *login({ payload }, { call, put, select }) {
             const { email, password, onSuccess, onError } = payload;
             const rememberMe = yield select(state => state.login.rememberMe);
+            const attemptedUrl = yield select(state => state.login.attemptedUrl);
             try {
                 const response = yield call(fetchLogin, email, password);
                 if (response) {
-                    yield put({ type: 'loginSuccess' });
                     if (onSuccess && typeof onSuccess === 'function') {
                         yield onSuccess('Login success : )');
+                        yield sessionStorage.setItem('isLogin', true);
                     }
                     if (rememberMe) {
                         yield write('email', email);
-                        yield put({ type: 'cacheUser', payload: { email } });
                     } else {
                         yield remove('email');
                     }
-                    yield put(routerRedux.push({ pathname: '/app' }));
-                } else {
-                    yield put({ type: 'loginFail' });
-                    if (onError && typeof onError === 'function') {
-                        yield onError(response.message);
-                    }
+                    yield put(routerRedux.push({ pathname: attemptedUrl }));
+                } else if (onError && typeof onError === 'function') {
+                    yield onError(response.message);
                 }
             } catch (error) {
                 const message = `${error.code}; ${error.message}`;
@@ -67,11 +63,34 @@ export default {
                 }
             }
         },
+        *redirectToLogin({ payload }, { put }) {
+            const isLogin = yield sessionStorage.getItem('isLogin');
+            if (!isLogin) {
+                const { attemptedUrl } = payload;
+                yield put({ type: 'saveAttemptedUrl', payload: { attemptedUrl } });
+                yield put(routerRedux.push('/login'));
+            }
+        },
+        *redirectToApp({ payload }, { put }) {
+            const isLogin = sessionStorage.getItem('isLogin');
+            if (isLogin) {
+                yield put(routerRedux.push({ pathname: '/' }));
+            }
+        },
     },
     subscriptions: {
         setup({ dispatch }) {
             const email = read('email');
-            dispatch({ type: 'cacheUser', payload: { email } });
+            dispatch({ type: 'cacheEmail', payload: { email } });
+        },
+        checkLogin({ dispatch, history }) {
+            return history.listen(({ pathname }) => {
+                if (pathname === '/login') {
+                    dispatch({ type: 'redirectToApp', payload: {} });
+                } else if (authorizedUrl.indexOf(pathname) > -1) {
+                    dispatch({ type: 'redirectToLogin', payload: { attemptedUrl: pathname } });
+                }
+            });
         },
     },
 };
