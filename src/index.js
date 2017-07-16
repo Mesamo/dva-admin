@@ -22,7 +22,6 @@ if (process.env.NODE_ENV === 'development') {
 
 // 3. Model
 app.model(require('./models/app'));
-app.model(require('./models/login'));
 
 // 4. Router
 app.router(require('./router'));
