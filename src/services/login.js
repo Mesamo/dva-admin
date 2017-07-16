@@ -30,7 +30,7 @@ export async function fetchLogout() {
  * @param {any} password 密码
  * @returns {Promise<any>}
  */
-export async function fetchRegiste(email, password) {
+export async function fetchRegister(email, password) {
     return firebase.auth().createUserWithEmailAndPassword(email, password);
 }
 
