@@ -27,7 +27,7 @@ const App = ({ app, dispatch, children }) => {
         <Layout className={styles.normal}>
             <Sider {...siderProps} >
                 <div className={styles.logo}>
-                    <img alt="logo" src="/dva.ico" className={styles.dva} />
+                    <img alt="logo" src="/favicon.ico" className={styles.dva} />
                     {collapsed ? '' : <span className={styles.title}>Dva Admin</span>}
                 </div>
                 <Menu theme={theme} mode={mode}>
