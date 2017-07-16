@@ -1,6 +1,5 @@
 import dva from 'dva';
 import { browserHistory } from 'dva/router';
-import { createLogger } from 'redux-logger';
 import createLoading from 'dva-loading';
 import * as firebase from 'firebase';
 import './index.less';
@@ -15,10 +14,6 @@ const app = dva({
 
 // 2. Plugins
 app.use(createLoading({ effect: true }));
-
-if (process.env.NODE_ENV === 'development') {
-    app.use({ onAction: createLogger() });
-}
 
 // 3. Model
 app.model(require('./models/app'));
