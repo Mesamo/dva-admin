@@ -2,16 +2,9 @@ import React from 'react';
 import { Router } from 'dva/router';
 
 import App from './routes/App/app';
+import Login from './routes/Login/login';
 
-const cached = {};
-function registerModel(app, model) {
-    if (!cached[model.namespace]) {
-        app.model(model);
-        cached[model.namespace] = 1;
-    }
-}
-
-const RouterConfig = ({ history, app }) => {
+const RouterConfig = ({ history }) => {
     const routes = [
         // app
         {
@@ -30,12 +23,7 @@ const RouterConfig = ({ history, app }) => {
         {
             path: 'login',
             name: 'login',
-            getComponent(nextState, callback) {
-                require.ensure([], (require) => {
-                    registerModel(app, require('./models/login'));
-                    callback(null, require('./routes/Login/login'));
-                });
-            },
+            component: Login,
         },
         // error
         {
