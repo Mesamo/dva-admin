@@ -7,7 +7,7 @@ export default {
     namespace: 'login',
     state: {
         email: '',
-        rememberMe: true,
+        rememberMe: false,
     },
     reducers: {
         triggerCheckBox(state, action) {
@@ -52,9 +52,14 @@ export default {
         },
     },
     subscriptions: {
-        setup({ dispatch }) {
-            const email = read('email');
-            dispatch({ type: 'cacheEmail', payload: { email } });
+        setup({ dispatch, history }) {
+            return history.listen(({ pathname }) => {
+                const isLogin = sessionStorage.getItem('isLogin');
+                if (!isLogin && pathname === '/login') {
+                    const email = read('email');
+                    dispatch({ type: 'cacheEmail', payload: { email } });
+                }
+            });
         },
     },
 };

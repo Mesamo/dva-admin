@@ -4,12 +4,12 @@ import { Router } from 'dva/router';
 import App from './routes/App/app';
 
 const cached = {};
-function registerModel(app, model) {
+const registerModel = (app, model) => {
     if (!cached[model.namespace]) {
         app.model(model);
         cached[model.namespace] = 1;
     }
-}
+};
 
 const RouterConfig = ({ history, app }) => {
     const routes = [
@@ -34,6 +34,17 @@ const RouterConfig = ({ history, app }) => {
                 require.ensure([], (require) => {
                     registerModel(app, require('./models/login'));
                     callback(null, require('./routes/Login/login'));
+                });
+            },
+        },
+        // Register
+        {
+            path: 'register',
+            name: 'register',
+            getComponent(nextState, callback) {
+                require.ensure([], (require) => {
+                    registerModel(app, require('./models/register'));
+                    callback(null, require('./routes/Register/register'));
                 });
             },
         },

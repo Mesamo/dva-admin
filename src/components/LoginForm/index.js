@@ -86,7 +86,7 @@ const LoginForm = ({
                 >
                     {loginButtonText}
                 </Button>
-                <Link to="/error">{registerText}</Link>
+                <Link to="/register">{registerText}</Link>
             </FormItem>
             <p>
                 <span>{emailText}: dva-admin@test.com</span>
