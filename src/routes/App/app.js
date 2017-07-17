@@ -3,8 +3,9 @@ import { connect } from 'dva';
 import { Layout, Menu } from 'antd';
 
 import styles from './app.less';
+import Header from '../../components/Header/header';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Footer, Sider } = Layout;
 
 const App = ({ app, dispatch, children }) => {
     const { collapsed, mode, theme } = app;
@@ -23,6 +24,33 @@ const App = ({ app, dispatch, children }) => {
         breakpoint: 'lg',
     };
 
+    const switchSider = () => {
+        const data = {
+            collapsed: !collapsed,
+        };
+        dispatch({ type: 'app/toggleCollapse', payload: data });
+    };
+
+    const logout = () => {
+        dispatch({ type: 'app/logout' });
+    };
+
+    const menusFunc = {
+        logout,
+    };
+
+    const handleClickMenu = (e) => {
+        menusFunc[e.key]();
+    };
+
+    const headerProps = {
+        switchSider,
+        collapsed,
+        handleClickMenu,
+        username: '用户',
+        logoutText: '注销',
+    };
+
     return (
         <Layout className={styles.normal}>
             <Sider {...siderProps} >
@@ -36,7 +64,7 @@ const App = ({ app, dispatch, children }) => {
                 </Menu>
             </Sider>
             <Layout>
-                <Header style={{ background: '#fff' }} />
+                <Header {...headerProps} />
                 <Content>
                     { children }
                 </Content>

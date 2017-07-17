@@ -1,5 +1,7 @@
 import { routerRedux } from 'dva/router';
 
+import { fetchLogout } from '../services/login';
+
 const authorizedUrl = [
     '/',
     '',
@@ -28,6 +30,11 @@ export default {
         },
     },
     effects: {
+        *logout({ payload }, { put, call }) {
+            yield call(fetchLogout);
+            yield sessionStorage.removeItem('isLogin');
+            yield put(routerRedux.push({ pathname: '/login' }));
+        },
         *redirectToLogin({ payload }, { put }) {
             yield put({ type: 'saveAttemptedUrl', payload });
             yield put(routerRedux.push('/login'));
