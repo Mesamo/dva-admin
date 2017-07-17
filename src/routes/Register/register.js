@@ -3,21 +3,24 @@ import { connect } from 'dva';
 import { message } from 'antd';
 
 import { RegisterForm } from '../../components';
-
+import CONSTANTS from '../../utils/constants';
 import styles from './register.less';
 
 const Register = ({
     register,
     dispatch,
 }) => {
-    const MSG_DURATION = 3;
+    const {
+        NORMAL_MSG_DURATION,
+        ERROR_MSG_DURATION,
+    } = CONSTANTS;
 
     const onSuccess = (msg) => {
-        message.success(msg, MSG_DURATION);
+        message.success(msg, NORMAL_MSG_DURATION);
     };
 
     const onError = (msg) => {
-        message.error(msg, MSG_DURATION);
+        message.error(msg, ERROR_MSG_DURATION);
     };
 
     const onRegister = (email, password) => {

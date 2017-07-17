@@ -3,6 +3,7 @@ import { connect } from 'dva';
 import { message } from 'antd';
 
 import { LoginForm } from '../../components';
+import CONSTANTS from '../../utils/constants';
 import styles from './login.less';
 
 const Login = ({
@@ -10,14 +11,17 @@ const Login = ({
     loading,
     dispatch,
 }) => {
-    const MSG_DURATION = 5;
+    const {
+        NORMAL_MSG_DURATION,
+        ERROR_MSG_DURATION,
+    } = CONSTANTS;
 
     const onSuccess = (msg) => {
-        message.success(msg, MSG_DURATION);
+        message.success(msg, NORMAL_MSG_DURATION);
     };
 
     const onError = (msg) => {
-        message.error(msg, MSG_DURATION);
+        message.error(msg, ERROR_MSG_DURATION);
     };
 
     const onLogin = (email, password) => {

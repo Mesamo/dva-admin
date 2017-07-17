@@ -1,0 +1,6 @@
+const CONSTANTS = {
+    NORMAL_MSG_DURATION: 3,
+    ERROR_MSG_DURATION: 5,
+};
+
+export default CONSTANTS;
