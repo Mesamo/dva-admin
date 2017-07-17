@@ -21,5 +21,8 @@
       "changeOrigin": true,
       "pathRewrite": { "^/api" : "" }
     }
+  },
+  "theme": {
+      "@icon-url": "'/assets/iconfont/iconfont'"
   }
 }
