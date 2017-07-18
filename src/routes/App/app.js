@@ -9,26 +9,13 @@ const { Content, Footer, Sider } = Layout;
 
 const App = ({ app, dispatch, children }) => {
     const { collapsed, mode, theme } = app;
-    const onCollapse = (c) => {
-        const data = {
-            collapsed: c,
-            mode: c ? 'vertical' : 'inline',
-        };
-        dispatch({ type: 'app/toggleCollapse', payload: data });
-    };
+    const onCollapse = () => dispatch({ type: 'app/toggleCollapse' });
 
     const siderProps = {
         collapsible: true,
         collapsed,
         onCollapse,
         breakpoint: 'lg',
-    };
-
-    const switchSider = () => {
-        const data = {
-            collapsed: !collapsed,
-        };
-        dispatch({ type: 'app/toggleCollapse', payload: data });
     };
 
     const logout = () => {
@@ -39,16 +26,19 @@ const App = ({ app, dispatch, children }) => {
         logout,
     };
 
-    const handleClickMenu = (e) => {
-        menusFunc[e.key]();
-    };
+    const menus = [
+        {
+            key: 'logout',
+            text: '注销',
+        },
+    ];
 
     const headerProps = {
-        switchSider,
+        onSwitchSider: onCollapse,
         collapsed,
-        handleClickMenu,
+        menus,
+        menusFunc,
         username: '用户',
-        logoutText: '注销',
     };
 
     return (

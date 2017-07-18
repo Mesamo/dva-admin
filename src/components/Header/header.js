@@ -6,23 +6,28 @@ import styles from './header.less';
 const SubMenu = Menu.SubMenu;
 
 const Header = ({
-    switchSider,
+    onSwitchSider,
     collapsed,
-    handleClickMenu,
+    menus,
+    menusFunc,
     username,
-    logoutText,
 }) => {
+    const handleClickMenu = e => menusFunc[e.key]();
+    const handleSwitchSider = () => onSwitchSider();
+
     return (
         <Layout.Header className={styles.header}>
-            <div className={styles.button} onClick={switchSider}>
+            <div className={styles.button} onClick={handleSwitchSider}>
                 <Icon type={collapsed ? 'menu-unfold' : 'menu-fold'} />
             </div>
             <div className={styles.right}>
                 <Menu mode="horizontal" onClick={handleClickMenu} style={{ textAlign: 'center' }}>
                     <SubMenu title={<span><Icon type="user" />{username}</span>}>
-                        <Menu.Item key="logout">
-                            <a>{logoutText}</a>
-                        </Menu.Item>
+                        {menus.map(menu => (
+                            <Menu.Item key={menu.key}>
+                                <a>{menu.text}</a>
+                            </Menu.Item>
+                        ))}
                     </SubMenu>
                 </Menu>
             </div>
@@ -32,15 +37,14 @@ const Header = ({
 
 Header.defaultProps = {
     username: 'user',
-    logoutText: 'logout',
 };
 
 Header.propTypes = {
-    switchSider: PropTypes.func,
-    collapsed: PropTypes.bool.isRequired,
-    handleClickMenu: PropTypes.func.isRequired,
+    onSwitchSider: PropTypes.func.isRequired,
+    collapsed: PropTypes.bool,
+    menus: PropTypes.array,
+    menusFunc: PropTypes.object,
     username: PropTypes.string,
-    logoutText: PropTypes.string,
 };
 
 export default Header;

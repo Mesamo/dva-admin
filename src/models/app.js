@@ -16,10 +16,10 @@ export default {
         attemptedUrl: '/',
     },
     reducers: {
-        toggleCollapse(state, action) {
+        toggleCollapse(state) {
             return {
                 ...state,
-                ...action.payload,
+                collapsed: !state.collapsed,
             };
         },
         saveAttemptedUrl(state, action) {
