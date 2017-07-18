@@ -1,14 +1,16 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Layout, Menu } from 'antd';
+import { Layout } from 'antd';
 
 import styles from './app.less';
 import Header from '../../components/Header/header';
+import Sider from '../../components/Sider/sider';
+import menus from '../../utils/menu';
 
-const { Content, Footer, Sider } = Layout;
+const { Content, Footer } = Layout;
 
 const App = ({ app, dispatch, children }) => {
-    const { collapsed, mode, theme } = app;
+    const { collapsed, menuTheme } = app;
     const onCollapse = () => dispatch({ type: 'app/toggleCollapse' });
 
     const siderProps = {
@@ -16,17 +18,19 @@ const App = ({ app, dispatch, children }) => {
         collapsed,
         onCollapse,
         breakpoint: 'lg',
+        menuTheme,
+        menus,
     };
 
     const logout = () => {
         dispatch({ type: 'app/logout' });
     };
 
-    const menusFunc = {
+    const headerMenusFunc = {
         logout,
     };
 
-    const menus = [
+    const headerMenus = [
         {
             key: 'logout',
             text: '注销',
@@ -36,23 +40,14 @@ const App = ({ app, dispatch, children }) => {
     const headerProps = {
         onSwitchSider: onCollapse,
         collapsed,
-        menus,
-        menusFunc,
+        menus: headerMenus,
+        menusFunc: headerMenusFunc,
         username: '用户',
     };
 
     return (
         <Layout className={styles.normal}>
-            <Sider {...siderProps} >
-                <div className={styles.logo}>
-                    <img alt="logo" src="/favicon.ico" className={styles.dva} />
-                    {collapsed ? '' : <span className={styles.title}>Dva Admin</span>}
-                </div>
-                <Menu theme={theme} mode={mode}>
-                    <Menu.Item>test</Menu.Item>
-                    <Menu.Item>test</Menu.Item>
-                </Menu>
-            </Sider>
+            <Sider {...siderProps} />
             <Layout>
                 <Header {...headerProps} />
                 <Content>

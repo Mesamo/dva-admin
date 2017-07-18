@@ -11,8 +11,7 @@ export default {
     namespace: 'app',
     state: {
         collapsed: false,
-        mode: 'inline',
-        theme: 'dark',
+        menuTheme: 'dark',
         attemptedUrl: '/',
     },
     reducers: {
