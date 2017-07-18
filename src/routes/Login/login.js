@@ -11,22 +11,15 @@ const Login = ({
     loading,
     dispatch,
 }) => {
-    const {
-        NORMAL_MSG_DURATION,
-        ERROR_MSG_DURATION,
-    } = CONSTANTS;
-
-    const onSuccess = (msg) => {
-        message.success(msg, NORMAL_MSG_DURATION);
-    };
-
-    const onError = (msg) => {
-        message.error(msg, ERROR_MSG_DURATION);
-    };
-
-    const onLogin = (email, password) => {
-        dispatch({ type: 'login/login', payload: { email, password, onSuccess, onError } });
-    };
+    const onLogin = (email, password) => dispatch({
+        type: 'login/login',
+        payload: {
+            email,
+            password,
+            onSuccess: msg => message.success(msg, CONSTANTS.NORMAL_MSG_DURATION),
+            onError: msg => message.error(msg, CONSTANTS.ERROR_MSG_DURATION),
+        },
+    });
 
     const onChange = (values) => {
         dispatch({ type: 'login/triggerCheckBox', payload: { rememberMe: values } });

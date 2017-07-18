@@ -10,22 +10,15 @@ const Register = ({
     register,
     dispatch,
 }) => {
-    const {
-        NORMAL_MSG_DURATION,
-        ERROR_MSG_DURATION,
-    } = CONSTANTS;
-
-    const onSuccess = (msg) => {
-        message.success(msg, NORMAL_MSG_DURATION);
-    };
-
-    const onError = (msg) => {
-        message.error(msg, ERROR_MSG_DURATION);
-    };
-
-    const onRegister = (email, password) => {
-        dispatch({ type: 'register/register', payload: { email, password, onSuccess, onError } });
-    };
+    const onRegister = (email, password) => dispatch({
+        type: 'register/register',
+        payload: {
+            email,
+            password,
+            onSuccess: msg => message.success(msg, CONSTANTS.NORMAL_MSG_DURATION),
+            onError: msg => message.error(msg, CONSTANTS.ERROR_MSG_DURATION),
+        },
+    });
 
     const registerFormProps = {
         register,
@@ -46,7 +39,7 @@ const Register = ({
 const mapStateToProps = (state) => {
     return {
         register: state.register,
-        loading: state.loading.models.login,
+        loading: state.loading.models.register,
     };
 };
 
