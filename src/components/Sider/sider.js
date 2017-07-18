@@ -19,6 +19,7 @@ const Sider = ({
         collapsed,
         onCollapse,
         breakpoint,
+        trigger: null,
     };
 
     const topMenus = menus.map(item => item.key);
@@ -34,7 +35,12 @@ const Sider = ({
                 return (
                     <Menu.SubMenu
                         key={linkTo}
-                        title={<span>{menu.icon ? <Icon type={menu.icon} /> : ''}{collapsed && isTopMenu(menu.key) ? '' : menu.name}</span>}
+                        style={{ 'padding-left': '24px' }}
+                        title={
+                            <span>
+                                {menu.icon ? <Icon type={menu.icon} className={collapsed ? styles.collapsedIcon : ''} /> : ''}
+                                {collapsed && isTopMenu(menu.key) ? '' : menu.name}
+                            </span>}
                     >
                         {getMenus(menu.subMenu, `${linkTo}/`)}
                     </Menu.SubMenu>
@@ -43,7 +49,7 @@ const Sider = ({
                 return (
                     <Menu.Item key={linkTo}>
                         <Link to={linkTo}>
-                            {menu.icon ? <Icon type={menu.icon} /> : ''}
+                            {menu.icon ? <Icon type={menu.icon} className={collapsed ? styles.collapsedIcon : ''} /> : ''}
                             {collapsed && isTopMenu(menu.key) ? '' : menu.name}
                         </Link>
                     </Menu.Item>
