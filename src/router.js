@@ -48,6 +48,16 @@ const RouterConfig = ({ history, app }) => {
                 });
             },
         },
+        {
+            path: 'reset',
+            name: 'reset',
+            getComponent(nextState, callback) {
+                require.ensure([], (require) => {
+                    registerModel(app, require('./models/reset'));
+                    callback(null, require('./routes/Reset/reset'));
+                });
+            },
+        },
         // error
         {
             path: '*',
