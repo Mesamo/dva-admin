@@ -94,7 +94,7 @@ const RegisterForm = ({
                                 message: 'please enter correct email address',
                             },
                         ],
-                    })(<Input />)}
+                    })(<Input ref={input => input && input.focus()} />)}
                 </FormItem>
                 <FormItem {...formItemLayout} hasFeedback label={passwordText} key="2">
                     {getFieldDecorator('password', {
