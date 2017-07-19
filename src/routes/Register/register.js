@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'dva';
 import { message } from 'antd';
 
-import RegisterForm from '../../components/RegisterForm/registerForm';
+import RegisterForm from '../../components/RegisterForm/register-form';
 import CONSTANTS from '../../utils/constants';
 import styles from './register.less';
 

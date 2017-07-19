@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import QueueAnim from 'rc-queue-anim';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 
-import styles from './loginForm.less';
+import styles from './login-form.less';
 
 const FormItem = Form.Item;
 
