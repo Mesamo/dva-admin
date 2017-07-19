@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'dva';
 import { message } from 'antd';
 
-import { LoginForm } from '../../components';
+import LoginForm from '../../components/LoginForm/loginForm';
 import CONSTANTS from '../../utils/constants';
 import styles from './login.less';
 

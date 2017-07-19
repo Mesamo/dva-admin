@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import QueueAnim from 'rc-queue-anim';
 import { Form, Input, Button } from 'antd';
 
 import styles from './registerForm.less';
@@ -80,57 +81,59 @@ const RegisterForm = ({
 
     return (
         <Form className={styles.normal} label="用户注册">
-            <FormItem {...formItemLayout} hasFeedback label={emailText}>
-                {getFieldDecorator('email', {
-                    rules: [
-                        {
-                            required: true,
-                            message: 'please enter email',
-                        },
-                        {
-                            type: 'email',
-                            message: 'please enter correct email address',
-                        },
-                    ],
-                })(<Input />)}
-            </FormItem>
-            <FormItem {...formItemLayout} hasFeedback label={passwordText}>
-                {getFieldDecorator('password', {
-                    rules: [
-                        {
-                            required: true,
-                            message: 'Please input your password!',
-                        },
-                        {
-                            validator: checkConfirm,
-                        },
-                    ],
-                })(<Input type="password" />)}
-            </FormItem>
-            <FormItem {...formItemLayout} hasFeedback label={confirmText}>
-                {getFieldDecorator('confirm', {
-                    rules: [
-                        {
-                            required: true,
-                            message: 'please enter email',
-                        },
-                        {
-                            validator: checkPassword,
-                        },
-                    ],
-                })(<Input type="password" />)}
-            </FormItem>
-            <FormItem {...tailFormItemLayout}>
-                <Button
-                    className={styles.button}
-                    type="primary" htmlType="submit" size="large"
-                    onClick={handleSubmit} loading={loginButtonLoading}
-                    disabled={hasErrors(getFieldsError())}
-                >
-                    {registerText}
-                </Button>
-                <Link to="/login">{returnLogin}</Link>
-            </FormItem>
+            <QueueAnim>
+                <FormItem {...formItemLayout} hasFeedback label={emailText} key="1">
+                    {getFieldDecorator('email', {
+                        rules: [
+                            {
+                                required: true,
+                                message: 'please enter email',
+                            },
+                            {
+                                type: 'email',
+                                message: 'please enter correct email address',
+                            },
+                        ],
+                    })(<Input />)}
+                </FormItem>
+                <FormItem {...formItemLayout} hasFeedback label={passwordText} key="2">
+                    {getFieldDecorator('password', {
+                        rules: [
+                            {
+                                required: true,
+                                message: 'Please input your password!',
+                            },
+                            {
+                                validator: checkConfirm,
+                            },
+                        ],
+                    })(<Input type="password" />)}
+                </FormItem>
+                <FormItem {...formItemLayout} hasFeedback label={confirmText} key="3">
+                    {getFieldDecorator('confirm', {
+                        rules: [
+                            {
+                                required: true,
+                                message: 'please enter email',
+                            },
+                            {
+                                validator: checkPassword,
+                            },
+                        ],
+                    })(<Input type="password" />)}
+                </FormItem>
+                <FormItem {...tailFormItemLayout} key="4">
+                    <Button
+                        className={styles.button}
+                        type="primary" htmlType="submit" size="large"
+                        onClick={handleSubmit} loading={loginButtonLoading}
+                        disabled={hasErrors(getFieldsError())}
+                    >
+                        {registerText}
+                    </Button>
+                    <Link to="/login">{returnLogin}</Link>
+                </FormItem>
+            </QueueAnim>
         </Form>
     );
 };
