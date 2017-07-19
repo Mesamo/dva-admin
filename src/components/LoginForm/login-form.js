@@ -60,10 +60,6 @@ const LoginForm = ({
                                 type: 'email',
                                 message: 'please enter correct email address',
                             },
-                            {
-                                whitespace: true,
-                                message: 'please enter email without whitespace',
-                            },
                         ],
                         initialValue: email,
                     })(<Input
@@ -85,7 +81,7 @@ const LoginForm = ({
                     <Checkbox onChange={handleChange} checked={rememberMe}>
                         {rememberMeText}
                     </Checkbox>
-                    <Link className={styles.forgot} to="/error">{forgetPasswdText}</Link>
+                    <Link className={styles.forgot} to="/reset">{forgetPasswdText}</Link>
                     <Button
                         type="primary" size="large" htmlType="submit" className={styles.button}
                         onClick={handleLogin} loading={loginButtonLoading}

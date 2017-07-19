@@ -4,7 +4,7 @@ import { Layout, Menu, Icon } from 'antd';
 
 import styles from './sider.less';
 
-// const SubMenu = Menu.SubMenu;
+const SubMenu = Menu.SubMenu;
 
 const Sider = ({
     collapsible,
@@ -33,24 +33,25 @@ const Sider = ({
             const linkTo = parentPath + menu.key;
             if (menu.subMenu && menu.subMenu.length > 0) {
                 return (
-                    <Menu.SubMenu
+                    <SubMenu
                         key={linkTo}
+                        className={collapsed && isTopMenu(menu.key) ? styles.arrow : ''}
                         style={{ 'padding-left': '24px' }}
                         title={
                             <span>
-                                {menu.icon ? <Icon type={menu.icon} className={collapsed ? styles.collapsedIcon : ''} /> : ''}
-                                {collapsed && isTopMenu(menu.key) ? '' : menu.name}
+                                {menu.icon ? <Icon type={menu.icon} className={collapsed && isTopMenu(menu.key) ? styles.collapsedIcon : ''} /> : ''}
+                                {collapsed && isTopMenu(menu.key) ? '' : <span>{menu.name}</span>}
                             </span>}
                     >
                         {getMenus(menu.subMenu, `${linkTo}/`)}
-                    </Menu.SubMenu>
+                    </SubMenu>
                 );
             } else {
                 return (
                     <Menu.Item key={linkTo}>
                         <Link to={linkTo}>
-                            {menu.icon ? <Icon type={menu.icon} className={collapsed ? styles.collapsedIcon : ''} /> : ''}
-                            {collapsed && isTopMenu(menu.key) ? '' : menu.name}
+                            {menu.icon ? <Icon type={menu.icon} className={collapsed && isTopMenu(menu.key) ? styles.collapsedIcon : ''} /> : ''}
+                            {collapsed && isTopMenu(menu.key) ? '' : <span>{menu.name}</span>}
                         </Link>
                     </Menu.Item>
                 );
