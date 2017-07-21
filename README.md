@@ -36,11 +36,13 @@ $ npm run build
 ## Special thanks to
 zuiidea: [https://github.com/zuiidea/antd-admin](https://github.com/zuiidea/antd-admin)  
 sorrycc: [https://github.com/dvajs/dva-example-user-dashboard](https://github.com/dvajs/dva-example-user-dashboard)
+pmg1989: [https://github.com/pmg1989/dva-admin](https://github.com/pmg1989/dva-admin)
 
 ## License
 [MIT](https://tldrlegal.com/license/mit-license)
 
-***
+
+
 [demo-url]: https://dva-admin.firebaseapp.com  
 [dva-repo]: https://github.com/dvajs/dva  
 [antd-repo]: https://github.com/ant-design/ant-design  
