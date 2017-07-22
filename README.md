@@ -35,7 +35,7 @@ $ npm run build
 
 ## Special thanks to
 zuiidea: [https://github.com/zuiidea/antd-admin](https://github.com/zuiidea/antd-admin)  
-sorrycc: [https://github.com/dvajs/dva-example-user-dashboard](https://github.com/dvajs/dva-example-user-dashboard)
+sorrycc: [https://github.com/dvajs/dva-example-user-dashboard](https://github.com/dvajs/dva-example-user-dashboard)  
 pmg1989: [https://github.com/pmg1989/dva-admin](https://github.com/pmg1989/dva-admin)
 
 ## License
