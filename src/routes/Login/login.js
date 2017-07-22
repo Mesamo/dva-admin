@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'dva';
-import { message } from 'antd';
+import { message, Row, Col } from 'antd';
 
 import LoginForm from '../../components/LoginForm/login-form';
 import CONSTANTS from '../../utils/constants';
@@ -39,9 +39,11 @@ const Login = ({
     };
 
     return (
-        <div className={styles.normal}>
-            <LoginForm {...loginFormProps} />
-        </div>
+        <Row type="flex" justify="center" align="middle" className={styles.normal}>
+            <Col xs={22} sm={12} md={8} lg={6} xl={4}>
+                <LoginForm {...loginFormProps} />
+            </Col>
+        </Row>
     );
 };
 

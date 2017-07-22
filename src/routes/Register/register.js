@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'dva';
-import { message } from 'antd';
+import { message, Row, Col } from 'antd';
 
 import RegisterForm from '../../components/RegisterForm/register-form';
 import CONSTANTS from '../../utils/constants';
@@ -29,10 +29,13 @@ const Register = ({
         returnLogin: '返回登录页',
         onRegister,
     };
+
     return (
-        <div className={styles.normal}>
-            <RegisterForm {...registerFormProps} />
-        </div>
+        <Row type="flex" justify="center" align="middle" className={styles.normal}>
+            <Col xs={22} sm={18} md={12} lg={10} xl={7}>
+                <RegisterForm {...registerFormProps} />
+            </Col>
+        </Row>
     );
 };
 

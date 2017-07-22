@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'dva';
-import { message } from 'antd';
+import { message, Row, Col } from 'antd';
 
 import ResetForm from '../../components/ResetForm/reset-form';
 import CONSTANTS from '../../utils/constants';
@@ -33,9 +33,11 @@ const Reset = ({
     };
 
     return (
-        <div className={styles.normal}>
-            <ResetForm {...resetFormProps} />
-        </div>
+        <Row type="flex" justify="center" align="middle" className={styles.normal}>
+            <Col xs={22} sm={12} md={8} lg={6} xl={4}>
+                <ResetForm {...resetFormProps} />
+            </Col>
+        </Row>
     );
 };
 
