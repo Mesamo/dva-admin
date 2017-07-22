@@ -34,7 +34,6 @@ export default {
                 if (response) {
                     // 调用登录成功回调
                     yield onSuccess('Login success : )');
-                    yield sessionStorage.setItem('isLogin', true);
                     if (rememberMe) {
                         yield write('email', email);
                     } else {

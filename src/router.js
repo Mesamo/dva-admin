@@ -12,11 +12,22 @@ const registerModel = (app, model) => {
 };
 
 const RouterConfig = ({ history, app }) => {
+    const requireAuth = (nextState, replace, callback) => {
+        app._store.dispatch({
+            type: 'app/checkLogin',
+            payload: {
+                attemptedUrl: nextState.location.pathname,
+            },
+            onComplete: callback,
+        });
+    };
+
     const routes = [
         // app
         {
             path: '/',
             component: App,
+            onEnter: requireAuth,
             getIndexRoute(nextState, callback) {
                 require.ensure([], (require) => {
                     callback(null, {

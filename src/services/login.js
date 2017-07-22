@@ -23,6 +23,16 @@ export async function fetchLogout() {
 }
 
 /**
+ * 获取当前用户
+ *
+ * @export
+ * @returns {firebase.User}
+ */
+export function currentUser() {
+    return firebase.auth().currentUser;
+}
+
+/**
  * 用户注册
  *
  * @export

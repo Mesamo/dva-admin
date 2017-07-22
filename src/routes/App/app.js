@@ -10,7 +10,7 @@ import menus from '../../utils/menu';
 const { Content, Footer } = Layout;
 
 const App = ({ app, dispatch, children }) => {
-    const { collapsed, menuTheme } = app;
+    const { collapsed, menuTheme, username } = app;
     const onCollapse = () => dispatch({ type: 'app/toggleCollapse' });
 
     const siderProps = {
@@ -42,7 +42,7 @@ const App = ({ app, dispatch, children }) => {
         collapsed,
         menus: headerMenus,
         menusFunc: headerMenusFunc,
-        username: '用户',
+        username,
     };
 
     return (
@@ -61,6 +61,7 @@ const App = ({ app, dispatch, children }) => {
 
 const mapStateToProps = state => ({
     app: state.app,
+    login: state.login,
 });
 
 export default connect(mapStateToProps)(App);
