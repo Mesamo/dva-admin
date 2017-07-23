@@ -46,7 +46,7 @@ export default {
                     yield onError(response.message);
                 }
             } catch (error) {
-                yield onError(`${error.code}; ${error.message}`);
+                yield onError(error.code, error.message);
             }
         },
     },

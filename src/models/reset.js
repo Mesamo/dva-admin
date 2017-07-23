@@ -16,7 +16,7 @@ export default {
                 yield onSuccess('Send email success!');
                 yield put(routerRedux.push('/login'));
             } catch (error) {
-                yield onError(`${error.code}; ${error.message}`);
+                yield onError(error.code, error.message);
             }
         },
     },

@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'dva';
-import { message, Row, Col } from 'antd';
+import { Row, Col } from 'antd';
 
 import RegisterForm from '../../components/RegisterForm/register-form';
-import CONSTANTS from '../../utils/constants';
+import notice from '../../utils/notice';
 import styles from './register.less';
 
 const Register = ({
@@ -15,8 +15,8 @@ const Register = ({
         payload: {
             email,
             password,
-            onSuccess: msg => message.success(msg, CONSTANTS.NORMAL_MSG_DURATION),
-            onError: msg => message.error(msg, CONSTANTS.ERROR_MSG_DURATION),
+            onSuccess: msg => notice.success(msg),
+            onError: (code, msg) => notice.error(code, msg),
         },
     });
 
