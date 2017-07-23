@@ -68,9 +68,7 @@ const RegisterForm = ({
     const handleSubmit = (e) => {
         e.preventDefault();
         validateFieldsAndScroll((errors, values) => {
-            if (errors) {
-                return;
-            }
+            if (errors) return;
             onRegister(values.email, values.password);
         });
     };

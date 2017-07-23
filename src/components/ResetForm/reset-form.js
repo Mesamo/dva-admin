@@ -23,9 +23,7 @@ const ResetForm = ({
     const handleSendEmail = (e) => {
         e.stopPropagation();
         validateFieldsAndScroll((errors, values) => {
-            if (errors) {
-                return;
-            }
+            if (errors) return;
             onSendEmail(values.email);
         });
     };

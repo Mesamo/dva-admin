@@ -34,9 +34,7 @@ const LoginForm = ({
     const handleLogin = (e) => {
         e.stopPropagation();
         validateFieldsAndScroll((errors, values) => {
-            if (errors) {
-                return;
-            }
+            if (errors) return;
             onLogin(values.email, values.password);
         });
     };
