@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import QueueAnim from 'rc-queue-anim';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Alert } from 'antd';
 
 import styles from './reset-form.less';
 
@@ -38,9 +38,7 @@ const ResetForm = ({
         <Form className={styles.normal}>
             <QueueAnim>
                 <FormItem>
-                    <h6>
-                        {extraText}
-                    </h6>
+                    <Alert description={extraText} type="info" showIcon />
                 </FormItem>
                 <FormItem hasFeedback key="a">
                     {getFieldDecorator('email', {
