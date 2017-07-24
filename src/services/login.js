@@ -54,15 +54,3 @@ export async function fetchRegister(email, password) {
 export async function sendResetPasswordEmail(email) {
     return firebase.auth().sendPasswordResetEmail(email);
 }
-
-/**
- * 重置密码
- *
- * @export
- * @param {any} code 代码
- * @param {any} newPassword 新密码
- * @returns {Promise<any>}
- */
-export async function passwordReset(code, newPassword) {
-    return firebase.auth().confirmPasswordReset(code, newPassword);
-}
