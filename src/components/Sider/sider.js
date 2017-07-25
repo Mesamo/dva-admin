@@ -35,11 +35,9 @@ const Sider = ({
                 return (
                     <SubMenu
                         key={linkTo}
-                        className={collapsed && isTopMenu(menu.key) ? styles.arrow : ''}
-                        style={{ 'padding-left': '24px' }}
                         title={
                             <span>
-                                {menu.icon ? <Icon type={menu.icon} className={collapsed && isTopMenu(menu.key) ? styles.collapsedIcon : ''} /> : ''}
+                                {menu.icon ? <Icon type={menu.icon} /> : ''}
                                 {collapsed && isTopMenu(menu.key) ? '' : <span>{menu.name}</span>}
                             </span>}
                     >
@@ -50,8 +48,8 @@ const Sider = ({
                 return (
                     <Menu.Item key={linkTo}>
                         <Link to={linkTo}>
-                            {menu.icon ? <Icon type={menu.icon} className={collapsed && isTopMenu(menu.key) ? styles.collapsedIcon : ''} /> : ''}
-                            {collapsed && isTopMenu(menu.key) ? '' : <span>{menu.name}</span>}
+                            {menu.icon ? <Icon type={menu.icon} /> : ''}
+                            <span>{menu.name}</span>
                         </Link>
                     </Menu.Item>
                 );
