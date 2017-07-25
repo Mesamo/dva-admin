@@ -31,6 +31,12 @@ export default {
                 username: action.username,
             };
         },
+        changeTheme(state) {
+            return {
+                ...state,
+                menuTheme: state.menuTheme === 'dark' ? 'light' : 'dark',
+            };
+        },
     },
     effects: {
         *logout({ payload }, { put, call }) {

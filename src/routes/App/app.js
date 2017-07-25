@@ -12,6 +12,7 @@ const { Content, Footer } = Layout;
 const App = ({ app, dispatch, children }) => {
     const { collapsed, menuTheme, username } = app;
     const onCollapse = () => dispatch({ type: 'app/toggleCollapse' });
+    const changeTheme = () => dispatch({ type: 'app/changeTheme' });
 
     const siderProps = {
         collapsible: true,
@@ -20,6 +21,7 @@ const App = ({ app, dispatch, children }) => {
         breakpoint: 'lg',
         menuTheme,
         menus,
+        changeTheme,
     };
 
     const logout = () => {

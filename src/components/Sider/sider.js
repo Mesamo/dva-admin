@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'dva/router';
-import { Layout, Menu, Icon } from 'antd';
+import QueueAnim from 'rc-queue-anim';
+import { Layout, Menu, Icon, Switch } from 'antd';
 
 import styles from './sider.less';
 
@@ -13,6 +14,7 @@ const Sider = ({
     breakpoint,
     menuTheme,
     menus,
+    changeTheme,
 }) => {
     const props = {
         collapsible,
@@ -58,16 +60,31 @@ const Sider = ({
     };
 
     const menuItems = getMenus(menus);
+    const darkMenu = menuTheme === 'dark';
+    const textColor = {
+        color: darkMenu ? 'rgba(255, 255, 255, 0.67)' : 'rgba(0, 0, 0, 0.65)',
+    };
 
     return (
-        <Layout.Sider {...props}>
-            <div className={styles.logo}>
-                <img alt="logo" src="/favicon.ico" className={styles.dva} />
-                {collapsed ? '' : <span className={styles.title}>Dva Admin</span>}
-            </div>
-            <Menu theme={menuTheme} mode={collapsed ? 'vertical' : 'inline'}>
-                {menuItems}
-            </Menu>
+        <Layout.Sider {...props} className={darkMenu ? '' : styles.white}>
+            <QueueAnim delay={200} type="top">
+                <div className={styles.logo} key="1">
+                    <img alt="logo" src="/favicon.ico" className={styles.dva} />
+                    {collapsed ? '' : <span className={styles.title} style={textColor}>Dva Admin</span>}
+                </div>
+            </QueueAnim>
+            <QueueAnim delay={400} type="left">
+                <Menu key="1" theme={menuTheme} mode={collapsed ? 'vertical' : 'inline'}>
+                    {menuItems}
+                </Menu>
+            </QueueAnim>
+            {collapsed ? '' :
+            <QueueAnim delay={600} type="top">
+                <div className={styles.switchtheme} key="1">
+                    <span style={textColor}><Icon type="bulb" />切换主题</span>
+                    <Switch onChange={changeTheme} defaultChecked={darkMenu} checkedChildren="黑" unCheckedChildren="白" />
+                </div>
+            </QueueAnim>}
         </Layout.Sider>
     );
 };
