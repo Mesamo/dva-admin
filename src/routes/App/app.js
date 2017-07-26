@@ -10,7 +10,7 @@ import menus from '../../utils/menu';
 const { Content, Footer } = Layout;
 
 const App = ({ app, dispatch, children }) => {
-    const { collapsed, menuTheme, username } = app;
+    const { collapsed, darkTheme, username } = app;
     const onCollapse = () => dispatch({ type: 'app/toggleCollapse' });
     const changeTheme = () => dispatch({ type: 'app/changeTheme' });
 
@@ -19,7 +19,7 @@ const App = ({ app, dispatch, children }) => {
         collapsed,
         onCollapse,
         breakpoint: 'lg',
-        menuTheme,
+        darkTheme,
         menus,
         changeTheme,
     };

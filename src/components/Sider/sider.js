@@ -12,7 +12,7 @@ const Sider = ({
     collapsed,
     onCollapse,
     breakpoint,
-    menuTheme,
+    darkTheme,
     menus,
     changeTheme,
 }) => {
@@ -60,13 +60,13 @@ const Sider = ({
     };
 
     const menuItems = getMenus(menus);
-    const darkMenu = menuTheme === 'dark';
+    const menuTheme = darkTheme ? 'dark' : 'light';
     const textColor = {
-        color: darkMenu ? 'rgba(255, 255, 255, 0.67)' : 'rgba(0, 0, 0, 0.65)',
+        color: darkTheme ? 'rgba(255, 255, 255, 0.67)' : 'rgba(0, 0, 0, 0.65)',
     };
 
     return (
-        <Layout.Sider {...props} className={darkMenu ? '' : styles.white}>
+        <Layout.Sider {...props} className={darkTheme ? '' : styles.white}>
             <QueueAnim delay={200} type="top">
                 <div className={styles.logo} key="1">
                     <img alt="logo" src="/favicon.ico" className={styles.dva} />
@@ -82,7 +82,7 @@ const Sider = ({
             <QueueAnim delay={600} type="top">
                 <div className={styles.switchtheme} key="1">
                     <span style={textColor}><Icon type="bulb" />切换主题</span>
-                    <Switch onChange={changeTheme} defaultChecked={darkMenu} checkedChildren="黑" unCheckedChildren="白" />
+                    <Switch onChange={changeTheme} defaultChecked={darkTheme} checkedChildren="黑" unCheckedChildren="白" />
                 </div>
             </QueueAnim>}
         </Layout.Sider>
@@ -93,7 +93,7 @@ Sider.__ANT_LAYOUT_SIDER = true;
 
 Sider.defaultProps = {
     breakpoint: 'lg',
-    menuTheme: 'dark',
+    darkTheme: true,
 };
 
 Sider.propTypes = {
@@ -101,7 +101,7 @@ Sider.propTypes = {
     collapsed: PropTypes.bool,
     onCollapse: PropTypes.func,
     breakpoint: PropTypes.string,
-    menuTheme: PropTypes.string,
+    darkTheme: PropTypes.bool,
     menus: PropTypes.any,
 };
 

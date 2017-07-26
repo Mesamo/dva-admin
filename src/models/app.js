@@ -10,6 +10,7 @@ export default {
         username: 'user',
         collapsed: false,
         menuTheme: 'dark',
+        darkTheme: true,
         attemptedUrl: '/',
     },
     reducers: {
@@ -34,7 +35,7 @@ export default {
         changeTheme(state) {
             return {
                 ...state,
-                menuTheme: state.menuTheme === 'dark' ? 'light' : 'dark',
+                darkTheme: !state.darkTheme,
             };
         },
     },
