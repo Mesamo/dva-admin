@@ -1,9 +1,8 @@
 import dva from 'dva';
 import { browserHistory } from 'dva/router';
 import createLoading from 'dva-loading';
-import firebase from 'firebase/app';
-import 'firebase/auth';
 
+import './firebase';
 import './index.less';
 
 // 1. Initialize
@@ -21,9 +20,3 @@ app.router(require('./router'));
 // 5. Start
 app.start('#root');
 
-const config = {
-    projectId: 'dva-admin',
-    apiKey: 'AIzaSyCJU9v5f1ygHyvrUGOxueN9OV18VIEuFWA',
-    authDomain: 'dva-admin.firebaseapp.com'
-};
-firebase.initializeApp(config);
