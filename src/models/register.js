@@ -27,9 +27,8 @@ export default {
             } catch (error) {
                 yield onError(error.code, error.message);
             }
-        },
+        }
     },
     subscriptions: {
-
-    },
+    }
 };

@@ -17,8 +17,8 @@ const ResetForm = ({
     form: {
         getFieldsError,
         getFieldDecorator,
-        validateFieldsAndScroll,
-    },
+        validateFieldsAndScroll
+    }
 }) => {
     const handleSendEmail = (e) => {
         e.stopPropagation();
@@ -43,13 +43,13 @@ const ResetForm = ({
                         rules: [
                             {
                                 required: true,
-                                message: 'Please input the captcha you got!',
+                                message: 'Please input the captcha you got!'
                             },
                             {
                                 type: 'email',
-                                message: 'please enter correct email address',
-                            },
-                        ],
+                                message: 'please enter correct email address'
+                            }
+                        ]
                     })(<Input size="large" placeholder={emailText} />)}
                 </FormItem>
                 <FormItem key="b">
@@ -72,11 +72,11 @@ ResetForm.defaultProps = {
     emailText: 'email',
     emailButtonText: 'Send Email',
     returnLogin: 'to Login',
-    extraText: 'Send you a link to reset you password',
+    extraText: 'Send you a link to reset you password'
 };
 
 ResetForm.propTypes = {
-    onSendEmail: PropTypes.func.isRequired,
+    onSendEmail: PropTypes.func.isRequired
 };
 
 export default Form.create()(ResetForm);

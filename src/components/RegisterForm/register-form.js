@@ -21,31 +21,31 @@ const RegisterForm = ({
         validateFieldsAndScroll,
         validateFields,
         getFieldValue,
-        isFieldTouched,
-    },
+        isFieldTouched
+    }
 }) => {
     const formItemLayout = {
         labelCol: {
             xs: { span: 24 },
-            sm: { span: 4 },
+            sm: { span: 4 }
         },
         wrapperCol: {
             xs: { span: 24 },
-            sm: { span: 18 },
-        },
+            sm: { span: 18 }
+        }
     };
 
     const tailFormItemLayout = {
         wrapperCol: {
             xs: {
                 span: 24,
-                offset: 0,
+                offset: 0
             },
             sm: {
                 span: 6,
-                offset: 4,
-            },
-        },
+                offset: 4
+            }
+        }
     };
 
     // 输入密码时，检查是否与确认密码一致
@@ -85,13 +85,13 @@ const RegisterForm = ({
                         rules: [
                             {
                                 required: true,
-                                message: 'please enter email',
+                                message: 'please enter email'
                             },
                             {
                                 type: 'email',
-                                message: 'please enter correct email address',
-                            },
-                        ],
+                                message: 'please enter correct email address'
+                            }
+                        ]
                     })(<Input ref={input => input && input.focus()} />)}
                 </FormItem>
                 <FormItem {...formItemLayout} hasFeedback label={passwordText} key="2">
@@ -99,12 +99,12 @@ const RegisterForm = ({
                         rules: [
                             {
                                 required: true,
-                                message: 'Please input your password!',
+                                message: 'Please input your password!'
                             },
                             {
-                                validator: checkConfirm,
-                            },
-                        ],
+                                validator: checkConfirm
+                            }
+                        ]
                     })(<Input type="password" />)}
                 </FormItem>
                 <FormItem {...formItemLayout} hasFeedback label={confirmText} key="3">
@@ -112,12 +112,12 @@ const RegisterForm = ({
                         rules: [
                             {
                                 required: true,
-                                message: 'please enter email',
+                                message: 'please enter email'
                             },
                             {
-                                validator: checkPassword,
-                            },
-                        ],
+                                validator: checkPassword
+                            }
+                        ]
                     })(<Input type="password" />)}
                 </FormItem>
                 <FormItem {...tailFormItemLayout} key="4">
@@ -141,7 +141,7 @@ RegisterForm.defaultProps = {
     passwordText: 'password',
     confirmText: 'confirm',
     registerText: 'register',
-    returnLogin: 'to Login',
+    returnLogin: 'to Login'
 };
 
 RegisterForm.propTypes = {
@@ -149,7 +149,7 @@ RegisterForm.propTypes = {
     passwordText: PropTypes.string,
     confirmText: PropTypes.string,
     registerText: PropTypes.string,
-    onRegister: PropTypes.func.isRequired,
+    onRegister: PropTypes.func.isRequired
 };
 
 export default Form.create()(RegisterForm);

@@ -10,7 +10,7 @@ const Header = ({
     collapsed,
     menus,
     menusFunc,
-    username,
+    username
 }) => {
     const handleClickMenu = e => menusFunc[e.key]();
     const handleSwitchSider = () => onSwitchSider();
@@ -36,7 +36,7 @@ const Header = ({
 };
 
 Header.defaultProps = {
-    username: 'user',
+    username: 'user'
 };
 
 Header.propTypes = {
@@ -44,7 +44,7 @@ Header.propTypes = {
     collapsed: PropTypes.bool,
     menus: PropTypes.array,
     menusFunc: PropTypes.object,
-    username: PropTypes.string,
+    username: PropTypes.string
 };
 
 export default Header;

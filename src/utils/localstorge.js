@@ -32,5 +32,5 @@ export {
     readObject,
     write,
     writeObject,
-    remove,
+    remove
 };

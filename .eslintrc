@@ -28,7 +28,8 @@
     "class-methods-use-this": "off",
     "no-useless-constructor": "off",
     "no-underscore-dangle": "off",
-    "indent": ["warn", 4]
+    "indent": ["warn", 4],
+    "comma-dangle": ["error", "never"]
   },
   "parserOptions": {
     "ecmaFeatures": {

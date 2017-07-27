@@ -8,7 +8,7 @@ import styles from './register.less';
 
 const Register = ({
     register,
-    dispatch,
+    dispatch
 }) => {
     const onRegister = (email, password) => dispatch({
         type: 'register/register',
@@ -16,8 +16,8 @@ const Register = ({
             email,
             password,
             onSuccess: msg => notice.success(msg),
-            onError: (code, msg) => notice.error(code, msg),
-        },
+            onError: (code, msg) => notice.error(code, msg)
+        }
     });
 
     const registerFormProps = {
@@ -27,7 +27,7 @@ const Register = ({
         confirmText: '确认密码',
         registerText: '注册',
         returnLogin: '返回登录页',
-        onRegister,
+        onRegister
     };
 
     return (
@@ -42,7 +42,7 @@ const Register = ({
 const mapStateToProps = (state) => {
     return {
         register: state.register,
-        loading: state.loading.models.register,
+        loading: state.loading.models.register
     };
 };
 

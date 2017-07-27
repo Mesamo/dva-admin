@@ -21,8 +21,8 @@ const LoginForm = ({
     form: {
         getFieldsError,
         getFieldDecorator,
-        validateFieldsAndScroll,
-    },
+        validateFieldsAndScroll
+    }
 }) => {
     const { rememberMe, email } = login;
 
@@ -52,14 +52,14 @@ const LoginForm = ({
                         rules: [
                             {
                                 required: true,
-                                message: 'please enter email',
+                                message: 'please enter email'
                             },
                             {
                                 type: 'email',
-                                message: 'please enter correct email address',
-                            },
+                                message: 'please enter correct email address'
+                            }
                         ],
-                        initialValue: email,
+                        initialValue: email
                     })(<Input
                         prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder={emailText}
                         ref={input => input && input.focus()}
@@ -70,9 +70,9 @@ const LoginForm = ({
                         rules: [
                             {
                                 required: true,
-                                message: 'please enter password',
-                            },
-                        ],
+                                message: 'please enter password'
+                            }
+                        ]
                     })(<Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder={passwordText} />)}
                 </FormItem>
                 <FormItem key="4">
@@ -104,7 +104,7 @@ LoginForm.defaultProps = {
     rememberMeText: 'Remember me',
     forgetPasswdText: 'Forget Password',
     loginButtonText: 'Login',
-    registerText: 'Register Now !',
+    registerText: 'Register Now !'
 };
 
 LoginForm.propTypes = {
@@ -115,7 +115,7 @@ LoginForm.propTypes = {
     loginButtonText: PropTypes.string,
     registerText: PropTypes.string,
     onChange: PropTypes.func.isRequired,
-    onLogin: PropTypes.func.isRequired,
+    onLogin: PropTypes.func.isRequired
 };
 
 export default Form.create()(LoginForm);

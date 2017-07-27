@@ -2,12 +2,12 @@ const menus = [
     {
         key: 'test1',
         name: '测试1',
-        icon: 'android',
+        icon: 'android'
     },
     {
         key: 'test2',
         name: '测试2',
-        icon: 'apple',
+        icon: 'apple'
     },
     {
         key: 'test3',
@@ -17,10 +17,10 @@ const menus = [
             {
                 key: 'test4',
                 name: '测试4',
-                icon: 'github',
-            },
-        ],
-    },
+                icon: 'github'
+            }
+        ]
+    }
 ];
 
 export default menus;

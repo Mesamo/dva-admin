@@ -7,12 +7,7 @@ import 'firebase/auth';
 import './index.less';
 
 // 1. Initialize
-const app = dva({
-    history: browserHistory,
-    onError(error) {
-        console.error('app onError -- ', error);
-    },
-});
+const app = dva({ history: browserHistory });
 
 // 2. Plugins
 app.use(createLoading({ effect: true }));
@@ -29,6 +24,6 @@ app.start('#root');
 const config = {
     projectId: 'dva-admin',
     apiKey: 'AIzaSyCJU9v5f1ygHyvrUGOxueN9OV18VIEuFWA',
-    authDomain: 'dva-admin.firebaseapp.com',
+    authDomain: 'dva-admin.firebaseapp.com'
 };
 firebase.initializeApp(config);

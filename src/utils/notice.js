@@ -2,7 +2,7 @@ import { notification } from 'antd';
 import CONSTANTS from './constants';
 
 notification.config({
-    placement: CONSTANTS.DEFAULT_NOTICE_PLACEMENT,
+    placement: CONSTANTS.DEFAULT_NOTICE_PLACEMENT
 });
 
 const success = (message, description, duration = CONSTANTS.NORMAL_MSG_DURATION) => {
@@ -25,7 +25,7 @@ const notice = {
     success,
     info,
     warning,
-    error,
+    error
 };
 
 export default notice;

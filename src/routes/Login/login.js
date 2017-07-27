@@ -9,7 +9,7 @@ import styles from './login.less';
 const Login = ({
     login,
     loading,
-    dispatch,
+    dispatch
 }) => {
     const onLogin = (email, password) => dispatch({
         type: 'login/login',
@@ -17,8 +17,8 @@ const Login = ({
             email,
             password,
             onSuccess: msg => notice.success(msg),
-            onError: (code, msg) => notice.error(code, msg),
-        },
+            onError: (code, msg) => notice.error(code, msg)
+        }
     });
 
     const onChange = (values) => {
@@ -35,7 +35,7 @@ const Login = ({
         rememberMeText: '记住邮箱',
         forgetPasswdText: '忘记密码',
         loginButtonText: '登录',
-        registerText: '现在注册',
+        registerText: '现在注册'
     };
 
     return (
@@ -49,7 +49,7 @@ const Login = ({
 
 const mapStateToProps = state => ({
     login: state.login,
-    loading: state.loading.models.login,
+    loading: state.loading.models.login
 });
 
 export default connect(mapStateToProps)(Login);

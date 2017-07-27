@@ -7,21 +7,21 @@ export default {
     namespace: 'login',
     state: {
         email: '',
-        rememberMe: false,
+        rememberMe: false
     },
     reducers: {
         triggerCheckBox(state, action) {
             return {
                 ...state,
-                ...action.payload,
+                ...action.payload
             };
         },
         cacheEmail(state, action) {
             return {
                 ...state,
-                ...action.payload,
+                ...action.payload
             };
-        },
+        }
     },
     effects: {
         *login({ payload }, { call, put, select }) {
@@ -48,7 +48,7 @@ export default {
             } catch (error) {
                 yield onError(error.code, error.message);
             }
-        },
+        }
     },
     subscriptions: {
         setup({ dispatch, history }) {
@@ -59,6 +59,6 @@ export default {
                     dispatch({ type: 'cacheEmail', payload: { email } });
                 }
             });
-        },
-    },
+        }
+    }
 };

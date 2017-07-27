@@ -16,9 +16,9 @@ const RouterConfig = ({ history, app }) => {
         app._store.dispatch({
             type: 'app/checkLogin',
             payload: {
-                attemptedUrl: nextState.location.pathname,
+                attemptedUrl: nextState.location.pathname
             },
-            onComplete: callback,
+            onComplete: callback
         });
     };
 
@@ -31,11 +31,11 @@ const RouterConfig = ({ history, app }) => {
             getIndexRoute(nextState, callback) {
                 require.ensure([], (require) => {
                     callback(null, {
-                        component: require('./routes/IndexPage/index'),
+                        component: require('./routes/IndexPage/index')
                     });
                 });
             },
-            childRoutes: [],
+            childRoutes: []
         },
         // login
         {
@@ -46,7 +46,7 @@ const RouterConfig = ({ history, app }) => {
                     registerModel(app, require('./models/login'));
                     callback(null, require('./routes/Login/login'));
                 });
-            },
+            }
         },
         // Register
         {
@@ -57,7 +57,7 @@ const RouterConfig = ({ history, app }) => {
                     registerModel(app, require('./models/register'));
                     callback(null, require('./routes/Register/register'));
                 });
-            },
+            }
         },
         {
             path: 'reset',
@@ -67,7 +67,7 @@ const RouterConfig = ({ history, app }) => {
                     registerModel(app, require('./models/reset'));
                     callback(null, require('./routes/Reset/reset'));
                 });
-            },
+            }
         },
         // error
         {
@@ -77,8 +77,8 @@ const RouterConfig = ({ history, app }) => {
                 require.ensure([], (require) => {
                     callback(null, require('./routes/Error/error'));
                 });
-            },
-        },
+            }
+        }
     ];
     return (
         <Router history={history} routes={routes} />

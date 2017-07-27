@@ -21,7 +21,7 @@ const App = ({ app, dispatch, children }) => {
         breakpoint: 'lg',
         darkTheme,
         menus,
-        changeTheme,
+        changeTheme
     };
 
     const logout = () => {
@@ -29,14 +29,14 @@ const App = ({ app, dispatch, children }) => {
     };
 
     const headerMenusFunc = {
-        logout,
+        logout
     };
 
     const headerMenus = [
         {
             key: 'logout',
-            text: '注销',
-        },
+            text: '注销'
+        }
     ];
 
     const headerProps = {
@@ -44,7 +44,7 @@ const App = ({ app, dispatch, children }) => {
         collapsed,
         menus: headerMenus,
         menusFunc: headerMenusFunc,
-        username,
+        username
     };
 
     return (
@@ -63,7 +63,7 @@ const App = ({ app, dispatch, children }) => {
 
 const mapStateToProps = state => ({
     app: state.app,
-    login: state.login,
+    login: state.login
 });
 
 export default connect(mapStateToProps)(App);

@@ -14,14 +14,14 @@ const Sider = ({
     breakpoint,
     darkTheme,
     menus,
-    changeTheme,
+    changeTheme
 }) => {
     const props = {
         collapsible,
         collapsed,
         onCollapse,
         breakpoint,
-        trigger: null,
+        trigger: null
     };
 
     const topMenus = menus.map(item => item.key);
@@ -62,7 +62,7 @@ const Sider = ({
     const menuItems = getMenus(menus);
     const menuTheme = darkTheme ? 'dark' : 'light';
     const textColor = {
-        color: darkTheme ? 'rgba(255, 255, 255, 0.67)' : 'rgba(0, 0, 0, 0.65)',
+        color: darkTheme ? 'rgba(255, 255, 255, 0.67)' : 'rgba(0, 0, 0, 0.65)'
     };
 
     return (
@@ -93,7 +93,7 @@ Sider.__ANT_LAYOUT_SIDER = true;
 
 Sider.defaultProps = {
     breakpoint: 'lg',
-    darkTheme: true,
+    darkTheme: true
 };
 
 Sider.propTypes = {
@@ -102,7 +102,7 @@ Sider.propTypes = {
     onCollapse: PropTypes.func,
     breakpoint: PropTypes.string,
     darkTheme: PropTypes.bool,
-    menus: PropTypes.any,
+    menus: PropTypes.any
 };
 
 export default Sider;

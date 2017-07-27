@@ -11,33 +11,33 @@ export default {
         collapsed: false,
         menuTheme: 'dark',
         darkTheme: true,
-        attemptedUrl: '/',
+        attemptedUrl: '/'
     },
     reducers: {
         toggleCollapse(state) {
             return {
                 ...state,
-                collapsed: !state.collapsed,
+                collapsed: !state.collapsed
             };
         },
         saveAttemptedUrl(state, action) {
             return {
                 ...state,
-                ...action.payload,
+                ...action.payload
             };
         },
         saveUsername(state, action) {
             return {
                 ...state,
-                username: action.username,
+                username: action.username
             };
         },
         changeTheme(state) {
             return {
                 ...state,
-                darkTheme: !state.darkTheme,
+                darkTheme: !state.darkTheme
             };
-        },
+        }
     },
     effects: {
         *logout({ payload }, { put, call }) {
@@ -64,8 +64,8 @@ export default {
                 const { attemptedUrl } = payload;
                 yield put({ type: 'redirectToLogin', payload: { attemptedUrl } });
             }
-        },
+        }
     },
     subscriptions: {
-    },
+    }
 };
