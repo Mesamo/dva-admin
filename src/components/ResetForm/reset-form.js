@@ -36,7 +36,7 @@ const ResetForm = ({
         <Form className={styles.normal}>
             <QueueAnim>
                 <FormItem key="1">
-                    <Alert description={extraText} type="info" />
+                    <Alert description={extraText} type="info" className={styles.text} />
                 </FormItem>
                 <FormItem hasFeedback key="2">
                     {getFieldDecorator('email', {
@@ -61,7 +61,7 @@ const ResetForm = ({
                     >
                         {emailButtonText}
                     </Button>
-                    <Link to="/login">{returnLogin}</Link>
+                    <Link to="/login" className={styles.text}>{returnLogin}</Link>
                 </FormItem>
             </QueueAnim>
         </Form>

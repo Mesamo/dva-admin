@@ -75,7 +75,7 @@ const LoginForm = ({
                     })(<Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder={passwordText} />)}
                 </FormItem>
                 <FormItem key="4">
-                    <Checkbox onChange={handleChange} checked={rememberMe}>
+                    <Checkbox onChange={handleChange} checked={rememberMe} className={styles.text}>
                         {rememberMeText}
                     </Checkbox>
                     <Link className={styles.forgot} to="/reset">{forgetPasswdText}</Link>
@@ -86,7 +86,7 @@ const LoginForm = ({
                     >
                         {loginButtonText}
                     </Button>
-                    <Link to="/register">{registerText}</Link>
+                    <Link to="/register" className={styles.text}>{registerText}</Link>
                 </FormItem>
             </QueueAnim>
         </Form>

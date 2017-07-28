@@ -129,7 +129,7 @@ const RegisterForm = ({
                     >
                         {registerText}
                     </Button>
-                    <Link to="/login">{returnLogin}</Link>
+                    <Link to="/login" className={styles.text}>{returnLogin}</Link>
                 </FormItem>
             </QueueAnim>
         </Form>
