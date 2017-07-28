@@ -42,7 +42,7 @@ const RegisterForm = ({
                 offset: 0
             },
             sm: {
-                span: 6,
+                span: 8,
                 offset: 4
             }
         }

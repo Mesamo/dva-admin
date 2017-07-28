@@ -1,17 +1,19 @@
 import { routerRedux } from 'dva/router';
 
 import { fetchLogout, currentUser } from '../services/login';
+import fetchMessage from '../services/local-service';
 import { readObject } from '../utils/localstorge';
 import CONSTANTS from '../utils/constants';
 
 export default {
     namespace: 'app',
     state: {
+        local: '',
         username: 'user',
         collapsed: false,
-        menuTheme: 'dark',
         darkTheme: true,
-        attemptedUrl: '/'
+        attemptedUrl: '/',
+        message: null
     },
     reducers: {
         toggleCollapse(state) {
@@ -36,6 +38,20 @@ export default {
             return {
                 ...state,
                 darkTheme: !state.darkTheme
+            };
+        },
+        saveLocal(state, action) {
+            return {
+                ...state,
+                local: action.local
+            };
+        },
+        saveMessage(state, action) {
+            return {
+                ...state,
+                message: {
+                    ...action.message
+                }
             };
         }
     },
@@ -64,8 +80,23 @@ export default {
                 const { attemptedUrl } = payload;
                 yield put({ type: 'redirectToLogin', payload: { attemptedUrl } });
             }
+        },
+        *getMessage({ payload }, { put, call }) {
+            try {
+                const { local } = payload;
+                yield put({ type: 'saveLocal', local });
+                const response = yield call(fetchMessage, local);
+                if (response.data) {
+                    yield put({ type: 'saveMessage', message: response.data });
+                }
+            } catch (error) {
+                console.log(error);
+            }
         }
     },
     subscriptions: {
+        setup({ dispatch }) {
+            return dispatch({ type: 'getMessage', payload: { local: CONSTANTS.DEFAULT_LOCAL } });
+        }
     }
 };

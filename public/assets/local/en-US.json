@@ -1,0 +1,13 @@
+{
+    "email": "Email",
+    "password": "Password",
+    "rememberEmail": "Remember Email",
+    "forgetPassword": "Forgot Password ?",
+    "login": "Sign in",
+    "registerNow": "Sign up",
+    "confirm": "Confirm",
+    "register": "Create an account",
+    "returnLogin": "Return to Sign in",
+    "sendEmail": "Send Email",
+    "extraText": "Send you a link to reset you password"
+}

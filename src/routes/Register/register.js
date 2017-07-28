@@ -8,6 +8,7 @@ import styles from './register.less';
 
 const Register = ({
     register,
+    message,
     dispatch
 }) => {
     const onRegister = (email, password) => dispatch({
@@ -22,13 +23,16 @@ const Register = ({
 
     const registerFormProps = {
         register,
-        emailText: '邮箱',
-        passwordText: '密码',
-        confirmText: '确认密码',
-        registerText: '注册',
-        returnLogin: '返回登录页',
         onRegister
     };
+
+    if (message) {
+        registerFormProps.emailText = message.email;
+        registerFormProps.passwordText = message.password;
+        registerFormProps.confirmText = message.confirm;
+        registerFormProps.registerText = message.register;
+        registerFormProps.returnLogin = message.returnLogin;
+    }
 
     return (
         <Row type="flex" justify="center" align="middle" className={styles.normal}>
@@ -42,6 +46,7 @@ const Register = ({
 const mapStateToProps = (state) => {
     return {
         register: state.register,
+        message: state.app.message,
         loading: state.loading.models.register
     };
 };

@@ -35,10 +35,10 @@ const ResetForm = ({
     return (
         <Form className={styles.normal}>
             <QueueAnim>
-                <FormItem>
-                    <Alert description={extraText} type="info" showIcon />
+                <FormItem key="1">
+                    <Alert description={extraText} type="info" />
                 </FormItem>
-                <FormItem hasFeedback key="a">
+                <FormItem hasFeedback key="2">
                     {getFieldDecorator('email', {
                         rules: [
                             {
@@ -52,7 +52,7 @@ const ResetForm = ({
                         ]
                     })(<Input size="large" placeholder={emailText} />)}
                 </FormItem>
-                <FormItem key="b">
+                <FormItem key="3">
                     <Button
                         className={styles.button}
                         type="primary" htmlType="submit" size="large"

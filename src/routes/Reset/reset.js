@@ -8,6 +8,7 @@ import styles from './reset.less';
 
 const Reset = ({
     reset,
+    message,
     loading,
     dispatch
 }) => {
@@ -25,12 +26,15 @@ const Reset = ({
     const resetFormProps = {
         reset,
         loading,
-        onSendEmail,
-        emailText: '邮箱',
-        emailButtonText: '发送邮件',
-        returnLogin: '返回登录页',
-        extraText: '发送一个链接重置你的密码'
+        onSendEmail
     };
+
+    if (message) {
+        resetFormProps.emailText = message.email;
+        resetFormProps.emailButtonText = message.sendEmail;
+        resetFormProps.returnLogin = message.returnLogin;
+        resetFormProps.extraText = message.extraText;
+    }
 
     return (
         <Row type="flex" justify="center" align="middle" className={styles.normal}>
@@ -44,6 +48,7 @@ const Reset = ({
 const mapStateToProps = (state) => {
     return {
         reset: state.reset,
+        message: state.app.message,
         loading: state.loading.models.reset
     };
 };

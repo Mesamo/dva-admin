@@ -8,6 +8,7 @@ import styles from './login.less';
 
 const Login = ({
     login,
+    message,
     loading,
     dispatch
 }) => {
@@ -29,14 +30,17 @@ const Login = ({
         login,
         loading,
         onLogin,
-        onChange,
-        emailText: '邮箱',
-        passwordText: '密码',
-        rememberMeText: '记住邮箱',
-        forgetPasswdText: '忘记密码',
-        loginButtonText: '登录',
-        registerText: '现在注册'
+        onChange
     };
+
+    if (message) {
+        loginFormProps.emailText = message.email;
+        loginFormProps.passwordText = message.password;
+        loginFormProps.rememberMeText = message.rememberEmail;
+        loginFormProps.forgetPasswdText = message.forgetPassword;
+        loginFormProps.loginButtonText = message.login;
+        loginFormProps.registerText = message.registerNow;
+    }
 
     return (
         <Row type="flex" justify="center" align="middle" className={styles.normal}>
@@ -49,6 +53,7 @@ const Login = ({
 
 const mapStateToProps = state => ({
     login: state.login,
+    message: state.app.message,
     loading: state.loading.models.login
 });
 

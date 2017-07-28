@@ -88,10 +88,6 @@ const LoginForm = ({
                     </Button>
                     <Link to="/register">{registerText}</Link>
                 </FormItem>
-                <p key="5">
-                    <span>{emailText}: dva-admin@test.com</span>
-                    <span>{passwordText}: 123456</span>
-                </p>
             </QueueAnim>
         </Form>
     );
