@@ -92,7 +92,7 @@ const RegisterForm = ({
                                 message: 'please enter correct email address'
                             }
                         ]
-                    })(<Input ref={input => input && input.focus()} />)}
+                    })(<Input />)}
                 </FormItem>
                 <FormItem {...formItemLayout} hasFeedback label={passwordText} key="2">
                     {getFieldDecorator('password', {

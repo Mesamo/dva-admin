@@ -62,7 +62,6 @@ const LoginForm = ({
                         initialValue: email
                     })(<Input
                         prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder={emailText}
-                        ref={input => input && input.focus()}
                     />)}
                 </FormItem>
                 <FormItem hasFeedback key="3" >

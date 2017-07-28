@@ -43,7 +43,7 @@ const ResetForm = ({
                         rules: [
                             {
                                 required: true,
-                                message: 'Please input the captcha you got!'
+                                message: 'please enter email'
                             },
                             {
                                 type: 'email',

@@ -53,8 +53,7 @@ export default {
     subscriptions: {
         setup({ dispatch, history }) {
             return history.listen(({ pathname }) => {
-                const isLogin = sessionStorage.getItem('isLogin');
-                if (!isLogin && pathname === '/login') {
+                if (pathname === '/login') {
                     const email = read('email');
                     dispatch({ type: 'cacheEmail', payload: { email } });
                 }
