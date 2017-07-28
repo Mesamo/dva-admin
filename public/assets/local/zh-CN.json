@@ -1,9 +1,10 @@
 {
+    "translations": "多语言",
     "email": "邮箱",
     "password": "密码",
     "rememberEmail": "记住邮箱",
     "forgetPassword": "忘记密码?",
-    "login": "测试登录",
+    "login": "登录",
     "registerNow": "现在注册",
     "confirm": "确认密码",
     "register": "注册",

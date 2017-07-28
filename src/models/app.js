@@ -8,7 +8,8 @@ import CONSTANTS from '../utils/constants';
 export default {
     namespace: 'app',
     state: {
-        local: '',
+        currentLanguage: '',
+        supportLanguages: ['zh-CN', 'en-US'],
         username: 'user',
         collapsed: false,
         darkTheme: true,
@@ -40,10 +41,10 @@ export default {
                 darkTheme: !state.darkTheme
             };
         },
-        saveLocal(state, action) {
+        saveLanguage(state, action) {
             return {
                 ...state,
-                local: action.local
+                currentLanguage: action.currentLanguage
             };
         },
         saveMessage(state, action) {
@@ -83,9 +84,9 @@ export default {
         },
         *getMessage({ payload }, { put, call }) {
             try {
-                const { local } = payload;
-                yield put({ type: 'saveLocal', local });
-                const response = yield call(fetchMessage, local);
+                const { currentLanguage } = payload;
+                yield put({ type: 'saveLanguage', currentLanguage });
+                const response = yield call(fetchMessage, currentLanguage);
                 if (response.data) {
                     yield put({ type: 'saveMessage', message: response.data });
                 }
@@ -96,7 +97,7 @@ export default {
     },
     subscriptions: {
         setup({ dispatch }) {
-            return dispatch({ type: 'getMessage', payload: { local: CONSTANTS.DEFAULT_LOCAL } });
+            return dispatch({ type: 'getMessage', payload: { currentLanguage: CONSTANTS.DEFAULT_LOCAL } });
         }
     }
 };

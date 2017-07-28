@@ -3,12 +3,15 @@ import { connect } from 'dva';
 import { Row, Col } from 'antd';
 
 import LoginForm from '../../components/LoginForm/login-form';
+import ChangeLanguage from '../../components/ChangeLanguage/change-language';
 import notice from '../../utils/notice';
 import styles from './login.less';
 
 const Login = ({
     login,
     message,
+    currentLanguage,
+    supportLanguages,
     loading,
     dispatch
 }) => {
@@ -33,6 +36,16 @@ const Login = ({
         onChange
     };
 
+    const onMenuClick = (key) => {
+        dispatch({ type: 'app/getMessage', payload: { currentLanguage: key } });
+    };
+
+    const changeLanguageProps = {
+        currentLanguage,
+        supportLanguages,
+        onMenuClick
+    };
+
     if (message) {
         loginFormProps.emailText = message.email;
         loginFormProps.passwordText = message.password;
@@ -40,10 +53,13 @@ const Login = ({
         loginFormProps.forgetPasswdText = message.forgetPassword;
         loginFormProps.loginButtonText = message.login;
         loginFormProps.registerText = message.registerNow;
+        loginFormProps.pleaseEnter = message.pleaseEnter;
+        changeLanguageProps.translations = message.translations;
     }
 
     return (
         <Row type="flex" justify="center" align="middle" className={styles.normal}>
+            <ChangeLanguage {...changeLanguageProps} />
             <Col xs={22} sm={12} md={8} lg={6} xl={4}>
                 <LoginForm {...loginFormProps} />
             </Col>
@@ -54,6 +70,8 @@ const Login = ({
 const mapStateToProps = state => ({
     login: state.login,
     message: state.app.message,
+    currentLanguage: state.app.currentLanguage,
+    supportLanguages: state.app.supportLanguages,
     loading: state.loading.models.login
 });
 
