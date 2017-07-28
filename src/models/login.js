@@ -1,4 +1,5 @@
 import { routerRedux } from 'dva/router';
+import pathToRegexp from 'path-to-regexp';
 
 import { fetchLogin } from '../services/login';
 import { write, read, remove } from '../utils/localstorge';
@@ -16,7 +17,7 @@ export default {
                 ...action.payload
             };
         },
-        cacheEmail(state, action) {
+        saveEmail(state, action) {
             return {
                 ...state,
                 ...action.payload
@@ -51,11 +52,12 @@ export default {
         }
     },
     subscriptions: {
-        setup({ dispatch, history }) {
+        saveEmail({ dispatch, history }) {
             return history.listen(({ pathname }) => {
-                if (pathname === '/login') {
+                const match = pathToRegexp('/login').exec(pathname);
+                if (match) {
                     const email = read('email');
-                    dispatch({ type: 'cacheEmail', payload: { email } });
+                    dispatch({ type: 'saveEmail', payload: { email } });
                 }
             });
         }
