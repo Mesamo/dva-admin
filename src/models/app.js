@@ -4,6 +4,7 @@ import { fetchLogout, currentUser } from '../services/login';
 import fetchMessage from '../services/local-service';
 import { readObject } from '../utils/localstorge';
 import CONSTANTS from '../utils/constants';
+import { takeLatest } from '../utils/sageHelper';
 
 export default {
     namespace: 'app',
@@ -57,14 +58,13 @@ export default {
         }
     },
     effects: {
-        *logout({ payload }, { put, call }) {
+        logout: takeLatest(function* logout({ payload }, { put, call }) {
             yield call(fetchLogout);
-            yield sessionStorage.removeItem('isLogin');
             yield put(routerRedux.push({ pathname: '/login' }));
-        },
+        }),
         *redirectToLogin({ payload }, { put }) {
-            yield put(routerRedux.push('/login'));
             yield put({ type: 'saveAttemptedUrl', payload });
+            yield put(routerRedux.push('/login'));
         },
         *redirectToApp({ payload }, { put }) {
             yield put(routerRedux.push({ pathname: '/' }));
@@ -82,13 +82,18 @@ export default {
                 yield put({ type: 'redirectToLogin', payload: { attemptedUrl } });
             }
         },
-        *getMessage({ payload }, { put, call }) {
+        *getMessage({ payload }, { put, call, select }) {
             try {
                 const { currentLanguage } = payload;
-                yield put({ type: 'saveLanguage', currentLanguage });
-                const response = yield call(fetchMessage, currentLanguage);
-                if (response.data) {
-                    yield put({ type: 'saveMessage', message: response.data });
+                const supported = yield select(state => state.app.supportLanguages);
+                if (supported.indexOf(currentLanguage) > -1) {
+                    const response = yield call(fetchMessage, currentLanguage);
+                    if (response.data) {
+                        yield [
+                            put({ type: 'saveLanguage', currentLanguage }),
+                            put({ type: 'saveMessage', message: response.data })
+                        ];
+                    }
                 }
             } catch (error) {
                 console.log(error);

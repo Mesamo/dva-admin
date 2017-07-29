@@ -3,6 +3,7 @@ import pathToRegexp from 'path-to-regexp';
 
 import { fetchLogin } from '../services/login';
 import { write, read, remove } from '../utils/localstorge';
+import { takeLatest } from '../utils/sageHelper';
 
 export default {
     namespace: 'login',
@@ -25,7 +26,7 @@ export default {
         }
     },
     effects: {
-        *login({ payload }, { call, put, select }) {
+        login: takeLatest(function* login({ payload }, { call, put, select }) {
             const { email, password, onSuccess, onError } = payload;
             const rememberMe = yield select(state => state.login.rememberMe);
             const attemptedUrl = yield select(state => state.app.attemptedUrl);
@@ -49,7 +50,7 @@ export default {
             } catch (error) {
                 yield onError(error.code, error.message);
             }
-        }
+        })
     },
     subscriptions: {
         saveEmail({ dispatch, history }) {
