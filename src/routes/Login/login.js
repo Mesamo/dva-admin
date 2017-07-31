@@ -54,6 +54,9 @@ const Login = ({
         loginFormProps.loginButtonText = message.login;
         loginFormProps.registerText = message.registerNow;
         loginFormProps.pleaseEnter = message.pleaseEnter;
+        loginFormProps.requiredEmail = message.requiredEmail;
+        loginFormProps.requiredPassword = message.requiredPassword;
+        loginFormProps.correctEmail = message.correctEmail;
         changeLanguageProps.translations = message.translations;
     }
 

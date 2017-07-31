@@ -32,6 +32,10 @@ const Register = ({
         registerFormProps.confirmText = message.confirm;
         registerFormProps.registerText = message.register;
         registerFormProps.returnLogin = message.returnLogin;
+        registerFormProps.requiredEmail = message.requiredEmail;
+        registerFormProps.correctEmail = message.correctEmail;
+        registerFormProps.requiredPassword = message.requiredPassword;
+        registerFormProps.passwordNotSame = message.passwordNotSame;
     }
 
     return (

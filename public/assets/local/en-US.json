@@ -10,5 +10,9 @@
     "register": "Create an account",
     "returnLogin": "Return to Sign in",
     "sendEmail": "Send Email",
-    "extraText": "Send you a link to reset you password"
+    "extraText": "Send you a link to reset you password",
+    "requiredEmail": "Please enter email",
+    "correctEmail": "Please enter correct email address",
+    "requiredPassword": "Please enter password",
+    "passwordNotSame": "Two passwords that you enter is inconsistent!"
 }

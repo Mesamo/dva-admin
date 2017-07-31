@@ -18,6 +18,9 @@ const LoginForm = ({
     forgetPasswdText,
     loginButtonText,
     registerText,
+    requiredEmail,
+    correctEmail,
+    requiredPassword,
     form: {
         getFieldsError,
         getFieldDecorator,
@@ -52,11 +55,11 @@ const LoginForm = ({
                         rules: [
                             {
                                 required: true,
-                                message: 'please enter email'
+                                message: requiredEmail
                             },
                             {
                                 type: 'email',
-                                message: 'please enter correct email address'
+                                message: correctEmail
                             }
                         ],
                         initialValue: email
@@ -69,7 +72,7 @@ const LoginForm = ({
                         rules: [
                             {
                                 required: true,
-                                message: 'please enter password'
+                                message: requiredPassword
                             }
                         ]
                     })(<Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder={passwordText} />)}
@@ -99,7 +102,10 @@ LoginForm.defaultProps = {
     rememberMeText: 'Remember me',
     forgetPasswdText: 'Forget Password',
     loginButtonText: 'Login',
-    registerText: 'Register Now !'
+    registerText: 'Register Now !',
+    requiredEmail: 'Please enter email',
+    correctEmail: 'Please enter correct email address',
+    requiredPassword: 'Please enter password'
 };
 
 LoginForm.propTypes = {

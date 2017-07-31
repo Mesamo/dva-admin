@@ -10,5 +10,9 @@
     "register": "注册",
     "returnLogin": "返回登录页",
     "sendEmail": "发送邮件",
-    "extraText": "发送一个链接重置你的密码"
+    "extraText": "发送一个链接重置你的密码",
+    "requiredEmail": "请输入邮箱",
+    "correctEmail": "请输入正确的邮箱",
+    "requiredPassword": "请输入密码",
+    "passwordNotSame": "两次输入的密码不一致"
 }

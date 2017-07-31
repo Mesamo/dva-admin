@@ -14,6 +14,8 @@ const ResetForm = ({
     emailButtonText,
     extraText,
     returnLogin,
+    requiredEmail,
+    correctEmail,
     form: {
         getFieldsError,
         getFieldDecorator,
@@ -43,11 +45,11 @@ const ResetForm = ({
                         rules: [
                             {
                                 required: true,
-                                message: 'please enter email'
+                                message: requiredEmail
                             },
                             {
                                 type: 'email',
-                                message: 'please enter correct email address'
+                                message: correctEmail
                             }
                         ]
                     })(<Input size="large" placeholder={emailText} />)}
@@ -72,7 +74,9 @@ ResetForm.defaultProps = {
     emailText: 'email',
     emailButtonText: 'Send Email',
     returnLogin: 'to Login',
-    extraText: 'Send you a link to reset you password'
+    extraText: 'Send you a link to reset you password',
+    requiredEmail: 'Please enter email',
+    correctEmail: 'Please enter correct email address'
 };
 
 ResetForm.propTypes = {

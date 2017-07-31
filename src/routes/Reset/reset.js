@@ -34,6 +34,8 @@ const Reset = ({
         resetFormProps.emailButtonText = message.sendEmail;
         resetFormProps.returnLogin = message.returnLogin;
         resetFormProps.extraText = message.extraText;
+        resetFormProps.requiredEmail = message.requiredEmail;
+        resetFormProps.correctEmail = message.correctEmail;
     }
 
     return (

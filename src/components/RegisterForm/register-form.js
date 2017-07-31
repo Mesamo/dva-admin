@@ -15,6 +15,10 @@ const RegisterForm = ({
     registerText,
     returnLogin,
     onRegister,
+    requiredEmail,
+    correctEmail,
+    requiredPassword,
+    passwordNotSame,
     form: {
         getFieldsError,
         getFieldDecorator,
@@ -59,7 +63,7 @@ const RegisterForm = ({
     // 输入确认密码时，检查是否与密码一致
     const checkPassword = (rule, value, callback) => {
         if (value && value !== getFieldValue('password')) {
-            callback('Two passwords that you enter is inconsistent!');
+            callback(passwordNotSame);
         } else {
             callback();
         }
@@ -85,11 +89,11 @@ const RegisterForm = ({
                         rules: [
                             {
                                 required: true,
-                                message: 'please enter email'
+                                message: requiredEmail
                             },
                             {
                                 type: 'email',
-                                message: 'please enter correct email address'
+                                message: correctEmail
                             }
                         ]
                     })(<Input />)}
@@ -99,7 +103,7 @@ const RegisterForm = ({
                         rules: [
                             {
                                 required: true,
-                                message: 'Please input your password!'
+                                message: requiredPassword
                             },
                             {
                                 validator: checkConfirm
@@ -112,7 +116,7 @@ const RegisterForm = ({
                         rules: [
                             {
                                 required: true,
-                                message: 'please enter email'
+                                message: requiredPassword
                             },
                             {
                                 validator: checkPassword
@@ -141,7 +145,11 @@ RegisterForm.defaultProps = {
     passwordText: 'password',
     confirmText: 'confirm',
     registerText: 'register',
-    returnLogin: 'to Login'
+    returnLogin: 'to Login',
+    requiredEmail: 'Please enter email',
+    correctEmail: 'Please enter correct email address',
+    requiredPassword: 'Please enter password',
+    passwordNotSame: 'Two passwords that you enter is inconsistent!'
 };
 
 RegisterForm.propTypes = {
