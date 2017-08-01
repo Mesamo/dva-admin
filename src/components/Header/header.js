@@ -11,10 +11,17 @@ const Header = ({
     collapsed,
     menus,
     menusFunc,
+    translations,
+    currentLanguage,
+    supportLanguages,
+    changeLanguage,
     username
 }) => {
     const handleClickMenu = e => menusFunc[e.key]();
     const handleSwitchSider = () => onSwitchSider();
+    const handleChangeLanguage = ({ key }) => {
+        changeLanguage(key);
+    };
 
     return (
         <Layout.Header className={styles.header}>
@@ -22,11 +29,25 @@ const Header = ({
                 <Icon type={collapsed ? 'menu-unfold' : 'menu-fold'} />
             </div>
             <div className={styles.right}>
+                <Menu mode="horizontal" onClick={handleChangeLanguage}>
+                    <SubMenu title={<span>{translations}</span>}>
+                        {supportLanguages
+                            .filter(language => language !== currentLanguage)
+                            .map((language) => {
+                                return (
+                                    <Menu.Item key={language}>
+                                        {language}
+                                    </Menu.Item>
+                                );
+                            })
+                        }
+                    </SubMenu>
+                </Menu>
                 <Menu mode="horizontal" onClick={handleClickMenu} style={{ textAlign: 'center' }}>
                     <SubMenu title={<span><Icon type="user" />{username}</span>}>
                         {menus.map(menu => (
                             <Menu.Item key={menu.key}>
-                                <a>{menu.text}</a>
+                                <a>{menu.name}</a>
                             </Menu.Item>
                         ))}
                     </SubMenu>

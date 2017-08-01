@@ -15,7 +15,12 @@ const Sider = ({
     breakpoint,
     darkTheme,
     menus,
-    changeTheme
+    toIndex,
+    changeTheme,
+    changeThemeText,
+    darkText,
+    lightText,
+    language
 }) => {
     const props = {
         collapsible,
@@ -41,7 +46,7 @@ const Sider = ({
                         title={
                             <span>
                                 {menu.icon ? <Icon type={menu.icon} /> : ''}
-                                {collapsed && isTopMenu(menu.key) ? '' : <span>{menu.name}</span>}
+                                {collapsed && isTopMenu(menu.key) ? '' : <span>{menu.name[language]}</span>}
                             </span>}
                     >
                         {getMenus(menu.subMenu, `${linkTo}/`)}
@@ -52,7 +57,7 @@ const Sider = ({
                     <Menu.Item key={linkTo}>
                         <Link to={linkTo}>
                             {menu.icon ? <Icon type={menu.icon} /> : ''}
-                            <span>{menu.name}</span>
+                            <span>{menu.name[language]}</span>
                         </Link>
                     </Menu.Item>
                 );
@@ -66,9 +71,13 @@ const Sider = ({
         color: darkTheme ? 'rgba(255, 255, 255, 0.67)' : 'rgba(0, 0, 0, 0.65)'
     };
 
+    const handleToIndex = () => {
+        toIndex();
+    };
+
     return (
         <Layout.Sider {...props} className={darkTheme ? '' : styles.white}>
-            <QueueAnim delay={200} type="top">
+            <QueueAnim delay={200} type="top" onClick={handleToIndex}>
                 <div className={styles.logo} key="1">
                     <img alt="logo" src="/favicon.ico" className={styles.dva} />
                     {collapsed ? '' : <span className={styles.title} style={textColor}>Dva Admin</span>}
@@ -82,8 +91,13 @@ const Sider = ({
             {collapsed ? '' :
             <QueueAnim delay={600} type="top">
                 <div className={styles.switchtheme} key="1">
-                    <span style={textColor}><Icon type="bulb" />切换主题</span>
-                    <Switch onChange={changeTheme} defaultChecked={darkTheme} checkedChildren="黑" unCheckedChildren="白" />
+                    <span style={textColor}><Icon type="bulb" />{changeThemeText}</span>
+                    <Switch
+                        onChange={changeTheme}
+                        defaultChecked={darkTheme}
+                        checkedChildren={darkText}
+                        unCheckedChildren={lightText}
+                    />
                 </div>
             </QueueAnim>}
         </Layout.Sider>
@@ -94,7 +108,11 @@ Sider.__ANT_LAYOUT_SIDER = true;
 
 Sider.defaultProps = {
     breakpoint: 'lg',
-    darkTheme: true
+    darkTheme: true,
+    language: 'en-US',
+    changeThemeText: 'Change Theme',
+    darkText: 'dark',
+    lightText: 'light'
 };
 
 Sider.propTypes = {

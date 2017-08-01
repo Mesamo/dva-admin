@@ -1,4 +1,5 @@
 import React from 'react';
+import { routerRedux } from 'dva/router';
 import { connect } from 'dva';
 import { Layout } from 'antd';
 
@@ -10,9 +11,10 @@ import menus from '../../utils/menu';
 const { Content, Footer } = Layout;
 
 const App = ({ app, dispatch, children }) => {
-    const { collapsed, darkTheme, username } = app;
+    const { collapsed, darkTheme, username, currentLanguage, supportLanguages, message } = app;
     const onCollapse = () => dispatch({ type: 'app/toggleCollapse' });
     const changeTheme = () => dispatch({ type: 'app/changeTheme' });
+    const toIndex = () => dispatch(routerRedux.push('/'));
 
     const siderProps = {
         collapsible: true,
@@ -21,7 +23,9 @@ const App = ({ app, dispatch, children }) => {
         breakpoint: 'lg',
         darkTheme,
         menus,
-        changeTheme
+        toIndex,
+        changeTheme,
+        language: currentLanguage
     };
 
     const logout = () => {
@@ -35,17 +39,31 @@ const App = ({ app, dispatch, children }) => {
     const headerMenus = [
         {
             key: 'logout',
-            text: '注销'
+            name: message ? message.logout : 'Sign out'
         }
     ];
+
+    const changeLanguage = (language) => {
+        dispatch({ type: 'app/getMessage', payload: { currentLanguage: language } });
+    };
 
     const headerProps = {
         onSwitchSider: onCollapse,
         collapsed,
         menus: headerMenus,
         menusFunc: headerMenusFunc,
+        currentLanguage,
+        supportLanguages,
+        changeLanguage,
         username
     };
+
+    if (message) {
+        headerProps.translations = message.translations;
+        siderProps.changeThemeText = message.changeThemeText;
+        siderProps.darkText = message.darkText;
+        siderProps.lightText = message.lightText;
+    }
 
     return (
         <Layout className={styles.normal}>

@@ -38,7 +38,16 @@ const RouterConfig = ({ history, app }) => {
                     });
                 });
             },
-            childRoutes: []
+            childRoutes: [
+                {
+                    path: 'users',
+                    getComponent(nextState, callback) {
+                        require.ensure([], (require) => {
+                            callback(null, require('./routes/Contents/users/users'));
+                        });
+                    }
+                }
+            ]
         },
         // login
         {
