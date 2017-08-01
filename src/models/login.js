@@ -1,7 +1,7 @@
 import { routerRedux } from 'dva/router';
 import pathToRegexp from 'path-to-regexp';
 
-import { fetchLogin } from '../services/login';
+import { fetchLogin } from '../services/local.service';
 import { write, read, remove } from '../utils/localstorge';
 import { takeLatest } from '../utils/sageHelper';
 

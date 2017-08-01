@@ -1,7 +1,7 @@
 import { routerRedux } from 'dva/router';
 
-import { fetchLogout, currentUser } from '../services/login';
-import fetchMessage from '../services/local-service';
+import { fetchLogout, currentUser } from '../services/login.service.';
+import fetchMessage from '../services/local.service';
 import { readObject } from '../utils/localstorge';
 import CONSTANTS from '../utils/constants';
 import { takeLatest } from '../utils/sageHelper';

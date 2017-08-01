@@ -1,6 +1,6 @@
 import { routerRedux } from 'dva/router';
 
-import { fetchRegister } from '../services/login';
+import { fetchRegister } from '../services/login.service.';
 
 export default {
     namespace: 'register',
