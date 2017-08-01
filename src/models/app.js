@@ -1,10 +1,11 @@
 import { routerRedux } from 'dva/router';
 
-import { fetchLogout, currentUser } from '../services/login.service.';
+import { fetchLogout } from '../services/login.service.';
 import fetchMessage from '../services/local.service';
-import { readObject } from '../utils/localstorge';
+import { addUser } from '../services/user.service';
 import CONSTANTS from '../utils/constants';
 import { takeLatest } from '../utils/sageHelper';
+import firebaseApp from '../firebase';
 
 export default {
     namespace: 'app',
@@ -14,7 +15,7 @@ export default {
         username: 'user',
         collapsed: false,
         darkTheme: true,
-        attemptedUrl: '/',
+        attemptedUrl: '',
         message: null
     },
     reducers: {
@@ -58,51 +59,54 @@ export default {
         }
     },
     effects: {
-        logout: takeLatest(function* logout({ payload }, { put, call }) {
+        logout: takeLatest(function* logout({ payload }, { call, put }) {
             yield call(fetchLogout);
-            yield put(routerRedux.push({ pathname: '/login' }));
+            yield put({ type: 'redirectToLogin', payload: { attemptedUrl: '/' } });
         }),
         *redirectToLogin({ payload }, { put }) {
             yield put({ type: 'saveAttemptedUrl', payload });
             yield put(routerRedux.push('/login'));
         },
-        *redirectToApp({ payload }, { put }) {
-            yield put(routerRedux.push({ pathname: '/' }));
-        },
-        *checkLogin({ payload, onComplete }, { put, call }) {
-            const user = yield call(currentUser);
-            const cacheUser = readObject(CONSTANTS.KEY_FOR_AUTH);
-            const isAuthUser = user || cacheUser;
-            if (isAuthUser) {
-                const username = isAuthUser.email.split('@')[0];
-                yield put({ type: 'saveUsername', username });
-                onComplete();
-            } else {
-                const { attemptedUrl } = payload;
-                yield put({ type: 'redirectToLogin', payload: { attemptedUrl } });
-            }
+        *redirectToApp({ payload }, { put, select }) {
+            const attemptedUrl = yield select(state => state.app.attemptedUrl);
+            yield put(routerRedux.push({ pathname: attemptedUrl }));
         },
         *getMessage({ payload }, { put, call, select }) {
             try {
                 const { currentLanguage } = payload;
-                const supported = yield select(state => state.app.supportLanguages);
-                if (supported.indexOf(currentLanguage) > -1) {
-                    const response = yield call(fetchMessage, currentLanguage);
-                    if (response.data) {
-                        yield [
-                            put({ type: 'saveLanguage', currentLanguage }),
-                            put({ type: 'saveMessage', message: response.data })
-                        ];
+                const language = yield select(state => state.app.currentLanguage);
+                const message = yield select(state => state.app.message);
+
+                if (!message || currentLanguage !== language) {
+                    const supported = yield select(state => state.app.supportLanguages);
+                    if (supported.indexOf(currentLanguage) > -1) {
+                        const response = yield call(fetchMessage, currentLanguage);
+                        if (response.data) {
+                            yield put({ type: 'saveLanguage', currentLanguage });
+                            yield put({ type: 'saveMessage', message: response.data });
+                        }
                     }
                 }
             } catch (error) {
                 console.log(error);
             }
+        },
+        *setUser({ payload }, { call }) {
+            yield call(addUser, 'zhourui', 'test');
         }
     },
     subscriptions: {
         setup({ dispatch }) {
             return dispatch({ type: 'getMessage', payload: { currentLanguage: CONSTANTS.DEFAULT_LOCAL } });
+        },
+        checkLogin({ dispatch }) {
+            firebaseApp.auth().onAuthStateChanged((user) => {
+                if (user) {
+                    const username = user.email.split('@')[0];
+                    dispatch({ type: 'saveUsername', username });
+                    dispatch({ type: 'redirectToApp' });
+                }
+            });
         }
     }
 };

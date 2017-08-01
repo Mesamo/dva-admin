@@ -1,4 +1,4 @@
-import firebase from 'firebase/app';
+import firebaseApp from '../firebase';
 
 /**
  * 用户登录
@@ -9,7 +9,7 @@ import firebase from 'firebase/app';
  * @returns {Promise<any>}
  */
 export async function fetchLogin(email, password) {
-    return firebase.auth().signInWithEmailAndPassword(email, password);
+    return firebaseApp.auth().signInWithEmailAndPassword(email, password);
 }
 
 /**
@@ -19,7 +19,7 @@ export async function fetchLogin(email, password) {
  * @returns {Promise<any>}
  */
 export async function fetchLogout() {
-    return firebase.auth().signOut();
+    return firebaseApp.auth().signOut();
 }
 
 /**
@@ -29,7 +29,7 @@ export async function fetchLogout() {
  * @returns {firebase.User}
  */
 export function currentUser() {
-    return firebase.auth().currentUser;
+    return firebaseApp.auth().currentUser;
 }
 
 /**
@@ -41,7 +41,7 @@ export function currentUser() {
  * @returns {Promise<any>}
  */
 export async function fetchRegister(email, password) {
-    return firebase.auth().createUserWithEmailAndPassword(email, password);
+    return firebaseApp.auth().createUserWithEmailAndPassword(email, password);
 }
 
 /**
@@ -52,5 +52,5 @@ export async function fetchRegister(email, password) {
  * @returns {Promise<any>}
  */
 export async function sendResetPasswordEmail(email) {
-    return firebase.auth().sendPasswordResetEmail(email);
+    return firebaseApp.auth().sendPasswordResetEmail(email);
 }

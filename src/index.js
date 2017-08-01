@@ -2,7 +2,6 @@ import dva from 'dva';
 import { browserHistory } from 'dva/router';
 import createLoading from 'dva-loading';
 
-import './firebase';
 import './index.less';
 
 // 1. Initialize

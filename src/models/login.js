@@ -1,4 +1,3 @@
-import { routerRedux } from 'dva/router';
 import pathToRegexp from 'path-to-regexp';
 
 import { fetchLogin } from '../services/login.service.';
@@ -26,10 +25,9 @@ export default {
         }
     },
     effects: {
-        login: takeLatest(function* login({ payload }, { call, put, select }) {
+        login: takeLatest(function* login({ payload }, { call, select }) {
             const { email, password, onSuccess, onError } = payload;
             const rememberMe = yield select(state => state.login.rememberMe);
-            const attemptedUrl = yield select(state => state.app.attemptedUrl);
             try {
                 // 调用登录服务
                 const response = yield call(fetchLogin, email, password);
@@ -41,8 +39,6 @@ export default {
                     } else {
                         yield remove('email');
                     }
-                    // 路由切换到之前尝试访问的url
-                    yield put(routerRedux.push({ pathname: attemptedUrl }));
                 } else {
                     // 调用登录失败回调
                     yield onError(response.message);

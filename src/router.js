@@ -2,6 +2,7 @@ import React from 'react';
 import { Router } from 'dva/router';
 
 import App from './routes/App/app';
+import firebaseApp from './firebase';
 
 const cached = {};
 const registerModel = (app, model) => {
@@ -13,13 +14,15 @@ const registerModel = (app, model) => {
 
 const RouterConfig = ({ history, app }) => {
     const requireAuth = (nextState, replace, callback) => {
-        app._store.dispatch({
-            type: 'app/checkLogin',
-            payload: {
-                attemptedUrl: nextState.location.pathname
-            },
-            onComplete: callback
-        });
+        const user = firebaseApp.auth().currentUser;
+        if (!user) {
+            app._store.dispatch({
+                type: 'app/redirectToLogin',
+                payload: { attemptedUrl: nextState.location.pathname }
+            });
+        } else {
+            callback();
+        }
     };
 
     const routes = [
