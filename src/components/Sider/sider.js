@@ -20,7 +20,8 @@ const Sider = ({
     changeThemeText,
     darkText,
     lightText,
-    language
+    language,
+    pathname
 }) => {
     const props = {
         collapsible,
@@ -84,7 +85,7 @@ const Sider = ({
                 </div>
             </QueueAnim>
             <QueueAnim delay={400} type="left">
-                <Menu key="1" theme={menuTheme} mode={collapsed ? 'vertical' : 'inline'}>
+                <Menu key="1" theme={menuTheme} mode={collapsed ? 'vertical' : 'inline'} selectedKeys={[pathname]}>
                     {menuItems}
                 </Menu>
             </QueueAnim>

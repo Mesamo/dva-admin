@@ -2,7 +2,6 @@ import { routerRedux } from 'dva/router';
 
 import { fetchLogout } from '../services/login.service.';
 import fetchMessage from '../services/local.service';
-import { addUser } from '../services/user.service';
 import CONSTANTS from '../utils/constants';
 import { takeLatest } from '../utils/sageHelper';
 import firebaseApp from '../firebase';
@@ -90,9 +89,6 @@ export default {
             } catch (error) {
                 console.log(error);
             }
-        },
-        *setUser({ payload }, { call }) {
-            yield call(addUser, 'zhourui', 'test');
         }
     },
     subscriptions: {
