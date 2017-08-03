@@ -2,6 +2,7 @@ import { routerRedux } from 'dva/router';
 
 import { fetchLogout } from '../services/login.service.';
 import { takeLatest } from '../utils/sageHelper';
+import { read, write } from '../utils/localstorge';
 import firebaseApp from '../firebase';
 
 export default {
@@ -34,16 +35,19 @@ export default {
                 username: action.username
             };
         },
-        changeTheme(state) {
+        changeTheme(state, action) {
+            write('darkTheme', action.darkTheme);
             return {
                 ...state,
-                darkTheme: !state.darkTheme
+                darkTheme: action.darkTheme
             };
         },
         changeLanguage(state, action) {
+            const currentLanguage = action.currentLanguage;
+            write('currentLanguage', currentLanguage);
             return {
                 ...state,
-                currentLanguage: action.currentLanguage
+                currentLanguage
             };
         }
     },
@@ -62,6 +66,16 @@ export default {
         }
     },
     subscriptions: {
+        setup({ dispatch }) {
+            const currentLanguage = read('currentLanguage');
+            const darkTheme = read('darkTheme');
+            if (currentLanguage) {
+                dispatch({ type: 'changeLanguage', currentLanguage });
+            }
+            if (darkTheme) {
+                dispatch({ type: 'changeTheme', darkTheme: darkTheme === 'true' });
+            }
+        },
         checkLogin({ dispatch }) {
             firebaseApp.auth().onAuthStateChanged((user) => {
                 if (user) {

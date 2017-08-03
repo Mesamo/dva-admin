@@ -23,7 +23,7 @@ class App extends React.Component {
         const { app, dispatch, children, location } = this.props;
         const { collapsed, darkTheme, username, currentLanguage, supportLanguages } = app;
         const onCollapse = () => dispatch({ type: 'app/toggleCollapse' });
-        const changeTheme = () => dispatch({ type: 'app/changeTheme' });
+        const changeTheme = checked => dispatch({ type: 'app/changeTheme', darkTheme: checked });
         const toIndex = () => dispatch(routerRedux.push('/'));
 
         const siderProps = {

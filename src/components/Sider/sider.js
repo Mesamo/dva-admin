@@ -22,14 +22,6 @@ const Sider = ({
     pathname,
     messages
 }) => {
-    const props = {
-        collapsible,
-        collapsed,
-        onCollapse,
-        breakpoint,
-        trigger: null
-    };
-
     const topMenus = menus.map(item => item.key);
 
     const isTopMenu = (key) => {
@@ -71,8 +63,12 @@ const Sider = ({
         color: darkTheme ? 'rgba(255, 255, 255, 0.67)' : 'rgba(0, 0, 0, 0.65)'
     };
 
-    const handleToIndex = () => {
-        toIndex();
+    const props = {
+        collapsible,
+        collapsed,
+        onCollapse,
+        breakpoint,
+        trigger: null
     };
 
     const {
@@ -80,6 +76,14 @@ const Sider = ({
         darkText,
         lightText
     } = messages;
+
+    const handleToIndex = () => {
+        toIndex();
+    };
+
+    const handleOnChange = (checked) => {
+        changeTheme(checked);
+    };
 
     return (
         <Layout.Sider {...props} className={darkTheme ? '' : styles.white}>
@@ -99,7 +103,7 @@ const Sider = ({
                 <div className={styles.switchtheme} key="1">
                     <span style={textColor}><Icon type="bulb" />{changeThemeText}</span>
                     <Switch
-                        onChange={changeTheme}
+                        onChange={handleOnChange}
                         defaultChecked={darkTheme}
                         checkedChildren={darkText}
                         unCheckedChildren={lightText}
