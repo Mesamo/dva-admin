@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Menu, Dropdown, Icon } from 'antd';
 
-import translate from '../translate';
+import translate from '../../i18n/translate';
 import styles from './change-language.less';
 
 const ChangeLanguage = ({

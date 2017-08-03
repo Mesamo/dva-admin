@@ -4,7 +4,7 @@ import { Link } from 'dva/router';
 import QueueAnim from 'rc-queue-anim';
 import { Layout, Menu, Icon, Switch } from 'antd';
 
-import translate from '../translate';
+import translate from '../../i18n/translate';
 import styles from './sider.less';
 
 const SubMenu = Menu.SubMenu;

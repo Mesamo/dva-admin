@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Layout, Menu, Icon } from 'antd';
 
-import translate from '../translate';
+import translate from '../../i18n/translate';
 import styles from './header.less';
 
 const SubMenu = Menu.SubMenu;

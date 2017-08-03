@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import zhCN from '../i18n/zh-CN';
-import enUS from '../i18n/en-US';
+import zhCN from './zh-CN';
+import enUS from './en-US';
 
 const languages = {
     'zh-CN': zhCN,

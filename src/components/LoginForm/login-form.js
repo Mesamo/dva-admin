@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import QueueAnim from 'rc-queue-anim';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 
-import translate from '../translate';
+import translate from '../../i18n/translate';
 import styles from './login-form.less';
 
 const FormItem = Form.Item;

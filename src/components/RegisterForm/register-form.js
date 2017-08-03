@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import QueueAnim from 'rc-queue-anim';
 import { Form, Input, Button } from 'antd';
 
-import translate from '../translate';
+import translate from '../../i18n/translate';
 import styles from './register-form.less';
 
 const FormItem = Form.Item;
