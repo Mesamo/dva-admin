@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'dva';
 import { Row, Col } from 'antd';
 
@@ -7,6 +8,13 @@ import notice from '../../utils/notice';
 import styles from './reset.less';
 
 class Reset extends React.Component {
+
+    getChildContext() {
+        const currentLanguage = this.props.currentLanguage;
+        return {
+            currentLanguage
+        };
+    }
 
     render() {
         const {
@@ -52,10 +60,14 @@ class Reset extends React.Component {
     }
 }
 
+Reset.childContextTypes = {
+    currentLanguage: PropTypes.string
+};
+
 const mapStateToProps = (state) => {
     return {
         reset: state.reset,
-        message: state.app.message,
+        currentLanguage: state.app.currentLanguage,
         loading: state.loading.models.reset
     };
 };

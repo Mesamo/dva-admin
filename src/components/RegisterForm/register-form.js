@@ -4,22 +4,15 @@ import { Link } from 'react-router';
 import QueueAnim from 'rc-queue-anim';
 import { Form, Input, Button } from 'antd';
 
+import translate from '../translate';
 import styles from './register-form.less';
 
 const FormItem = Form.Item;
 
 const RegisterForm = ({
     loading: loginButtonLoading,
-    emailText,
-    passwordText,
-    confirmText,
-    registerText,
-    returnLogin,
+    messages,
     onRegister,
-    requiredEmail,
-    correctEmail,
-    requiredPassword,
-    passwordNotSame,
     form: {
         getFieldsError,
         getFieldDecorator,
@@ -29,6 +22,18 @@ const RegisterForm = ({
         isFieldTouched
     }
 }) => {
+    const {
+        emailText,
+        passwordText,
+        confirmText,
+        registerText,
+        returnLogin,
+        requiredEmail,
+        correctEmail,
+        requiredPassword,
+        passwordNotSame
+    } = messages;
+
     const formItemLayout = {
         labelCol: {
             xs: { span: 24 },
@@ -142,23 +147,22 @@ const RegisterForm = ({
 };
 
 RegisterForm.defaultProps = {
-    emailText: 'email',
-    passwordText: 'password',
-    confirmText: 'confirm',
-    registerText: 'register',
-    returnLogin: 'to Login',
-    requiredEmail: 'Please enter email',
-    correctEmail: 'Please enter correct email address',
-    requiredPassword: 'Please enter password',
-    passwordNotSame: 'Two passwords that you enter is inconsistent!'
+    messages: {
+        emailText: 'email',
+        passwordText: 'password',
+        confirmText: 'confirm',
+        registerText: 'register',
+        returnLogin: 'to Login',
+        requiredEmail: 'Please enter email',
+        correctEmail: 'Please enter correct email address',
+        requiredPassword: 'Please enter password',
+        passwordNotSame: 'Two passwords that you enter is inconsistent!'
+    }
 };
 
 RegisterForm.propTypes = {
-    emailText: PropTypes.string,
-    passwordText: PropTypes.string,
-    confirmText: PropTypes.string,
-    registerText: PropTypes.string,
+    messages: PropTypes.object,
     onRegister: PropTypes.func.isRequired
 };
 
-export default Form.create()(RegisterForm);
+export default translate('RegisterForm')(Form.create()(RegisterForm));

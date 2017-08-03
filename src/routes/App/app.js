@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { routerRedux } from 'dva/router';
 import { connect } from 'dva';
 import { Layout } from 'antd';
@@ -20,7 +21,7 @@ class App extends React.Component {
 
     render() {
         const { app, dispatch, children, location } = this.props;
-        const { collapsed, darkTheme, username, currentLanguage, supportLanguages, message } = app;
+        const { collapsed, darkTheme, username, currentLanguage, supportLanguages } = app;
         const onCollapse = () => dispatch({ type: 'app/toggleCollapse' });
         const changeTheme = () => dispatch({ type: 'app/changeTheme' });
         const toIndex = () => dispatch(routerRedux.push('/'));
@@ -34,7 +35,7 @@ class App extends React.Component {
             menus,
             toIndex,
             changeTheme,
-            language: currentLanguage,
+            currentLanguage,
             pathname: location.pathname
         };
 
@@ -49,12 +50,12 @@ class App extends React.Component {
         const headerMenus = [
             {
                 key: 'logout',
-                name: message ? message.logout : 'Sign out'
+                name: 'logoutText'
             }
         ];
 
         const changeLanguage = (language) => {
-            dispatch({ type: 'app/getMessage', payload: { currentLanguage: language } });
+            dispatch({ type: 'app/changeLanguage', currentLanguage: language });
         };
 
         const headerProps = {
@@ -67,13 +68,6 @@ class App extends React.Component {
             changeLanguage,
             username
         };
-
-        if (message) {
-            headerProps.translations = message.translations;
-            siderProps.changeThemeText = message.changeThemeText;
-            siderProps.darkText = message.darkText;
-            siderProps.lightText = message.lightText;
-        }
 
         return (
             <Layout className={styles.normal}>
@@ -89,6 +83,10 @@ class App extends React.Component {
         );
     }
 }
+
+App.childContextTypes = {
+    currentLanguage: PropTypes.string
+};
 
 const mapStateToProps = state => ({
     app: state.app,

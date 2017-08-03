@@ -2,14 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Menu, Dropdown, Icon } from 'antd';
 
+import translate from '../translate';
 import styles from './change-language.less';
 
 const ChangeLanguage = ({
-    translations,
+    messages,
     currentLanguage,
     supportLanguages,
     onMenuClick
 }) => {
+    const { translations } = messages;
     const handleMenuClick = ({ key }) => {
         onMenuClick(key);
     };
@@ -38,16 +40,18 @@ const ChangeLanguage = ({
 };
 
 ChangeLanguage.defaultProps = {
+    messages: {
+        translations: 'Translations'
+    },
     supportLanguages: [],
-    translations: 'Translations',
     onMenuClick: () => {}
 };
 
 ChangeLanguage.propTypes = {
-    translations: PropTypes.string,
+    messages: PropTypes.object,
     currentLanguage: PropTypes.string,
     supportLanguages: PropTypes.array,
     onMenuClick: PropTypes.func.isRequired
 };
 
-export default ChangeLanguage;
+export default translate('ChangeLanguage')(ChangeLanguage);

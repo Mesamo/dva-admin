@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import QueueAnim from 'rc-queue-anim';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 
+import translate from '../translate';
 import styles from './login-form.less';
 
 const FormItem = Form.Item;
@@ -13,21 +14,24 @@ const LoginForm = ({
     loading: loginButtonLoading,
     onLogin,
     onChange,
-    emailText,
-    passwordText,
-    rememberMeText,
-    forgetPasswdText,
-    loginButtonText,
-    registerText,
-    requiredEmail,
-    correctEmail,
-    requiredPassword,
+    messages,
     form: {
         getFieldsError,
         getFieldDecorator,
         validateFieldsAndScroll
     }
 }) => {
+    const {
+        emailText,
+        passwordText,
+        rememberMeText,
+        forgetPasswdText,
+        loginButtonText,
+        registerText,
+        requiredEmail,
+        correctEmail,
+        requiredPassword } = messages;
+
     const { rememberMe, email } = login;
 
     const handleChange = (e) => {
@@ -98,26 +102,23 @@ const LoginForm = ({
 };
 
 LoginForm.defaultProps = {
-    emailText: 'Email',
-    passwordText: 'Password',
-    rememberMeText: 'Remember me',
-    forgetPasswdText: 'Forget Password',
-    loginButtonText: 'Login',
-    registerText: 'Register Now !',
-    requiredEmail: 'Please enter email',
-    correctEmail: 'Please enter correct email address',
-    requiredPassword: 'Please enter password'
+    messages: {
+        emailText: 'Email',
+        passwordText: 'Password',
+        rememberMeText: 'Remember me',
+        forgetPasswdText: 'Forget Password',
+        loginButtonText: 'Login',
+        registerText: 'Register Now !',
+        requiredEmail: 'Please enter email',
+        correctEmail: 'Please enter correct email address',
+        requiredPassword: 'Please enter password'
+    }
 };
 
 LoginForm.propTypes = {
-    emailText: PropTypes.string,
-    passwordText: PropTypes.string,
-    rememberMeText: PropTypes.string,
-    forgetPasswdText: PropTypes.string,
-    loginButtonText: PropTypes.string,
-    registerText: PropTypes.string,
+    messages: PropTypes.object,
     onChange: PropTypes.func.isRequired,
     onLogin: PropTypes.func.isRequired
 };
 
-export default Form.create()(LoginForm);
+export default translate('LoginForm')(Form.create()(LoginForm));

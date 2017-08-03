@@ -1,15 +1,13 @@
 import { routerRedux } from 'dva/router';
 
 import { fetchLogout } from '../services/login.service.';
-import fetchMessage from '../services/local.service';
-import CONSTANTS from '../utils/constants';
 import { takeLatest } from '../utils/sageHelper';
 import firebaseApp from '../firebase';
 
 export default {
     namespace: 'app',
     state: {
-        currentLanguage: '',
+        currentLanguage: 'en-US',
         supportLanguages: ['zh-CN', 'en-US'],
         username: 'user',
         collapsed: false,
@@ -42,18 +40,10 @@ export default {
                 darkTheme: !state.darkTheme
             };
         },
-        saveLanguage(state, action) {
+        changeLanguage(state, action) {
             return {
                 ...state,
                 currentLanguage: action.currentLanguage
-            };
-        },
-        saveMessage(state, action) {
-            return {
-                ...state,
-                message: {
-                    ...action.message
-                }
             };
         }
     },
@@ -69,32 +59,9 @@ export default {
         *redirectToApp({ payload }, { put, select }) {
             const attemptedUrl = yield select(state => state.app.attemptedUrl);
             yield put(routerRedux.push({ pathname: attemptedUrl }));
-        },
-        *getMessage({ payload }, { put, call, select }) {
-            try {
-                const { currentLanguage } = payload;
-                const language = yield select(state => state.app.currentLanguage);
-                const message = yield select(state => state.app.message);
-
-                if (!message || currentLanguage !== language) {
-                    const supported = yield select(state => state.app.supportLanguages);
-                    if (supported.indexOf(currentLanguage) > -1) {
-                        const response = yield call(fetchMessage, currentLanguage);
-                        if (response.data) {
-                            yield put({ type: 'saveLanguage', currentLanguage });
-                            yield put({ type: 'saveMessage', message: response.data });
-                        }
-                    }
-                }
-            } catch (error) {
-                console.log(error);
-            }
         }
     },
     subscriptions: {
-        setup({ dispatch }) {
-            return dispatch({ type: 'getMessage', payload: { currentLanguage: CONSTANTS.DEFAULT_LOCAL } });
-        },
         checkLogin({ dispatch }) {
             firebaseApp.auth().onAuthStateChanged((user) => {
                 if (user) {

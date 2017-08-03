@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'dva';
 import { Row, Col } from 'antd';
 
@@ -8,11 +9,16 @@ import notice from '../../utils/notice';
 import styles from './login.less';
 
 class Login extends React.Component {
+    getChildContext() {
+        const currentLanguage = this.props.currentLanguage;
+        return {
+            currentLanguage
+        };
+    }
 
     render() {
         const {
             login,
-            message,
             currentLanguage,
             supportLanguages,
             loading,
@@ -40,8 +46,8 @@ class Login extends React.Component {
             onChange
         };
 
-        const onMenuClick = (key) => {
-            dispatch({ type: 'app/getMessage', payload: { currentLanguage: key } });
+        const onMenuClick = (language) => {
+            dispatch({ type: 'app/changeLanguage', currentLanguage: language });
         };
 
         const changeLanguageProps = {
@@ -49,20 +55,6 @@ class Login extends React.Component {
             supportLanguages,
             onMenuClick
         };
-
-        if (message) {
-            loginFormProps.emailText = message.email;
-            loginFormProps.passwordText = message.password;
-            loginFormProps.rememberMeText = message.rememberEmail;
-            loginFormProps.forgetPasswdText = message.forgetPassword;
-            loginFormProps.loginButtonText = message.login;
-            loginFormProps.registerText = message.registerNow;
-            loginFormProps.pleaseEnter = message.pleaseEnter;
-            loginFormProps.requiredEmail = message.requiredEmail;
-            loginFormProps.requiredPassword = message.requiredPassword;
-            loginFormProps.correctEmail = message.correctEmail;
-            changeLanguageProps.translations = message.translations;
-        }
 
         return (
             <Row type="flex" justify="center" align="middle" className={styles.normal}>
@@ -75,9 +67,12 @@ class Login extends React.Component {
     }
 }
 
+Login.childContextTypes = {
+    currentLanguage: PropTypes.string
+};
+
 const mapStateToProps = state => ({
     login: state.login,
-    message: state.app.message,
     currentLanguage: state.app.currentLanguage,
     supportLanguages: state.app.supportLanguages,
     loading: state.loading.models.login

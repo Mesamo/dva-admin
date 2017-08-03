@@ -4,25 +4,30 @@ import { Link } from 'react-router';
 import QueueAnim from 'rc-queue-anim';
 import { Form, Input, Button, Alert } from 'antd';
 
+import translate from '../translate';
 import styles from './reset-form.less';
 
 const FormItem = Form.Item;
 
 const ResetForm = ({
     loading: buttonLoading,
+    messages,
     onSendEmail,
-    emailText,
-    emailButtonText,
-    extraText,
-    returnLogin,
-    requiredEmail,
-    correctEmail,
     form: {
         getFieldsError,
         getFieldDecorator,
         validateFieldsAndScroll
     }
 }) => {
+    const {
+        emailText,
+        emailButtonText,
+        extraText,
+        returnLogin,
+        requiredEmail,
+        correctEmail
+    } = messages;
+
     const handleSendEmail = (e) => {
         e.stopPropagation();
         validateFieldsAndScroll((errors, values) => {
@@ -72,16 +77,19 @@ const ResetForm = ({
 };
 
 ResetForm.defaultProps = {
-    emailText: 'email',
-    emailButtonText: 'Send Email',
-    returnLogin: 'to Login',
-    extraText: 'Send you a link to reset you password',
-    requiredEmail: 'Please enter email',
-    correctEmail: 'Please enter correct email address'
+    messages: {
+        emailText: 'email',
+        emailButtonText: 'Send Email',
+        returnLogin: 'to Login',
+        extraText: 'Send you a link to reset you password',
+        requiredEmail: 'Please enter email',
+        correctEmail: 'Please enter correct email address'
+    }
 };
 
 ResetForm.propTypes = {
+    messages: PropTypes.object,
     onSendEmail: PropTypes.func.isRequired
 };
 
-export default Form.create()(ResetForm);
+export default translate('ResetForm')(Form.create()(ResetForm));

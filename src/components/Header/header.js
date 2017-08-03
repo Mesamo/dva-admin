@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Layout, Menu, Icon } from 'antd';
 
+import translate from '../translate';
 import styles from './header.less';
 
 const SubMenu = Menu.SubMenu;
@@ -11,12 +12,13 @@ const Header = ({
     collapsed,
     menus,
     menusFunc,
-    translations,
     currentLanguage,
     supportLanguages,
     changeLanguage,
-    username
+    username,
+    messages
 }) => {
+    const { translations } = messages;
     const handleClickMenu = e => menusFunc[e.key]();
     const handleSwitchSider = () => onSwitchSider();
     const handleChangeLanguage = ({ key }) => {
@@ -47,7 +49,7 @@ const Header = ({
                     <SubMenu title={<span><Icon type="user" />{username}</span>}>
                         {menus.map(menu => (
                             <Menu.Item key={menu.key}>
-                                <a>{menu.name}</a>
+                                <a>{messages[menu.name]}</a>
                             </Menu.Item>
                         ))}
                     </SubMenu>
@@ -58,6 +60,9 @@ const Header = ({
 };
 
 Header.defaultProps = {
+    messages: {
+        translations: 'Translations'
+    },
     username: 'user'
 };
 
@@ -66,7 +71,11 @@ Header.propTypes = {
     collapsed: PropTypes.bool,
     menus: PropTypes.array,
     menusFunc: PropTypes.object,
-    username: PropTypes.string
+    currentLanguage: PropTypes.string,
+    supportLanguages: PropTypes.array,
+    changeLanguage: PropTypes.func,
+    username: PropTypes.string,
+    messages: PropTypes.object
 };
 
-export default Header;
+export default translate('Header')(Header);

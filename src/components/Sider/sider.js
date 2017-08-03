@@ -4,6 +4,7 @@ import { Link } from 'dva/router';
 import QueueAnim from 'rc-queue-anim';
 import { Layout, Menu, Icon, Switch } from 'antd';
 
+import translate from '../translate';
 import styles from './sider.less';
 
 const SubMenu = Menu.SubMenu;
@@ -17,11 +18,9 @@ const Sider = ({
     menus,
     toIndex,
     changeTheme,
-    changeThemeText,
-    darkText,
-    lightText,
-    language,
-    pathname
+    currentLanguage,
+    pathname,
+    messages
 }) => {
     const props = {
         collapsible,
@@ -47,7 +46,7 @@ const Sider = ({
                         title={
                             <span>
                                 {menu.icon ? <Icon type={menu.icon} /> : ''}
-                                {collapsed && isTopMenu(menu.key) ? '' : <span>{menu.name[language]}</span>}
+                                {collapsed && isTopMenu(menu.key) ? '' : <span>{menu.name[currentLanguage]}</span>}
                             </span>}
                     >
                         {getMenus(menu.subMenu, `${linkTo}/`)}
@@ -58,7 +57,7 @@ const Sider = ({
                     <Menu.Item key={linkTo}>
                         <Link to={linkTo}>
                             {menu.icon ? <Icon type={menu.icon} /> : ''}
-                            <span>{menu.name[language]}</span>
+                            <span>{menu.name[currentLanguage]}</span>
                         </Link>
                     </Menu.Item>
                 );
@@ -75,6 +74,12 @@ const Sider = ({
     const handleToIndex = () => {
         toIndex();
     };
+
+    const {
+        changeThemeText,
+        darkText,
+        lightText
+    } = messages;
 
     return (
         <Layout.Sider {...props} className={darkTheme ? '' : styles.white}>
@@ -105,15 +110,15 @@ const Sider = ({
     );
 };
 
-Sider.__ANT_LAYOUT_SIDER = true;
-
 Sider.defaultProps = {
+    messages: {
+        changeThemeText: 'Change Theme',
+        darkText: 'dark',
+        lightText: 'light'
+    },
+    currentLanguage: 'en',
     breakpoint: 'lg',
-    darkTheme: true,
-    language: 'en-US',
-    changeThemeText: 'Change Theme',
-    darkText: 'dark',
-    lightText: 'light'
+    darkTheme: true
 };
 
 Sider.propTypes = {
@@ -122,7 +127,12 @@ Sider.propTypes = {
     onCollapse: PropTypes.func,
     breakpoint: PropTypes.string,
     darkTheme: PropTypes.bool,
-    menus: PropTypes.any
+    menus: PropTypes.any,
+    toIndex: PropTypes.func,
+    changeTheme: PropTypes.func,
+    currentLanguage: PropTypes.string,
+    pathname: PropTypes.string,
+    messages: PropTypes.object
 };
 
-export default Sider;
+export default translate('Sider')(Sider);

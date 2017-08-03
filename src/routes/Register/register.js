@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'dva';
 import { Row, Col } from 'antd';
 
@@ -7,10 +8,16 @@ import notice from '../../utils/notice';
 import styles from './register.less';
 
 class Register extends React.Component {
+    getChildContext() {
+        const currentLanguage = this.props.currentLanguage;
+        return {
+            currentLanguage
+        };
+    }
+
     render() {
         const {
             register,
-            message,
             dispatch
         } = this.props;
 
@@ -29,18 +36,6 @@ class Register extends React.Component {
             onRegister
         };
 
-        if (message) {
-            registerFormProps.emailText = message.email;
-            registerFormProps.passwordText = message.password;
-            registerFormProps.confirmText = message.confirm;
-            registerFormProps.registerText = message.register;
-            registerFormProps.returnLogin = message.returnLogin;
-            registerFormProps.requiredEmail = message.requiredEmail;
-            registerFormProps.correctEmail = message.correctEmail;
-            registerFormProps.requiredPassword = message.requiredPassword;
-            registerFormProps.passwordNotSame = message.passwordNotSame;
-        }
-
         return (
             <Row type="flex" justify="center" align="middle" className={styles.normal}>
                 <Col xs={22} sm={18} md={12} lg={10} xl={7}>
@@ -51,10 +46,14 @@ class Register extends React.Component {
     }
 }
 
+Register.childContextTypes = {
+    currentLanguage: PropTypes.string
+};
+
 const mapStateToProps = (state) => {
     return {
         register: state.register,
-        message: state.app.message,
+        currentLanguage: state.app.currentLanguage,
         loading: state.loading.models.register
     };
 };
