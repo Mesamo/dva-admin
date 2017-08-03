@@ -10,75 +10,85 @@ import menus from '../../utils/menu';
 
 const { Content, Footer } = Layout;
 
-const App = ({ app, dispatch, children, location }) => {
-    const { collapsed, darkTheme, username, currentLanguage, supportLanguages, message } = app;
-    const onCollapse = () => dispatch({ type: 'app/toggleCollapse' });
-    const changeTheme = () => dispatch({ type: 'app/changeTheme' });
-    const toIndex = () => dispatch(routerRedux.push('/'));
-
-    const siderProps = {
-        collapsible: true,
-        collapsed,
-        onCollapse,
-        breakpoint: 'lg',
-        darkTheme,
-        menus,
-        toIndex,
-        changeTheme,
-        language: currentLanguage,
-        pathname: location.pathname
-    };
-
-    const logout = () => {
-        dispatch({ type: 'app/logout' });
-    };
-
-    const headerMenusFunc = {
-        logout
-    };
-
-    const headerMenus = [
-        {
-            key: 'logout',
-            name: message ? message.logout : 'Sign out'
-        }
-    ];
-
-    const changeLanguage = (language) => {
-        dispatch({ type: 'app/getMessage', payload: { currentLanguage: language } });
-    };
-
-    const headerProps = {
-        onSwitchSider: onCollapse,
-        collapsed,
-        menus: headerMenus,
-        menusFunc: headerMenusFunc,
-        currentLanguage,
-        supportLanguages,
-        changeLanguage,
-        username
-    };
-
-    if (message) {
-        headerProps.translations = message.translations;
-        siderProps.changeThemeText = message.changeThemeText;
-        siderProps.darkText = message.darkText;
-        siderProps.lightText = message.lightText;
+class App extends React.Component {
+    getChildContext() {
+        const { currentLanguage } = this.props.app;
+        return {
+            currentLanguage
+        };
     }
 
-    return (
-        <Layout className={styles.normal}>
-            <Sider {...siderProps} />
-            <Layout>
-                <Header {...headerProps} />
-                <Content>
-                    { children }
-                </Content>
-                <Footer />
+    render() {
+        const { app, dispatch, children, location } = this.props;
+        const { collapsed, darkTheme, username, currentLanguage, supportLanguages, message } = app;
+        const onCollapse = () => dispatch({ type: 'app/toggleCollapse' });
+        const changeTheme = () => dispatch({ type: 'app/changeTheme' });
+        const toIndex = () => dispatch(routerRedux.push('/'));
+
+        const siderProps = {
+            collapsible: true,
+            collapsed,
+            onCollapse,
+            breakpoint: 'lg',
+            darkTheme,
+            menus,
+            toIndex,
+            changeTheme,
+            language: currentLanguage,
+            pathname: location.pathname
+        };
+
+        const logout = () => {
+            dispatch({ type: 'app/logout' });
+        };
+
+        const headerMenusFunc = {
+            logout
+        };
+
+        const headerMenus = [
+            {
+                key: 'logout',
+                name: message ? message.logout : 'Sign out'
+            }
+        ];
+
+        const changeLanguage = (language) => {
+            dispatch({ type: 'app/getMessage', payload: { currentLanguage: language } });
+        };
+
+        const headerProps = {
+            onSwitchSider: onCollapse,
+            collapsed,
+            menus: headerMenus,
+            menusFunc: headerMenusFunc,
+            currentLanguage,
+            supportLanguages,
+            changeLanguage,
+            username
+        };
+
+        if (message) {
+            headerProps.translations = message.translations;
+            siderProps.changeThemeText = message.changeThemeText;
+            siderProps.darkText = message.darkText;
+            siderProps.lightText = message.lightText;
+        }
+
+        return (
+            <Layout className={styles.normal}>
+                <Sider {...siderProps} />
+                <Layout>
+                    <Header {...headerProps} />
+                    <Content>
+                        {children}
+                    </Content>
+                    <Footer />
+                </Layout>
             </Layout>
-        </Layout>
-    );
-};
+        );
+    }
+}
 
 const mapStateToProps = state => ({
     app: state.app,
