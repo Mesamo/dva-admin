@@ -46,6 +46,14 @@ const RouterConfig = ({ history, app }) => {
                             callback(null, require('./routes/Contents/users/users'));
                         });
                     }
+                },
+                {
+                    path: 'dashboard',
+                    getComponent(nextState, callback) {
+                        require.ensure([], (require) => {
+                            callback(null, require('./routes/Contents/dashboard/dashboard'));
+                        });
+                    }
                 }
             ]
         },
