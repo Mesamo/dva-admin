@@ -31,7 +31,7 @@ const Header = ({
                 <Icon type={collapsed ? 'menu-unfold' : 'menu-fold'} />
             </div>
             <div className={styles.right}>
-                <Menu mode="horizontal" onClick={handleChangeLanguage}>
+                <Menu mode="horizontal" onClick={handleChangeLanguage} style={{ zIndex: 1 }}>
                     <SubMenu title={<span>{translations}</span>}>
                         {supportLanguages
                             .filter(language => language !== currentLanguage)
@@ -45,7 +45,7 @@ const Header = ({
                         }
                     </SubMenu>
                 </Menu>
-                <Menu mode="horizontal" onClick={handleClickMenu} style={{ textAlign: 'center' }}>
+                <Menu mode="horizontal" onClick={handleClickMenu} style={{ textAlign: 'center', zIndex: 1 }}>
                     <SubMenu title={<span><Icon type="user" />{username}</span>}>
                         {menus.map(menu => (
                             <Menu.Item key={menu.key}>

@@ -86,7 +86,11 @@ const Sider = ({
     };
 
     return (
-        <Layout.Sider {...props} className={darkTheme ? '' : styles.white}>
+        <Layout.Sider
+            {...props}
+            className={darkTheme ? '' : styles.white}
+            style={{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0 }}
+        >
             <QueueAnim delay={200} type="top" onClick={handleToIndex}>
                 <div className={styles.logo} key="1">
                     <img alt="logo" src="/favicon.ico" className={styles.dva} />
