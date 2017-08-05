@@ -72,9 +72,9 @@ class App extends React.Component {
         return (
             <Layout className={styles.normal}>
                 <Sider {...siderProps} />
-                <Layout className={styles.content} style={{ marginLeft: collapsed ? 64 : 200 }}>
+                <Layout className={styles.layout} style={{ marginLeft: collapsed ? 64 : 200 }}>
                     <Header {...headerProps} />
-                    <Content className={styles.context}>
+                    <Content className={styles.content}>
                         {children}
                     </Content>
                     <Footer />
