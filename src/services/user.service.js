@@ -1,8 +1,8 @@
 import firebaseApp from '../firebase';
 
 const addUser = (name, email) => {
-    const userRef = firebaseApp.database().ref(`users/${name}`);
-    userRef.set({
+    const userListref = firebaseApp.database().ref('users').push();
+    userListref.set({
         name,
         email
     });
