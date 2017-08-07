@@ -12,9 +12,9 @@ export default {
         supportLanguages: ['zh-CN', 'en-US'],
         username: 'user',
         collapsed: false,
+        isNavbar: document.body.clientWidth < 769,
         darkTheme: true,
-        attemptedUrl: '',
-        message: null
+        attemptedUrl: ''
     },
     reducers: {
         toggleCollapse(state) {
@@ -49,6 +49,12 @@ export default {
                 ...state,
                 currentLanguage
             };
+        },
+        switchSidebarResponsive(state, { payload }) {
+            return {
+                ...state,
+                isNavbar: payload
+            };
         }
     },
     effects: {
@@ -63,6 +69,13 @@ export default {
         *redirectToApp({ payload }, { put, select }) {
             const attemptedUrl = yield select(state => state.app.attemptedUrl);
             yield put(routerRedux.push({ pathname: attemptedUrl }));
+        },
+        *siderResponsive({ payload }, { put, select }) {
+            const { app } = yield select(state => state);
+            const isResponsive = document.body.clientWidth < 769;
+            if (isResponsive !== app.siderRespons) {
+                yield put({ type: 'switchSidebarResponsive', payload: isResponsive });
+            }
         }
     },
     subscriptions: {
@@ -84,6 +97,11 @@ export default {
                     dispatch({ type: 'redirectToApp' });
                 }
             });
+        },
+        resize({ dispatch }) {
+            window.onresize = () => {
+                dispatch({ type: 'siderResponsive' });
+            };
         }
     }
 };

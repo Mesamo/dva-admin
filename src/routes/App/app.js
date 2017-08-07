@@ -21,7 +21,7 @@ class App extends React.Component {
 
     render() {
         const { app, dispatch, children, location } = this.props;
-        const { collapsed, darkTheme, username, currentLanguage, supportLanguages } = app;
+        const { isNavbar, collapsed, darkTheme, username, currentLanguage, supportLanguages } = app;
         const onCollapse = () => dispatch({ type: 'app/toggleCollapse' });
         const changeTheme = checked => dispatch({ type: 'app/changeTheme', darkTheme: checked });
         const toIndex = () => dispatch(routerRedux.push('/'));
@@ -69,10 +69,19 @@ class App extends React.Component {
             username
         };
 
+        let left = 0;
+        if (isNavbar) {
+            left = 0;
+        } else if (collapsed) {
+            left = 64;
+        } else {
+            left = 200;
+        }
+
         return (
             <Layout className={styles.normal}>
-                <Sider {...siderProps} />
-                <Layout className={styles.layout} style={{ marginLeft: collapsed ? 64 : 200 }}>
+                {!isNavbar ? <Sider {...siderProps} /> : ''}
+                <Layout className={styles.layout} style={{ marginLeft: left }}>
                     <Header {...headerProps} />
                     <Content className={styles.content}>
                         {children}
