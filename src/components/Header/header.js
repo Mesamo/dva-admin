@@ -49,7 +49,7 @@ const Header = ({
                     <SubMenu title={<span><Icon type="user" />{username}</span>}>
                         {menus.map(menu => (
                             <Menu.Item key={menu.key}>
-                                <a>{messages[menu.name]}</a>
+                                <a>{messages[menu.name] ? messages[menu.name] : menu.name}</a>
                             </Menu.Item>
                         ))}
                     </SubMenu>

@@ -43,6 +43,7 @@ const RouterConfig = ({ history, app }) => {
                     path: 'users',
                     getComponent(nextState, callback) {
                         require.ensure([], (require) => {
+                            registerModel(app, require('./models/user'));
                             callback(null, require('./routes/Contents/users/users'));
                         });
                     }

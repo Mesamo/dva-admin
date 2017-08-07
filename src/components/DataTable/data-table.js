@@ -4,41 +4,13 @@ import { Table } from 'antd';
 
 import styles from './data-table.less';
 
-const DataTable = () => {
-    const column = [{
-        title: 'Name',
-        dataIndex: 'name',
-        key: 'name'
-    }, {
-        title: 'Gender',
-        dataIndex: 'gender',
-        key: 'gender'
-    }, {
-        title: 'Age',
-        dataIndex: 'age',
-        key: 'age'
-    }, {
-        title: 'Phone',
-        dataIndex: 'phone',
-        key: 'phonr'
-    }, {
-        title: 'Address',
-        dataIndex: 'address',
-        key: 'address'
-    }];
-
-    const data = [];
-    for (let i = 0; i < 100; i += 1) {
-        data.push({
-            name: 'test',
-            gender: 'male',
-            age: 18,
-            phone: '123456',
-            address: 'ecudor'
-        });
-    }
+const DataTable = ({
+    columns,
+    data,
+    loading
+ }) => {
     return (
-        <Table columns={column} dataSource={data} className={styles.normal} />
+        <Table columns={columns} dataSource={data} loading={loading} className={styles.normal} />
     );
 };
 
@@ -47,7 +19,8 @@ DataTable.defaultProps = {
 
 DataTable.propTypes = {
     columns: PropTypes.array,
-    data: PropTypes.array
+    data: PropTypes.array,
+    loading: PropTypes.bool
 };
 
 export default DataTable;
