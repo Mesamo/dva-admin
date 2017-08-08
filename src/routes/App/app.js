@@ -59,9 +59,12 @@ class App extends React.Component {
         };
 
         const headerProps = {
+            isNavbar,
+            menus,
+            pathname: location.pathname,
             onSwitchSider: onCollapse,
             collapsed,
-            menus: headerMenus,
+            headerMenus,
             menusFunc: headerMenusFunc,
             currentLanguage,
             supportLanguages,

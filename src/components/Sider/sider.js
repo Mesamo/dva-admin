@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'dva/router';
 import QueueAnim from 'rc-queue-anim';
 import { Layout, Menu, Icon, Switch } from 'antd';
 
 import translate from '../../i18n/translate';
+import getMenus from '../Menus/menus';
 import styles from './sider.less';
-
-const SubMenu = Menu.SubMenu;
 
 const Sider = ({
     collapsible,
@@ -22,42 +20,7 @@ const Sider = ({
     pathname,
     messages
 }) => {
-    const topMenus = menus.map(item => item.key);
-
-    const isTopMenu = (key) => {
-        return topMenus.indexOf(key) >= 0;
-    };
-
-    const getMenus = (menuArray, parentPath = '/') => {
-        return menuArray.map((menu) => {
-            const linkTo = parentPath + menu.key;
-            if (menu.subMenu && menu.subMenu.length > 0) {
-                return (
-                    <SubMenu
-                        key={linkTo}
-                        title={
-                            <span>
-                                {menu.icon ? <Icon type={menu.icon} /> : ''}
-                                {collapsed && isTopMenu(menu.key) ? '' : <span>{menu.name[currentLanguage]}</span>}
-                            </span>}
-                    >
-                        {getMenus(menu.subMenu, `${linkTo}/`)}
-                    </SubMenu>
-                );
-            } else {
-                return (
-                    <Menu.Item key={linkTo}>
-                        <Link to={linkTo}>
-                            {menu.icon ? <Icon type={menu.icon} /> : ''}
-                            <span>{menu.name[currentLanguage]}</span>
-                        </Link>
-                    </Menu.Item>
-                );
-            }
-        });
-    };
-
-    const menuItems = getMenus(menus);
+    const menuItems = getMenus(menus, currentLanguage);
     const menuTheme = darkTheme ? 'dark' : 'light';
     const textColor = {
         color: darkTheme ? 'rgba(255, 255, 255, 0.67)' : 'rgba(0, 0, 0, 0.65)'
@@ -89,7 +52,7 @@ const Sider = ({
         <Layout.Sider
             {...props}
             className={darkTheme ? '' : styles.white}
-            style={{ overflow: 'auto', height: '100%', position: 'fixed', left: 0 }}
+            style={{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0 }}
         >
             <QueueAnim delay={200} type="top" onClick={handleToIndex}>
                 <div className={styles.logo} key="1">

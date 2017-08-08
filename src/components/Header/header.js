@@ -1,16 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu, Icon, Popover } from 'antd';
 
 import translate from '../../i18n/translate';
+import getMenus from '../Menus/menus';
 import styles from './header.less';
 
 const SubMenu = Menu.SubMenu;
 
 const Header = ({
+    menus,
+    pathname,
+    isNavbar,
     onSwitchSider,
     collapsed,
-    menus,
+    headerMenus,
     menusFunc,
     currentLanguage,
     supportLanguages,
@@ -25,11 +29,33 @@ const Header = ({
         changeLanguage(key);
     };
 
-    return (
-        <Layout.Header className={styles.header}>
+    let headerButton;
+
+    if (isNavbar) {
+        const content = (
+            <Menu key="1" selectedKeys={[pathname]} mode="inline">
+                {getMenus(menus, currentLanguage)}
+            </Menu>
+        );
+
+        headerButton = (
+            <Popover placement="bottomLeft" trigger="click" overlayClassName={styles.popovermenu} content={content}>
+                <div className={styles.button}>
+                    <Icon type="bars" />
+                </div>
+            </Popover>
+        );
+    } else {
+        headerButton = (
             <div className={styles.button} onClick={handleSwitchSider}>
                 <Icon type={collapsed ? 'menu-unfold' : 'menu-fold'} />
             </div>
+        );
+    }
+
+    return (
+        <Layout.Header className={styles.header}>
+            {headerButton}
             <div className={styles.right}>
                 <Menu mode="horizontal" onClick={handleChangeLanguage} style={{ zIndex: 1 }}>
                     <SubMenu title={<span>{translations}</span>}>
@@ -47,7 +73,7 @@ const Header = ({
                 </Menu>
                 <Menu mode="horizontal" onClick={handleClickMenu} style={{ textAlign: 'center', zIndex: 1 }}>
                     <SubMenu title={<span><Icon type="user" />{username}</span>}>
-                        {menus.map(menu => (
+                        {headerMenus.map(menu => (
                             <Menu.Item key={menu.key}>
                                 <a>{messages[menu.name] ? messages[menu.name] : menu.name}</a>
                             </Menu.Item>
@@ -67,9 +93,12 @@ Header.defaultProps = {
 };
 
 Header.propTypes = {
+    menus: PropTypes.array,
+    pathname: PropTypes.string,
+    isNavbar: PropTypes.bool,
     onSwitchSider: PropTypes.func.isRequired,
     collapsed: PropTypes.bool,
-    menus: PropTypes.array,
+    headerMenus: PropTypes.array,
     menusFunc: PropTypes.object,
     currentLanguage: PropTypes.string,
     supportLanguages: PropTypes.array,

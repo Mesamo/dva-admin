@@ -7,6 +7,26 @@
     justify-content: space-between;
 }
 
+.popovermenu {
+  width: 200px;
+
+  :global .ant-popover-inner-content {
+    padding: 0;
+
+    .ant-menu-inline .ant-menu-item,
+    .ant-menu-vertical .ant-menu-item {
+      border-right: 0;
+      height: 48px;
+      line-height: 48px;
+    }
+
+    .ant-menu-inline .ant-menu-item-selected,
+    .ant-menu-inline .ant-menu-selected {
+      border-right: 0;
+    }
+  }
+}
+
 .button {
     width: 47px;
     height: 47px;
