@@ -1,6 +1,7 @@
 import pathToRegexp from 'path-to-regexp';
 
 import { addUser, getUser } from '../services/user.service';
+import { takeLatest } from '../utils/sageHelper';
 
 export default {
     namespace: 'user',
@@ -19,7 +20,7 @@ export default {
         *addUser({ payload: user }, { call }) {
             yield call(addUser, user);
         },
-        *getUser({ payload }, { call, put }) {
+        getUsers: takeLatest(function* ({ payload }, { call, put }) {
             const data = yield call(getUser);
             const users = [];
             data.forEach((snapshort) => {
@@ -28,14 +29,14 @@ export default {
                 users.push(user);
             });
             yield put({ type: 'saveUsers', users });
-        }
+        })
     },
     subscriptions: {
         setup({ history, dispatch }) {
             return history.listen(({ pathname }) => {
                 const match = pathToRegexp('/users').exec(pathname);
                 if (match) {
-                    dispatch({ type: 'getUser' });
+                    dispatch({ type: 'getUsers' });
                 }
             });
         }

@@ -1,56 +1,21 @@
 import firebaseApp from '../firebase';
 
-/**
- * 用户登录
- *
- * @export
- * @param {string} email 邮箱地址
- * @param {string} password 密码
- * @returns {Promise<any>}
- */
-export async function fetchLogin(email, password) {
+export const fetchLogin = (email, password) => {
     return firebaseApp.auth().signInWithEmailAndPassword(email, password);
-}
+};
 
-/**
- * 用户退出
- *
- * @export
- * @returns {Promise<any>}
- */
-export async function fetchLogout() {
+export const fetchLogout = () => {
     return firebaseApp.auth().signOut();
-}
+};
 
-/**
- * 获取当前用户
- *
- * @export
- * @returns {firebase.User}
- */
-export function currentUser() {
+export const currentUser = () => {
     return firebaseApp.auth().currentUser;
-}
+};
 
-/**
- * 用户注册
- *
- * @export
- * @param {any} email 邮箱地址
- * @param {any} password 密码
- * @returns {Promise<any>}
- */
-export async function fetchRegister(email, password) {
+export const fetchRegister = (email, password) => {
     return firebaseApp.auth().createUserWithEmailAndPassword(email, password);
-}
+};
 
-/**
- * 发送重置密码邮件
- *
- * @export
- * @param {any} email 邮箱地址
- * @returns {Promise<any>}
- */
-export async function sendResetPasswordEmail(email) {
+export const sendResetPasswordEmail = (email) => {
     return firebaseApp.auth().sendPasswordResetEmail(email);
-}
+};

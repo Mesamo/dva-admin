@@ -5,6 +5,7 @@ import App from './routes/App/app';
 import firebaseApp from './firebase';
 
 const cached = {};
+// 注册model
 const registerModel = (app, model) => {
     if (!cached[model.namespace]) {
         app.model(model);
@@ -13,6 +14,7 @@ const registerModel = (app, model) => {
 };
 
 const RouterConfig = ({ history, app }) => {
+    // 登录验证
     const requireAuth = (nextState, replace, callback) => {
         const user = firebaseApp.auth().currentUser;
         if (!user) {
