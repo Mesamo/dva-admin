@@ -5,30 +5,21 @@ const checkType = (fn) => {
     }
 };
 
-const takeEvery = (fn) => {
+export const takeEvery = (fn) => {
     checkType(fn);
     return [fn, { type: 'takeEvery' }];
 };
 
-const takeLatest = (fn) => {
+export const takeLatest = (fn) => {
     checkType(fn);
     return [fn, { type: 'takeLatest' }];
 };
 
-const watcher = (fn) => {
+export const watcher = (fn) => {
     checkType(fn);
     return [fn, { type: 'watcher' }];
 };
 
-const delay = (timeout) => {
+export const delay = (timeout) => {
     return new Promise(resolve => setTimeout(resolve, timeout));
 };
-
-const SagaHelper = {
-    takeEvery,
-    takeLatest,
-    watcher,
-    delay
-};
-
-export default SagaHelper;
