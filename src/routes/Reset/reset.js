@@ -4,7 +4,7 @@ import { connect } from 'dva';
 import { Row, Col } from 'antd';
 
 import ResetForm from '../../components/ResetForm/reset-form';
-import notice from '../../utils/notice';
+import { noticeSuccess, noticeError } from '../../utils/notice';
 import styles from './reset.less';
 
 class Reset extends React.Component {
@@ -29,8 +29,8 @@ class Reset extends React.Component {
                 type: 'reset/sendEmil',
                 payload: {
                     email,
-                    onSuccess: msg => notice.success(msg),
-                    onError: (code, msg) => notice.error(code, msg)
+                    onSuccess: msg => noticeSuccess(msg),
+                    onError: (code, msg) => noticeError(code, msg)
                 }
             });
         };

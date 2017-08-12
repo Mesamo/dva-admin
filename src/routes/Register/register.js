@@ -4,7 +4,7 @@ import { connect } from 'dva';
 import { Row, Col } from 'antd';
 
 import RegisterForm from '../../components/RegisterForm/register-form';
-import notice from '../../utils/notice';
+import { noticeSuccess, noticeError } from '../../utils/notice';
 import styles from './register.less';
 
 class Register extends React.Component {
@@ -26,8 +26,8 @@ class Register extends React.Component {
             payload: {
                 email,
                 password,
-                onSuccess: msg => notice.success(msg),
-                onError: (code, msg) => notice.error(code, msg)
+                onSuccess: msg => noticeSuccess(msg),
+                onError: (code, msg) => noticeError(code, msg)
             }
         });
 

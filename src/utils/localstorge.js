@@ -1,36 +1,28 @@
 
-const read = (key) => {
+export const read = (key) => {
     return localStorage.getItem(key);
 };
 
-const readObject = (key) => {
+export const readObject = (key) => {
     const text = read(key);
-    let obj;
+    let obj = {};
     try {
         obj = JSON.parse(text);
     } catch (error) {
-        obj = {};
+        console.error(error);
     }
     return obj;
 };
 
-const write = (key, data) => {
+export const write = (key, data) => {
     localStorage.setItem(key, data);
 };
 
-const writeObject = (key, data) => {
+export const writeObject = (key, data) => {
     const text = JSON.stringify(data);
     write(key, text);
 };
 
-const remove = (key) => {
+export const remove = (key) => {
     localStorage.removeItem(key);
-};
-
-export {
-    read,
-    readObject,
-    write,
-    writeObject,
-    remove
 };

@@ -5,7 +5,7 @@ import { Row, Col } from 'antd';
 
 import LoginForm from '../../components/LoginForm/login-form';
 import ChangeLanguage from '../../components/ChangeLanguage/change-language';
-import notice from '../../utils/notice';
+import { noticeSuccess, noticeError } from '../../utils/notice';
 import styles from './login.less';
 
 class Login extends React.Component {
@@ -30,8 +30,8 @@ class Login extends React.Component {
             payload: {
                 email,
                 password,
-                onSuccess: msg => notice.success(msg),
-                onError: (code, msg) => notice.error(code, msg)
+                onSuccess: msg => noticeSuccess(msg),
+                onError: (code, msg) => noticeError(code, msg)
             }
         });
 
