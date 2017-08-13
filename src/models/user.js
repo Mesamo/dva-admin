@@ -1,8 +1,18 @@
 import pathToRegexp from 'path-to-regexp';
 
-import { addUser, delUser, getUsers } from '../services/user.service';
-import { takeLatest } from '../utils/sageHelper';
+import { addUser, delUser } from '../services/user.service';
 import { noticeError } from '../utils/notice';
+import firebaseApp from '../firebase';
+
+const convertUsersObjToArray = (usersObj) => {
+    const users = [];
+    usersObj.forEach((snapshort) => {
+        const user = snapshort.val();
+        user.key = snapshort.key;
+        users.push(user);
+    });
+    return users;
+};
 
 export default {
     namespace: 'user',
@@ -33,31 +43,22 @@ export default {
             } catch (error) {
                 noticeError(error);
             }
-        },
-        getUsers: takeLatest(function* ({ payload }, { call, put }) {
-            const data = yield call(getUsers);
-            const users = [];
-            data.forEach((snapshort) => {
-                const user = snapshort.val();
-                user.key = snapshort.key;
-                users.push(user);
-            });
-            yield put({ type: 'saveUsers', users });
-        })
+        }
     },
     subscriptions: {
-        setup({ history, dispatch }) {
-            return history.listen(({ pathname }) => {
+        onUsersChange({ history, dispatch }) {
+            const userRef = firebaseApp.database().ref('users');
+            history.listen(({ pathname }) => {
                 const match = pathToRegexp('/users').exec(pathname);
                 if (match) {
-                    dispatch({ type: 'getUsers' });
+                    userRef.on('value', (snapshort) => {
+                        const users = convertUsersObjToArray(snapshort);
+                        dispatch({ type: 'saveUsers', users });
+                    });
+                } else {
+                    userRef.off();
                 }
             });
         }
-        // onUsersChange({ dispatch }) {
-        //     const userRef = firebaseApp.database().ref('users');
-        //     userRef.on('value', (snapshort) => {
-        //     });
-        // }
     }
 };
