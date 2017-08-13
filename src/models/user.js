@@ -1,7 +1,8 @@
 import pathToRegexp from 'path-to-regexp';
 
-import { addUser, getUser } from '../services/user.service';
+import { addUser, delUser, getUsers } from '../services/user.service';
 import { takeLatest } from '../utils/sageHelper';
+import { noticeError } from '../utils/notice';
 
 export default {
     namespace: 'user',
@@ -17,11 +18,24 @@ export default {
         }
     },
     effects: {
-        *addUser({ payload: user }, { call }) {
-            yield call(addUser, user);
+        *addUser({ payload }, { call }) {
+            const { user } = payload;
+            try {
+                yield call(addUser, user);
+            } catch (error) {
+                noticeError(error);
+            }
+        },
+        *delUser({ payload }, { call }) {
+            const { key } = payload;
+            try {
+                yield call(delUser, key);
+            } catch (error) {
+                noticeError(error);
+            }
         },
         getUsers: takeLatest(function* ({ payload }, { call, put }) {
-            const data = yield call(getUser);
+            const data = yield call(getUsers);
             const users = [];
             data.forEach((snapshort) => {
                 const user = snapshort.val();
@@ -40,5 +54,10 @@ export default {
                 }
             });
         }
+        // onUsersChange({ dispatch }) {
+        //     const userRef = firebaseApp.database().ref('users');
+        //     userRef.on('value', (snapshort) => {
+        //     });
+        // }
     }
 };
