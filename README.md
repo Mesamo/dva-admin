@@ -4,7 +4,7 @@
 [![GitHub version](https://badge.fury.io/gh/Mesamo%2Fdva-admin.svg)](https://badge.fury.io/gh/Mesamo%2Fdva-admin)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2431df871cfc4e7aa82e921e8652960c)](https://www.codacy.com/app/mesamo/dva-admin?utm_source=github.com&utm_medium=referral&utm_content=Mesamo/dva-admin&utm_campaign=badger)
 
-基于react + ant-design + dva搭建的管理后台
+A dashboard application built upon dva and ant-design
 
 ## Live Demo
 This live demo is deploy on firebase hosting. You can view a live version of this demo [here](https://dva-admin.firebaseapp.com).
