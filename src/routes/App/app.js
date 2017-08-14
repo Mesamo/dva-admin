@@ -92,8 +92,7 @@ App.childContextTypes = {
 };
 
 const mapStateToProps = state => ({
-    app: state.app,
-    login: state.login
+    app: state.app
 });
 
 export default connect(mapStateToProps)(App);
