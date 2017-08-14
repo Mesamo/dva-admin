@@ -63,7 +63,7 @@ class Users extends React.Component {
         }, {
             title: 'Phone',
             dataIndex: 'phone',
-            key: 'phonr'
+            key: 'phone'
         }, {
             title: 'Address',
             dataIndex: 'address',
@@ -84,12 +84,6 @@ class Users extends React.Component {
         );
     }
 }
-
-Users.propTypes = {
-};
-
-Users.defaultProps = {
-};
 
 Users.childContextTypes = {
     currentLanguage: PropTypes.string

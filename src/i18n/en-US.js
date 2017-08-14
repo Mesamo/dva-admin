@@ -36,6 +36,7 @@ export default {
         name: 'Name',
         gender: 'Gender',
         age: 'Age',
+        email: 'Email',
         phone: 'Phone',
         address: 'Address',
         action: 'Action',
