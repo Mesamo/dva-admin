@@ -8,8 +8,8 @@ const cached = {};
 // 注册model
 const registerModel = (app, model) => {
     if (!cached[model.namespace]) {
-        app.model(model);
         cached[model.namespace] = 1;
+        app.model(model);
     }
 };
 
@@ -26,6 +26,8 @@ const RouterConfig = ({ history, app }) => {
             callback();
         }
     };
+
+    registerModel(app, require('./models/app'));
 
     const routes = [
         // app
