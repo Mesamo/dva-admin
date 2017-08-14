@@ -31,5 +31,14 @@ export default {
     },
     Header: {
         logoutText: 'Sing out'
+    },
+    DataTable: {
+        name: 'Name',
+        gender: 'Gender',
+        age: 'Age',
+        phone: 'Phone',
+        address: 'Address',
+        action: 'Action',
+        delete: 'Delete'
     }
 };

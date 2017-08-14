@@ -30,5 +30,14 @@ export default {
     },
     Header: {
         logoutText: '注销'
+    },
+    DataTable: {
+        name: '姓名',
+        gender: '性别',
+        age: '年龄',
+        phone: '电话',
+        address: '地址',
+        action: '操作',
+        delete: '删除'
     }
 };

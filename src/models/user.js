@@ -1,7 +1,6 @@
 import pathToRegexp from 'path-to-regexp';
 
 import { addUser, delUser } from '../services/user.service';
-import { noticeError } from '../utils/notice';
 import firebaseApp from '../firebase';
 
 const convertUsersObjToArray = (usersObj) => {
@@ -17,7 +16,8 @@ const convertUsersObjToArray = (usersObj) => {
 export default {
     namespace: 'user',
     state: {
-        users: []
+        users: [],
+        selectedKeys: []
     },
     reducers: {
         saveUsers(state, action) {
@@ -25,23 +25,31 @@ export default {
                 ...state,
                 users: action.users
             };
+        },
+        onSelectedChange(state, action) {
+            return {
+                ...state,
+                selectedKeys: action.selectedKeys
+            };
         }
     },
     effects: {
         *addUser({ payload }, { call }) {
-            const { user } = payload;
+            const { user, onSuccess, onError } = payload;
             try {
                 yield call(addUser, user);
+                onSuccess('add success : )');
             } catch (error) {
-                noticeError(error);
+                onError(error.message);
             }
         },
         *delUser({ payload }, { call }) {
-            const { key } = payload;
+            const { key, onSuccess, onError } = payload;
             try {
                 yield call(delUser, key);
+                onSuccess('delete success : )');
             } catch (error) {
-                noticeError(error);
+                onError(error.message);
             }
         }
     },
