@@ -72,19 +72,10 @@ class App extends React.Component {
             username
         };
 
-        let left = 0;
-        if (isNavbar) {
-            left = 0;
-        } else if (collapsed) {
-            left = 64;
-        } else {
-            left = 200;
-        }
-
         return (
             <Layout className={styles.normal}>
                 {!isNavbar ? <Sider {...siderProps} /> : ''}
-                <Layout className={styles.layout} style={{ marginLeft: left }}>
+                <Layout className={styles.layout}>
                     <Header {...headerProps} />
                     <Content className={styles.content}>
                         {children}

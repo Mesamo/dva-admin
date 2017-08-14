@@ -52,7 +52,6 @@ const Sider = ({
         <Layout.Sider
             {...props}
             className={darkTheme ? '' : styles.white}
-            style={{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0 }}
         >
             <QueueAnim delay={200} type="top" onClick={handleToIndex}>
                 <div className={styles.logo} key="1">

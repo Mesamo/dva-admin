@@ -16,7 +16,7 @@
     "install-node": "6.9.2"
   },
   "dependencies": {
-    "antd": "^2.12.5",
+    "antd": "^2.12.6",
     "babel-runtime": "^6.23.0",
     "dva": "^1.2.1",
     "dva-loading": "^0.2.1",
