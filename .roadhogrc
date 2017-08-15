@@ -1,6 +1,11 @@
 {
   "entry": "src/index.js",
   "hash": true,
+  "externals": {
+      "react": "window.React",
+      "react-dom": "window.ReactDOM",
+      "firebase": "window.firebase"
+  },
   "env": {
     "development": {
       "extraBabelPlugins": [
