@@ -1,11 +1,6 @@
 {
   "entry": "src/index.js",
   "hash": true,
-  "externals": {
-      "react": "window.React",
-      "react-dom": "window.ReactDOM",
-      "firebase": "window.firebase"
-  },
   "env": {
     "development": {
       "extraBabelPlugins": [
@@ -30,5 +25,21 @@
   },
   "theme": {
       "@icon-url": "'/assets/iconfont/iconfont'"
+  },
+  "dllPlugin": {
+    "exclude": [
+      "babel-runtime"
+    ],
+    "include": [
+      "react",
+      "react-dom",
+      "antd",
+      "dva/router",
+      "dva/saga",
+      "dva/fetch",
+      "firebase/app",
+      "firebase/auth",
+      "firebase/database"
+    ]
   }
 }
