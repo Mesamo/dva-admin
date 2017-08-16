@@ -8,54 +8,54 @@ import { noticeSuccess, noticeError } from '../../utils/notice';
 import styles from './register.less';
 
 class Register extends React.Component {
-    getChildContext() {
-        const currentLanguage = this.props.currentLanguage;
-        return {
-            currentLanguage
-        };
-    }
+  getChildContext() {
+    const currentLanguage = this.props.currentLanguage;
+    return {
+      currentLanguage
+    };
+  }
 
-    render() {
-        const {
+  render() {
+    const {
             register,
-            dispatch
+      dispatch
         } = this.props;
 
-        const onRegister = (email, password) => dispatch({
-            type: 'register/register',
-            payload: {
-                email,
-                password,
-                onSuccess: msg => noticeSuccess(msg),
-                onError: (code, msg) => noticeError(code, msg)
-            }
-        });
+    const onRegister = (email, password) => dispatch({
+      type: 'register/register',
+      payload: {
+        email,
+        password,
+        onSuccess: msg => noticeSuccess(msg),
+        onError: (code, msg) => noticeError(code, msg)
+      }
+    });
 
-        const registerFormProps = {
-            register,
-            onRegister
-        };
+    const registerFormProps = {
+      register,
+      onRegister
+    };
 
-        return (
-            <Row type="flex" justify="center" align="middle" className={styles.normal}>
-                <Col xs={22} sm={18} md={12} lg={10} xl={7}>
-                    <RegisterForm {...registerFormProps} />
-                </Col>
-            </Row>
-        );
-    }
+    return (
+      <Row type="flex" justify="center" align="middle" className={styles.normal}>
+        <Col xs={22} sm={18} md={12} lg={10} xl={7}>
+          <RegisterForm {...registerFormProps} />
+        </Col>
+      </Row>
+    );
+  }
 }
 
 Register.childContextTypes = {
-    currentLanguage: PropTypes.string
+  currentLanguage: PropTypes.string
 };
 
 const mapStateToProps = (state) => {
-    return {
-        register: state.register,
-        currentLanguage: state.app.currentLanguage,
-        loading: state.loading.models.register
-    };
+  return {
+    register: state.register,
+    currentLanguage: state.app.currentLanguage,
+    loading: state.loading.models.register
+  };
 };
 
 export default connect(mapStateToProps)(Register);

@@ -6,52 +6,52 @@ import translate from '../../i18n/translate';
 import styles from './change-language.less';
 
 const ChangeLanguage = ({
-    messages,
-    currentLanguage,
-    supportLanguages,
-    onMenuClick
+  messages,
+  currentLanguage,
+  supportLanguages,
+  onMenuClick
 }) => {
-    const { translations } = messages;
-    const handleMenuClick = ({ key }) => {
-        onMenuClick(key);
-    };
+  const { translations } = messages;
+  const handleMenuClick = ({ key }) => {
+    onMenuClick(key);
+  };
 
-    const menus = (
-        <Menu onClick={handleMenuClick}>
-            {supportLanguages.filter(language => language !== currentLanguage).map((language) => {
-                return (
-                    <Menu.Item key={language}>
-                        {language}
-                    </Menu.Item>
-                );
-            })}
-        </Menu>
-    );
+  const menus = (
+    <Menu onClick={handleMenuClick}>
+      {supportLanguages.filter(language => language !== currentLanguage).map((language) => {
+        return (
+          <Menu.Item key={language}>
+            {language}
+          </Menu.Item>
+        );
+      })}
+    </Menu>
+  );
 
-    return (
-        <div className={styles.normal}>
-            <Dropdown overlay={menus}>
-                <a className="ant-dropdown-link">
-                    {translations} <Icon type="down" />
-                </a>
-            </Dropdown>
-        </div>
-    );
+  return (
+    <div className={styles.normal}>
+      <Dropdown overlay={menus}>
+        <a className="ant-dropdown-link">
+          {translations} <Icon type="down" />
+        </a>
+      </Dropdown>
+    </div>
+  );
 };
 
 ChangeLanguage.defaultProps = {
-    messages: {
-        translations: 'Translations'
-    },
-    supportLanguages: [],
-    onMenuClick: () => {}
+  messages: {
+    translations: 'Translations'
+  },
+  supportLanguages: [],
+  onMenuClick: () => { }
 };
 
 ChangeLanguage.propTypes = {
-    messages: PropTypes.object,
-    currentLanguage: PropTypes.string,
-    supportLanguages: PropTypes.array,
-    onMenuClick: PropTypes.func.isRequired
+  messages: PropTypes.object,
+  currentLanguage: PropTypes.string,
+  supportLanguages: PropTypes.array,
+  onMenuClick: PropTypes.func.isRequired
 };
 
 export default translate('ChangeLanguage')(ChangeLanguage);

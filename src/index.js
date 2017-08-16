@@ -6,10 +6,10 @@ import './index.less';
 
 // 1. Initialize
 const app = dva({
-    history: browserHistory,
-    onError(error) {
-        console.error('app onError --', error);
-    }
+  history: browserHistory,
+  onError(error) {
+    console.error('app onError --', error);
+  }
 });
 
 // 2. Plugins

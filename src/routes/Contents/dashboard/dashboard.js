@@ -3,20 +3,20 @@ import PropTypes from 'prop-types';
 import { connect } from 'dva';
 
 class Dashboard extends React.Component {
-    render() {
-        const { title } = this.props;
-        return (
-            <div>{title}</div>
-        );
-    }
+  render() {
+    const { title } = this.props;
+    return (
+      <div>{title}</div>
+    );
+  }
 }
 
 Dashboard.propTypes = {
-    title: PropTypes.string
+  title: PropTypes.string
 };
 
 Dashboard.defaultProps = {
-    title: 'Dash board'
+  title: 'Dash board'
 };
 
 export default connect()(Dashboard);
