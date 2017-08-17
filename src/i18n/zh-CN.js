@@ -1,13 +1,18 @@
 export default {
   Global: {
     translations: '多语言',
+    ok: '确认',
+    cancel: '取消',
     emailText: '邮箱',
     passwordText: '密码',
     registerText: '现在注册',
     returnLogin: '返回登录页',
     requiredEmail: '请输入邮箱',
     correctEmail: '请输入正确的邮箱',
-    requiredPassword: '请输入密码'
+    requiredPassword: '请输入密码',
+    fieldRequired: '必填字段',
+    addButton: '添加用户',
+    delButton: '删除用户'
   },
   LoginForm: {
     rememberMeText: '记住邮箱',
@@ -31,14 +36,19 @@ export default {
   Header: {
     logoutText: '注销'
   },
-  DataTable: {
+  User: {
     name: '姓名',
     gender: '性别',
+    male: '男',
+    female: '女',
+    unknow: '未知',
     age: '年龄',
     email: '邮箱',
     phone: '电话',
     address: '地址',
     action: '操作',
-    delete: '删除'
+    delete: '删除',
+    correctAge: '请输入正确的年龄',
+    correctPhone: '请输入正确的电话'
   }
 };

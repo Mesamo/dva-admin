@@ -13,7 +13,7 @@ export const delUser = (key) => {
 export const addUser = (user) => {
   const { name, gender, age, email, phone, address } = user;
   const userRef = firebaseApp.database().ref('users').push();
-  userRef.set({
+  return userRef.set({
     name,
     gender,
     age,

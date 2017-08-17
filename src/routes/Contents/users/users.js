@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'dva';
-import { message } from 'antd';
+import { Row, Col, message } from 'antd';
 
-import DataTable from '../../../components/DataTable/data-table';
+import UserTable from '../../../components/UserTable/user-table';
+import UserToolbar from '../../../components/UserToolbar/user-toolbar';
+
+import styles from './users.less';
 
 class Users extends React.Component {
   getChildContext() {
@@ -15,26 +18,34 @@ class Users extends React.Component {
 
   render() {
     const {
-            user,
+      user,
       loading,
       dispatch
-        } = this.props;
+    } = this.props;
 
-    const { users, selectedKeys } = user;
+    const { users, selectedKeys, addModalVisible } = user;
 
     const onSelectedChange = (keys) => {
       dispatch({ type: 'user/onSelectedChange', selectedKeys: keys });
     };
 
+    const onShowAddModal = () => dispatch({ type: 'user/showAddModal' });
+    const onHideAddModal = () => dispatch({ type: 'user/hideAddModal' });
+
+    const onCreate = values => dispatch({
+      type: 'user/addUser',
+      payload: { user: values },
+      onSuccess: msg => message.success(msg),
+      onError: msg => message.error(msg)
+    });
+
     const actionFunc = {
       delete: (key) => {
         dispatch({
           type: 'user/delUser',
-          payload: {
-            key,
-            onSuccess: msg => message.success(msg),
-            onError: msg => message.error(msg)
-          }
+          payload: { key },
+          onSuccess: msg => message.success(msg),
+          onError: msg => message.error(msg)
         });
       }
     };
@@ -44,34 +55,15 @@ class Users extends React.Component {
       name: 'delete'
     }];
 
-    const columns = [{
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name'
-    }, {
-      title: 'Gender',
-      dataIndex: 'gender',
-      key: 'gender'
-    }, {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age'
-    }, {
-      title: 'Email',
-      dataIndex: 'email',
-      key: 'email'
-    }, {
-      title: 'Phone',
-      dataIndex: 'phone',
-      key: 'phone'
-    }, {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address'
-    }];
+    const userToolbarProps = {
+      addModalVisible,
+      onShowAddModal,
+      onHideAddModal,
+      onCreate,
+      loading
+    };
 
-    const props = {
-      columns,
+    const userTableProps = {
       actionMenu,
       actionFunc,
       data: users,
@@ -79,8 +71,20 @@ class Users extends React.Component {
       onSelectedChange,
       loading
     };
+
     return (
-      <DataTable {...props} />
+      <div className={styles.normal}>
+        <Row>
+          <Col span={24}>
+            <UserToolbar {...userToolbarProps} />
+          </Col>
+        </Row>
+        <Row className={styles.table} >
+          <Col span={24}>
+            <UserTable {...userTableProps} />
+          </Col>
+        </Row>
+      </div>
     );
   }
 }

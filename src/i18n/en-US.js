@@ -1,18 +1,22 @@
 export default {
   Global: {
     translations: 'Translations',
+    ok: 'OK',
+    cancel: 'Cancel',
     emailText: 'Email',
     passwordText: 'Password',
+    registerText: 'Sing up',
     returnLogin: 'Return to Sign in',
     requiredEmail: 'Please enter email',
     correctEmail: 'Please enter correct email address',
-    requiredPassword: 'Please enter password'
+    requiredPassword: 'Please enter password',
+    fieldRequired: 'This field is required',
+    addButton: 'Add User',
+    delButton: 'Delete User'
   },
   LoginForm: {
     rememberMeText: 'Remember Email',
     forgetPasswdText: 'Forget Password ?',
-
-    registerText: 'Sing up',
     loginButtonText: 'Sing in'
   },
   RegisterForm: {
@@ -32,14 +36,19 @@ export default {
   Header: {
     logoutText: 'Sing out'
   },
-  DataTable: {
+  User: {
     name: 'Name',
     gender: 'Gender',
+    male: 'Male',
+    female: 'Female',
+    unknow: 'Unknow',
     age: 'Age',
     email: 'Email',
     phone: 'Phone',
     address: 'Address',
     action: 'Action',
-    delete: 'Delete'
+    delete: 'Delete',
+    correctAge: 'Please enter correct age',
+    correctPhone: 'Please enter correct phone number'
   }
 };

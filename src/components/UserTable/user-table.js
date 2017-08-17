@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import { Table, Menu, Icon, Dropdown } from 'antd';
 
 import translate from '../../i18n/translate';
-import styles from './data-table.less';
 
-const DataTable = ({
-  columns,
+const UserTable = ({
   actionFunc,
   actionMenu,
   data,
@@ -27,17 +25,42 @@ const DataTable = ({
     </Menu>
   );
 
-  columns.push({
+  const columns = [{
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name'
+  }, {
+    title: 'Gender',
+    dataIndex: 'gender',
+    key: 'gender'
+  }, {
+    title: 'Age',
+    dataIndex: 'age',
+    key: 'age',
+    sorter: (a, b) => a.age - b.age
+  }, {
+    title: 'Email',
+    dataIndex: 'email',
+    key: 'email'
+  }, {
+    title: 'Phone',
+    dataIndex: 'phone',
+    key: 'phone'
+  }, {
+    title: 'Address',
+    dataIndex: 'address',
+    key: 'address'
+  }, {
     title: 'Action',
     key: 'action',
     render: (text, record) => (
       <Dropdown overlay={getMenus(record)} >
         <a className="ant-dropdown-link">
-          <Icon type="down" />
+          <Icon type="down" style={{ fontSize: 16 }} />
         </a>
       </Dropdown>
     )
-  });
+  }];
 
   columns.map((col) => {
     const n = col;
@@ -56,7 +79,6 @@ const DataTable = ({
 
   return (
     <Table
-      className={styles.normal}
       loading={loading}
       columns={columns}
       dataSource={data}
@@ -65,14 +87,16 @@ const DataTable = ({
   );
 };
 
-DataTable.defaultProps = {
+UserTable.defaultProps = {
+  loading: true,
   messages: {
-    delete: 'Delete'
+    delete: 'Delete',
+    addButton: 'Add User',
+    delButton: 'Delete User'
   }
 };
 
-DataTable.propTypes = {
-  columns: PropTypes.array,
+UserTable.propTypes = {
   actionFunc: PropTypes.object,
   actionMenu: PropTypes.array,
   data: PropTypes.array,
@@ -82,4 +106,4 @@ DataTable.propTypes = {
   messages: PropTypes.object
 };
 
-export default translate('DataTable')(DataTable);
+export default translate('User')(UserTable);

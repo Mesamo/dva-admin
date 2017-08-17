@@ -3,21 +3,12 @@ import pathToRegexp from 'path-to-regexp';
 import { addUser, delUser } from '../services/user.service';
 import firebaseApp from '../firebase';
 
-const convertUsersObjToArray = (usersObj) => {
-  const users = [];
-  usersObj.forEach((snapshort) => {
-    const user = snapshort.val();
-    user.key = snapshort.key;
-    users.push(user);
-  });
-  return users;
-};
-
 export default {
   namespace: 'user',
   state: {
     users: [],
-    selectedKeys: []
+    selectedKeys: [],
+    addModalVisible: false
   },
   reducers: {
     saveUsers(state, action) {
@@ -31,26 +22,49 @@ export default {
         ...state,
         selectedKeys: action.selectedKeys
       };
+    },
+    showAddModal(state) {
+      return {
+        ...state,
+        addModalVisible: true
+      };
+    },
+    hideAddModal(state) {
+      return {
+        ...state,
+        addModalVisible: false
+      };
     }
   },
   effects: {
-    *addUser({ payload }, { call }) {
-      const { user, onSuccess, onError } = payload;
+    *addUser({ payload, onSuccess, onError }, { call, put }) {
+      const { user } = payload;
       try {
         yield call(addUser, user);
         onSuccess('add success : )');
+        yield put({ type: 'hideAddModal' });
       } catch (error) {
         onError(error.message);
       }
     },
-    *delUser({ payload }, { call }) {
-      const { key, onSuccess, onError } = payload;
+    *delUser({ payload, onSuccess, onError }, { call }) {
+      const { key } = payload;
       try {
         yield call(delUser, key);
         onSuccess('delete success : )');
       } catch (error) {
         onError(error.message);
       }
+    },
+    *convert({ payload }, { put }) {
+      const { usersObj } = payload;
+      const users = [];
+      usersObj.forEach((snapshort) => {
+        const user = snapshort.val();
+        user.key = snapshort.key;
+        users.push(user);
+      });
+      yield put({ type: 'saveUsers', users });
     }
   },
   subscriptions: {
@@ -60,8 +74,7 @@ export default {
         const match = pathToRegexp('/users').exec(pathname);
         if (match) {
           userRef.on('value', (snapshort) => {
-            const users = convertUsersObjToArray(snapshort);
-            dispatch({ type: 'saveUsers', users });
+            dispatch({ type: 'convert', payload: { usersObj: snapshort } });
           });
         } else {
           userRef.off();
