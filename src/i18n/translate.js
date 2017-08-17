@@ -10,6 +10,10 @@ const languages = {
 
 const global = 'Global';
 
+function getDisplayName(WrappedComponent) {
+  return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+}
+
 /**
  * 国际化高阶组件
  *
@@ -18,7 +22,7 @@ const global = 'Global';
  * @returns
  */
 export default function translate(key) {
-  return (Component) => {
+  return (WrappedComponent) => {
     class TranslationComponent extends React.Component {
       render() {
         const currentLanguage = this.context.currentLanguage;
@@ -33,7 +37,7 @@ export default function translate(key) {
           ...globalMessages,
           ...partialMessages
         };
-        return <Component {...this.props} {...this.state} messages={messages} />;
+        return <WrappedComponent {...this.props} {...this.state} messages={messages} />;
       }
     }
 
@@ -41,6 +45,8 @@ export default function translate(key) {
     if (key === 'Sider') {
       TranslationComponent.__ANT_LAYOUT_SIDER = true;
     }
+
+    TranslationComponent.displayName = `Translated(${getDisplayName(WrappedComponent)})`;
 
     TranslationComponent.contextTypes = {
       currentLanguage: PropTypes.string

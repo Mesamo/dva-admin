@@ -18,37 +18,16 @@ class Reset extends React.Component {
 
   render() {
     const {
-            reset,
-      message,
+      reset,
       loading,
-      dispatch
-        } = this.props;
-
-    const onSendEmail = (email) => {
-      dispatch({
-        type: 'reset/sendEmil',
-        payload: {
-          email
-        },
-        onSuccess: msg => noticeSuccess(msg),
-        onError: (code, msg) => noticeError(code, msg)
-      });
-    };
+      onSendEmail
+    } = this.props;
 
     const resetFormProps = {
       reset,
       loading,
       onSendEmail
     };
-
-    if (message) {
-      resetFormProps.emailText = message.email;
-      resetFormProps.emailButtonText = message.sendEmail;
-      resetFormProps.returnLogin = message.returnLogin;
-      resetFormProps.extraText = message.extraText;
-      resetFormProps.requiredEmail = message.requiredEmail;
-      resetFormProps.correctEmail = message.correctEmail;
-    }
 
     return (
       <Row type="flex" justify="center" align="middle" className={styles.normal}>
@@ -64,12 +43,32 @@ Reset.childContextTypes = {
   currentLanguage: PropTypes.string
 };
 
+Reset.propTypes = {
+  currentLanguage: PropTypes.string.isRequired,
+  loading: PropTypes.bool,
+  onSendEmail: PropTypes.func.isRequired
+};
+
 const mapStateToProps = (state) => {
   return {
-    reset: state.reset,
     currentLanguage: state.app.currentLanguage,
     loading: state.loading.models.reset
   };
 };
 
-export default connect(mapStateToProps)(Reset);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSendEmail: (email) => {
+      dispatch({
+        type: 'reset/sendEmil',
+        payload: {
+          email
+        },
+        onSuccess: msg => noticeSuccess(msg),
+        onError: (code, msg) => noticeError(code, msg)
+      });
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Reset);

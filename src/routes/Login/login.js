@@ -18,36 +18,20 @@ class Login extends React.Component {
 
   render() {
     const {
-            login,
+      login,
       currentLanguage,
       supportLanguages,
       loading,
-      dispatch
-        } = this.props;
-
-    const onLogin = (email, password) => dispatch({
-      type: 'login/login',
-      payload: {
-        email,
-        password
-      },
-      onSuccess: msg => noticeSuccess(msg),
-      onError: (code, msg) => noticeError(code, msg)
-    });
-
-    const onChange = (values) => {
-      dispatch({ type: 'login/triggerCheckBox', payload: { rememberMe: values } });
-    };
+      onLogin,
+      onChange,
+      onMenuClick
+    } = this.props;
 
     const loginFormProps = {
       login,
       loading,
       onLogin,
       onChange
-    };
-
-    const onMenuClick = (language) => {
-      dispatch({ type: 'app/changeLanguage', currentLanguage: language });
     };
 
     const changeLanguageProps = {
@@ -71,6 +55,13 @@ Login.childContextTypes = {
   currentLanguage: PropTypes.string
 };
 
+Login.propTypes = {
+  login: PropTypes.object.isRequired,
+  currentLanguage: PropTypes.string.isRequired,
+  supportLanguages: PropTypes.array.isRequired,
+  loading: PropTypes.bool
+};
+
 const mapStateToProps = state => ({
   login: state.login,
   currentLanguage: state.app.currentLanguage,
@@ -78,4 +69,26 @@ const mapStateToProps = state => ({
   loading: state.loading.models.login
 });
 
-export default connect(mapStateToProps)(Login);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onChange: (values) => {
+      dispatch({ type: 'login/triggerCheckBox', payload: { rememberMe: values } });
+    },
+    onLogin: (email, password) => {
+      dispatch({
+        type: 'login/login',
+        payload: {
+          email,
+          password
+        },
+        onSuccess: msg => noticeSuccess(msg),
+        onError: (code, msg) => noticeError(code, msg)
+      });
+    },
+    onMenuClick: (language) => {
+      dispatch({ type: 'app/changeLanguage', currentLanguage: language });
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

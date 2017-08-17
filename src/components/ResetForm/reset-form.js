@@ -20,13 +20,13 @@ const ResetForm = ({
   }
 }) => {
   const {
-        emailText,
+    emailText,
     emailButtonText,
     extraText,
     returnLogin,
     requiredEmail,
     correctEmail
-    } = messages;
+  } = messages;
 
   const handleSendEmail = (e) => {
     e.stopPropagation();
@@ -92,4 +92,4 @@ ResetForm.propTypes = {
   onSendEmail: PropTypes.func.isRequired
 };
 
-export default translate('ResetForm')(Form.create()(ResetForm));
+export default Form.create()(translate('ResetForm')(ResetForm));

@@ -18,7 +18,7 @@ const Header = ({
   menusFunc,
   currentLanguage,
   supportLanguages,
-  changeLanguage,
+  onChangeLanguage,
   username,
   messages
 }) => {
@@ -26,7 +26,7 @@ const Header = ({
   const handleClickMenu = e => menusFunc[e.key]();
   const handleSwitchSider = () => onSwitchSider();
   const handleChangeLanguage = ({ key }) => {
-    changeLanguage(key);
+    onChangeLanguage(key);
   };
 
   let headerButton;
@@ -102,7 +102,7 @@ Header.propTypes = {
   menusFunc: PropTypes.object,
   currentLanguage: PropTypes.string,
   supportLanguages: PropTypes.array,
-  changeLanguage: PropTypes.func,
+  onChangeLanguage: PropTypes.func,
   username: PropTypes.string,
   messages: PropTypes.object
 };

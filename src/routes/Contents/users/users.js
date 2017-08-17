@@ -20,34 +20,17 @@ class Users extends React.Component {
     const {
       user,
       loading,
-      dispatch
+      onSelectedChange,
+      onShowAddModal,
+      onHideAddModal,
+      onCreate,
+      onDelete
     } = this.props;
 
     const { users, selectedKeys, addModalVisible } = user;
 
-    const onSelectedChange = (keys) => {
-      dispatch({ type: 'user/onSelectedChange', selectedKeys: keys });
-    };
-
-    const onShowAddModal = () => dispatch({ type: 'user/showAddModal' });
-    const onHideAddModal = () => dispatch({ type: 'user/hideAddModal' });
-
-    const onCreate = values => dispatch({
-      type: 'user/addUser',
-      payload: { user: values },
-      onSuccess: msg => message.success(msg),
-      onError: msg => message.error(msg)
-    });
-
     const actionFunc = {
-      delete: (key) => {
-        dispatch({
-          type: 'user/delUser',
-          payload: { key },
-          onSuccess: msg => message.success(msg),
-          onError: msg => message.error(msg)
-        });
-      }
+      delete: onDelete
     };
 
     const actionMenu = [{
@@ -93,10 +76,43 @@ Users.childContextTypes = {
   currentLanguage: PropTypes.string
 };
 
+Users.propTypes = {
+  user: PropTypes.object.isRequired,
+  currentLanguage: PropTypes.string.isRequired,
+  loading: PropTypes.bool,
+  onSelectedChange: PropTypes.func.isRequired,
+  onShowAddModal: PropTypes.func.isRequired,
+  onHideAddModal: PropTypes.func.isRequired,
+  onCreate: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired
+};
+
 const mapStateToProps = state => ({
   user: state.user,
   currentLanguage: state.app.currentLanguage,
   loading: state.loading.models.user
 });
 
-export default connect(mapStateToProps)(Users);
+const mapDispatchToProps = (dispatch) => {
+  const onSuccess = msg => message.success(msg);
+  const onError = msg => message.error(msg);
+  return {
+    onSelectedChange: (keys) => {
+      dispatch({ type: 'user/onSelectedChange', selectedKeys: keys });
+    },
+    onShowAddModal: () => {
+      dispatch({ type: 'user/showAddModal' });
+    },
+    onHideAddModal: () => {
+      dispatch({ type: 'user/hideAddModal' });
+    },
+    onCreate: (values) => {
+      dispatch({ type: 'user/addUser', payload: { user: values }, onSuccess, onError });
+    },
+    onDelete: (key) => {
+      dispatch({ type: 'user/delUser', payload: { key }, onSuccess, onError });
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Users);

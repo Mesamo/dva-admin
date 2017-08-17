@@ -121,4 +121,4 @@ LoginForm.propTypes = {
   onLogin: PropTypes.func.isRequired
 };
 
-export default translate('LoginForm')(Form.create()(LoginForm));
+export default Form.create()(translate('LoginForm')(LoginForm));

@@ -15,7 +15,7 @@ const Sider = ({
   darkTheme,
   menus,
   toIndex,
-  changeTheme,
+  onChangeTheme,
   currentLanguage,
   pathname,
   messages
@@ -45,7 +45,7 @@ const Sider = ({
   };
 
   const handleOnChange = (checked) => {
-    changeTheme(checked);
+    onChangeTheme(checked);
   };
 
   return (
@@ -99,7 +99,7 @@ Sider.propTypes = {
   darkTheme: PropTypes.bool,
   menus: PropTypes.any,
   toIndex: PropTypes.func,
-  changeTheme: PropTypes.func,
+  onChangeTheme: PropTypes.func,
   currentLanguage: PropTypes.string,
   pathname: PropTypes.string,
   messages: PropTypes.object

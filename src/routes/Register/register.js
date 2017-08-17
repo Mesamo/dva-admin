@@ -16,17 +16,7 @@ class Register extends React.Component {
   }
 
   render() {
-    const { dispatch, loading } = this.props;
-
-    const onRegister = (email, password) => dispatch({
-      type: 'register/register',
-      payload: {
-        email,
-        password
-      },
-      onSuccess: msg => noticeSuccess(msg),
-      onError: (code, msg) => noticeError(code, msg)
-    });
+    const { onRegister, loading } = this.props;
 
     const registerFormProps = {
       onRegister,
@@ -47,6 +37,12 @@ Register.childContextTypes = {
   currentLanguage: PropTypes.string
 };
 
+Register.propTypes = {
+  currentLanguage: PropTypes.string.isRequired,
+  loading: PropTypes.bool,
+  onRegister: PropTypes.func.isRequired
+};
+
 const mapStateToProps = (state) => {
   return {
     currentLanguage: state.app.currentLanguage,
@@ -54,4 +50,18 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Register);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onRegister: (email, password) => dispatch({
+      type: 'register/register',
+      payload: {
+        email,
+        password
+      },
+      onSuccess: msg => noticeSuccess(msg),
+      onError: (code, msg) => noticeError(code, msg)
+    })
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

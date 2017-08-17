@@ -20,11 +20,25 @@ class App extends React.Component {
   }
 
   render() {
-    const { app, dispatch, children, location } = this.props;
-    const { isNavbar, collapsed, darkTheme, username, currentLanguage, supportLanguages } = app;
-    const onCollapse = () => dispatch({ type: 'app/toggleCollapse' });
-    const changeTheme = checked => dispatch({ type: 'app/changeTheme', darkTheme: checked });
-    const toIndex = () => dispatch(routerRedux.push('/'));
+    const {
+      app,
+      onCollapse,
+      onChangeTheme,
+      toIndex,
+      onLogout,
+      onChangeLanguage,
+      children,
+      location
+    } = this.props;
+
+    const {
+      isNavbar,
+      collapsed,
+      darkTheme,
+      username,
+      currentLanguage,
+      supportLanguages
+    } = app;
 
     const siderProps = {
       collapsible: true,
@@ -34,17 +48,13 @@ class App extends React.Component {
       darkTheme,
       menus,
       toIndex,
-      changeTheme,
+      onChangeTheme,
       currentLanguage,
       pathname: location.pathname
     };
 
-    const logout = () => {
-      dispatch({ type: 'app/logout' });
-    };
-
     const headerMenusFunc = {
-      logout
+      logout: onLogout
     };
 
     const headerMenus = [
@@ -53,10 +63,6 @@ class App extends React.Component {
         name: 'logoutText'
       }
     ];
-
-    const changeLanguage = (language) => {
-      dispatch({ type: 'app/changeLanguage', currentLanguage: language });
-    };
 
     const headerProps = {
       isNavbar,
@@ -68,7 +74,7 @@ class App extends React.Component {
       menusFunc: headerMenusFunc,
       currentLanguage,
       supportLanguages,
-      changeLanguage,
+      onChangeLanguage,
       username
     };
 
@@ -91,8 +97,27 @@ App.childContextTypes = {
   currentLanguage: PropTypes.string
 };
 
+App.propTypes = {
+  app: PropTypes.object.isRequired,
+  onCollapse: PropTypes.func.isRequired,
+  onChangeTheme: PropTypes.func.isRequired,
+  toIndex: PropTypes.func.isRequired,
+  onLogout: PropTypes.func.isRequired,
+  onChangeLanguage: PropTypes.func.isRequired
+};
+
 const mapStateToProps = state => ({
   app: state.app
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onCollapse: () => dispatch({ type: 'app/toggleCollapse' }),
+    onChangeTheme: checked => dispatch({ type: 'app/changeTheme', darkTheme: checked }),
+    toIndex: () => dispatch(routerRedux.push('/')),
+    onLogout: () => dispatch({ type: 'app/logout' }),
+    onChangeLanguage: language => dispatch({ type: 'app/changeLanguage', currentLanguage: language })
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

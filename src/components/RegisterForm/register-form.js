@@ -166,4 +166,4 @@ RegisterForm.propTypes = {
   onRegister: PropTypes.func.isRequired
 };
 
-export default translate('RegisterForm')(Form.create()(RegisterForm));
+export default Form.create()(translate('RegisterForm')(RegisterForm));
