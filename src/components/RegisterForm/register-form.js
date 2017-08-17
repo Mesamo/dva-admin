@@ -161,6 +161,7 @@ RegisterForm.defaultProps = {
 };
 
 RegisterForm.propTypes = {
+  loading: PropTypes.bool,
   messages: PropTypes.object,
   onRegister: PropTypes.func.isRequired
 };

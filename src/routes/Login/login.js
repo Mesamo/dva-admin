@@ -29,10 +29,10 @@ class Login extends React.Component {
       type: 'login/login',
       payload: {
         email,
-        password,
-        onSuccess: msg => noticeSuccess(msg),
-        onError: (code, msg) => noticeError(code, msg)
-      }
+        password
+      },
+      onSuccess: msg => noticeSuccess(msg),
+      onError: (code, msg) => noticeError(code, msg)
     });
 
     const onChange = (values) => {

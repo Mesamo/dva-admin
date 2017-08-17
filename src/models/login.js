@@ -25,8 +25,8 @@ export default {
     }
   },
   effects: {
-    login: takeLatest(function* login({ payload }, { call, select }) {
-      const { email, password, onSuccess, onError } = payload;
+    login: takeLatest(function* login({ payload, onSuccess, onError }, { call, select }) {
+      const { email, password } = payload;
       const rememberMe = yield select(state => state.login.rememberMe);
       try {
         // 调用登录服务

@@ -9,8 +9,8 @@ export default {
   reducers: {
   },
   effects: {
-    *sendEmil({ payload }, { call, put }) {
-      const { email, onSuccess, onError } = payload;
+    *sendEmil({ payload, onSuccess, onError }, { call, put }) {
+      const { email } = payload;
       try {
         yield call(sendResetPasswordEmail, email);
         yield onSuccess('Send email success!');

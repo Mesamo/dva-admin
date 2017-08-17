@@ -28,10 +28,10 @@ class Reset extends React.Component {
       dispatch({
         type: 'reset/sendEmil',
         payload: {
-          email,
-          onSuccess: msg => noticeSuccess(msg),
-          onError: (code, msg) => noticeError(code, msg)
-        }
+          email
+        },
+        onSuccess: msg => noticeSuccess(msg),
+        onError: (code, msg) => noticeError(code, msg)
       });
     };
 
