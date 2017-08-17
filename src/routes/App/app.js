@@ -1,22 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { routerRedux } from 'dva/router';
-import { connect } from 'dva';
-import { Layout } from 'antd';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { routerRedux } from 'dva/router'
+import { connect } from 'dva'
+import { Layout } from 'antd'
 
-import styles from './app.less';
-import Header from '../../components/Header/header';
-import Sider from '../../components/Sider/sider';
-import menus from '../../utils/menu';
+import styles from './app.less'
+import Header from '../../components/Header/header'
+import Sider from '../../components/Sider/sider'
+import menus from '../../utils/menu'
 
-const { Content, Footer } = Layout;
+const { Content, Footer } = Layout
 
 class App extends React.Component {
   getChildContext() {
-    const { currentLanguage } = this.props.app;
+    const { currentLanguage } = this.props.app
     return {
       currentLanguage
-    };
+    }
   }
 
   render() {
@@ -29,7 +29,7 @@ class App extends React.Component {
       onChangeLanguage,
       children,
       location
-    } = this.props;
+    } = this.props
 
     const {
       isNavbar,
@@ -38,7 +38,7 @@ class App extends React.Component {
       username,
       currentLanguage,
       supportLanguages
-    } = app;
+    } = app
 
     const siderProps = {
       collapsible: true,
@@ -51,18 +51,18 @@ class App extends React.Component {
       onChangeTheme,
       currentLanguage,
       pathname: location.pathname
-    };
+    }
 
     const headerMenusFunc = {
       logout: onLogout
-    };
+    }
 
     const headerMenus = [
       {
         key: 'logout',
         name: 'logoutText'
       }
-    ];
+    ]
 
     const headerProps = {
       isNavbar,
@@ -76,7 +76,7 @@ class App extends React.Component {
       supportLanguages,
       onChangeLanguage,
       username
-    };
+    }
 
     return (
       <Layout className={styles.normal}>
@@ -89,13 +89,13 @@ class App extends React.Component {
           <Footer />
         </Layout>
       </Layout>
-    );
+    )
   }
 }
 
 App.childContextTypes = {
   currentLanguage: PropTypes.string
-};
+}
 
 App.propTypes = {
   app: PropTypes.object.isRequired,
@@ -104,11 +104,11 @@ App.propTypes = {
   toIndex: PropTypes.func.isRequired,
   onLogout: PropTypes.func.isRequired,
   onChangeLanguage: PropTypes.func.isRequired
-};
+}
 
 const mapStateToProps = state => ({
   app: state.app
-});
+})
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -117,7 +117,7 @@ const mapDispatchToProps = (dispatch) => {
     toIndex: () => dispatch(routerRedux.push('/')),
     onLogout: () => dispatch({ type: 'app/logout' }),
     onChangeLanguage: language => dispatch({ type: 'app/changeLanguage', currentLanguage: language })
-  };
-};
+  }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App)

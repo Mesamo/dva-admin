@@ -1,33 +1,33 @@
-import React from 'react';
-import { Router } from 'dva/router';
+import React from 'react'
+import { Router } from 'dva/router'
 
-import App from './routes/App/app';
-import firebaseApp from './firebase';
+import App from './routes/App/app'
+import firebaseApp from './firebase'
 
-const cached = {};
+const cached = {}
 // 注册model
 const registerModel = (app, model) => {
   if (!cached[model.namespace]) {
-    cached[model.namespace] = 1;
-    app.model(model);
+    cached[model.namespace] = 1
+    app.model(model)
   }
-};
+}
 
 const RouterConfig = ({ history, app }) => {
   // 登录验证
   const requireAuth = (nextState, replace, callback) => {
-    const user = firebaseApp.auth().currentUser;
+    const user = firebaseApp.auth().currentUser
     if (!user) {
       app._store.dispatch({
         type: 'app/redirectToLogin',
         payload: { attemptedUrl: nextState.location.pathname }
-      });
+      })
     } else {
-      callback();
+      callback()
     }
-  };
+  }
 
-  registerModel(app, require('./models/app'));
+  registerModel(app, require('./models/app'))
 
   const routes = [
     // app
@@ -39,25 +39,25 @@ const RouterConfig = ({ history, app }) => {
         require.ensure([], (require) => {
           callback(null, {
             component: require('./routes/IndexPage/index')
-          });
-        });
+          })
+        })
       },
       childRoutes: [
         {
           path: 'users',
           getComponent(nextState, callback) {
             require.ensure([], (require) => {
-              registerModel(app, require('./models/user'));
-              callback(null, require('./routes/Contents/users/users'));
-            });
+              registerModel(app, require('./models/user'))
+              callback(null, require('./routes/Contents/users/users'))
+            })
           }
         },
         {
           path: 'dashboard',
           getComponent(nextState, callback) {
             require.ensure([], (require) => {
-              callback(null, require('./routes/Contents/dashboard/dashboard'));
-            });
+              callback(null, require('./routes/Contents/dashboard/dashboard'))
+            })
           }
         }
       ]
@@ -68,9 +68,9 @@ const RouterConfig = ({ history, app }) => {
       name: 'login',
       getComponent(nextState, callback) {
         require.ensure([], (require) => {
-          registerModel(app, require('./models/login'));
-          callback(null, require('./routes/Login/login'));
-        });
+          registerModel(app, require('./models/login'))
+          callback(null, require('./routes/Login/login'))
+        })
       }
     },
     // Register
@@ -79,9 +79,9 @@ const RouterConfig = ({ history, app }) => {
       name: 'register',
       getComponent(nextState, callback) {
         require.ensure([], (require) => {
-          registerModel(app, require('./models/register'));
-          callback(null, require('./routes/Register/register'));
-        });
+          registerModel(app, require('./models/register'))
+          callback(null, require('./routes/Register/register'))
+        })
       }
     },
     {
@@ -89,9 +89,9 @@ const RouterConfig = ({ history, app }) => {
       name: 'reset',
       getComponent(nextState, callback) {
         require.ensure([], (require) => {
-          registerModel(app, require('./models/reset'));
-          callback(null, require('./routes/Reset/reset'));
-        });
+          registerModel(app, require('./models/reset'))
+          callback(null, require('./routes/Reset/reset'))
+        })
       }
     },
     // error
@@ -100,14 +100,14 @@ const RouterConfig = ({ history, app }) => {
       name: 'error',
       getComponent(nextState, callback) {
         require.ensure([], (require) => {
-          callback(null, require('./routes/Error/error'));
-        });
+          callback(null, require('./routes/Error/error'))
+        })
       }
     }
-  ];
+  ]
   return (
     <Router history={history} routes={routes} />
-  );
-};
+  )
+}
 
-export default RouterConfig;
+export default RouterConfig

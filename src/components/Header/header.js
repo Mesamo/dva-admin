@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Layout, Menu, Icon, Popover } from 'antd';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Layout, Menu, Icon, Popover } from 'antd'
 
-import translate from '../../i18n/translate';
-import getMenus from '../Menus/menus';
-import styles from './header.less';
+import translate from '../../i18n/translate'
+import getMenus from '../Menus/menus'
+import styles from './header.less'
 
-const SubMenu = Menu.SubMenu;
+const SubMenu = Menu.SubMenu
 
 const Header = ({
   menus,
@@ -22,21 +22,21 @@ const Header = ({
   username,
   messages
 }) => {
-  const { translations } = messages;
-  const handleClickMenu = e => menusFunc[e.key]();
-  const handleSwitchSider = () => onSwitchSider();
+  const { translations } = messages
+  const handleClickMenu = e => menusFunc[e.key]()
+  const handleSwitchSider = () => onSwitchSider()
   const handleChangeLanguage = ({ key }) => {
-    onChangeLanguage(key);
-  };
+    onChangeLanguage(key)
+  }
 
-  let headerButton;
+  let headerButton
 
   if (isNavbar) {
     const content = (
       <Menu key="1" selectedKeys={[pathname]} mode="inline">
         {getMenus(menus, currentLanguage)}
       </Menu>
-    );
+    )
 
     headerButton = (
       <Popover placement="bottomLeft" trigger="click" overlayClassName={styles.popovermenu} content={content}>
@@ -44,13 +44,13 @@ const Header = ({
           <Icon type="bars" />
         </div>
       </Popover>
-    );
+    )
   } else {
     headerButton = (
       <div className={styles.button} onClick={handleSwitchSider}>
         <Icon type={collapsed ? 'menu-unfold' : 'menu-fold'} />
       </div>
-    );
+    )
   }
 
   return (
@@ -66,7 +66,7 @@ const Header = ({
                   <Menu.Item key={language}>
                     {language}
                   </Menu.Item>
-                );
+                )
               })
             }
           </SubMenu>
@@ -82,15 +82,15 @@ const Header = ({
         </Menu>
       </div>
     </Layout.Header>
-  );
-};
+  )
+}
 
 Header.defaultProps = {
   messages: {
     translations: 'Translations'
   },
   username: 'user'
-};
+}
 
 Header.propTypes = {
   menus: PropTypes.array,
@@ -105,6 +105,6 @@ Header.propTypes = {
   onChangeLanguage: PropTypes.func,
   username: PropTypes.string,
   messages: PropTypes.object
-};
+}
 
-export default translate('Header')(Header);
+export default translate('Header')(Header)

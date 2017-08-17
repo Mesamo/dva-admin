@@ -1,13 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router';
-import QueueAnim from 'rc-queue-anim';
-import { Form, Input, Button, Alert } from 'antd';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Link } from 'react-router'
+import QueueAnim from 'rc-queue-anim'
+import { Form, Input, Button, Alert } from 'antd'
 
-import translate from '../../i18n/translate';
-import styles from './reset-form.less';
+import translate from '../../i18n/translate'
+import styles from './reset-form.less'
 
-const FormItem = Form.Item;
+const FormItem = Form.Item
 
 const ResetForm = ({
   loading: buttonLoading,
@@ -26,19 +26,19 @@ const ResetForm = ({
     returnLogin,
     requiredEmail,
     correctEmail
-  } = messages;
+  } = messages
 
   const handleSendEmail = (e) => {
-    e.stopPropagation();
+    e.stopPropagation()
     validateFieldsAndScroll((errors, values) => {
-      if (errors) return;
-      onSendEmail(values.email);
-    });
-  };
+      if (errors) return
+      onSendEmail(values.email)
+    })
+  }
 
   const hasErrors = (fieldsError) => {
-    return Object.keys(fieldsError).some(field => fieldsError[field]);
-  };
+    return Object.keys(fieldsError).some(field => fieldsError[field])
+  }
 
   return (
     <Form className={styles.normal}>
@@ -73,8 +73,8 @@ const ResetForm = ({
         </FormItem>
       </QueueAnim>
     </Form>
-  );
-};
+  )
+}
 
 ResetForm.defaultProps = {
   messages: {
@@ -85,11 +85,11 @@ ResetForm.defaultProps = {
     requiredEmail: 'Please enter email',
     correctEmail: 'Please enter correct email address'
   }
-};
+}
 
 ResetForm.propTypes = {
   messages: PropTypes.object,
   onSendEmail: PropTypes.func.isRequired
-};
+}
 
-export default Form.create()(translate('ResetForm')(ResetForm));
+export default Form.create()(translate('ResetForm')(ResetForm))

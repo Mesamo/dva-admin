@@ -1,13 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router';
-import QueueAnim from 'rc-queue-anim';
-import { Form, Input, Button } from 'antd';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Link } from 'react-router'
+import QueueAnim from 'rc-queue-anim'
+import { Form, Input, Button } from 'antd'
 
-import translate from '../../i18n/translate';
-import styles from './register-form.less';
+import translate from '../../i18n/translate'
+import styles from './register-form.less'
 
-const FormItem = Form.Item;
+const FormItem = Form.Item
 
 const RegisterForm = ({
   loading: loginButtonLoading,
@@ -32,7 +32,7 @@ const RegisterForm = ({
     correctEmail,
     requiredPassword,
     passwordNotSame
-    } = messages;
+    } = messages
 
   const formItemLayout = {
     labelCol: {
@@ -43,7 +43,7 @@ const RegisterForm = ({
       xs: { span: 24 },
       sm: { span: 18 }
     }
-  };
+  }
 
   const tailFormItemLayout = {
     wrapperCol: {
@@ -56,36 +56,36 @@ const RegisterForm = ({
         offset: 4
       }
     }
-  };
+  }
 
   // 输入密码时，检查是否与确认密码一致
   const checkConfirm = (rule, value, callback) => {
     if (value && isFieldTouched('confirm')) {
-      validateFields(['confirm'], { force: true });
+      validateFields(['confirm'], { force: true })
     }
-    callback();
-  };
+    callback()
+  }
 
   // 输入确认密码时，检查是否与密码一致
   const checkPassword = (rule, value, callback) => {
     if (value && value !== getFieldValue('password')) {
-      callback(passwordNotSame);
+      callback(passwordNotSame)
     } else {
-      callback();
+      callback()
     }
-  };
+  }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     validateFieldsAndScroll((errors, values) => {
-      if (errors) return;
-      onRegister(values.email, values.password);
-    });
-  };
+      if (errors) return
+      onRegister(values.email, values.password)
+    })
+  }
 
   const hasErrors = (fieldsError) => {
-    return Object.keys(fieldsError).some(field => fieldsError[field]);
-  };
+    return Object.keys(fieldsError).some(field => fieldsError[field])
+  }
 
   return (
     <Form className={styles.normal} label="用户注册">
@@ -143,8 +143,8 @@ const RegisterForm = ({
         </FormItem>
       </QueueAnim>
     </Form>
-  );
-};
+  )
+}
 
 RegisterForm.defaultProps = {
   messages: {
@@ -158,12 +158,12 @@ RegisterForm.defaultProps = {
     requiredPassword: 'Please enter password',
     passwordNotSame: 'Two passwords that you enter is inconsistent!'
   }
-};
+}
 
 RegisterForm.propTypes = {
   loading: PropTypes.bool,
   messages: PropTypes.object,
   onRegister: PropTypes.func.isRequired
-};
+}
 
-export default Form.create()(translate('RegisterForm')(RegisterForm));
+export default Form.create()(translate('RegisterForm')(RegisterForm))

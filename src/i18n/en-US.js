@@ -51,4 +51,4 @@ export default {
     correctAge: 'Please enter correct age',
     correctPhone: 'Please enter correct phone number'
   }
-};
+}

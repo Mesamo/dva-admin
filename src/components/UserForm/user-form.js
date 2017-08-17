@@ -1,10 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Form, Input, Radio } from 'antd';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Form, Input, Radio } from 'antd'
 
-import translate from '../../i18n/translate';
+import translate from '../../i18n/translate'
 
-const FormItem = Form.Item;
+const FormItem = Form.Item
 
 const UserForm = ({
   layout,
@@ -22,7 +22,7 @@ const UserForm = ({
       xs: { span: 24 },
       sm: { span: 19 }
     }
-  };
+  }
 
   return (
     <Form layout={layout}>
@@ -105,8 +105,8 @@ const UserForm = ({
         })(<Input />)}
       </FormItem>
     </Form>
-  );
-};
+  )
+}
 
 UserForm.defaultProps = {
   layout: 'horizontal',
@@ -126,11 +126,11 @@ UserForm.defaultProps = {
     correctAge: 'Please enter correct age',
     correctPhone: 'Please enter correct phone number'
   }
-};
+}
 
 UserForm.propTypes = {
   layout: PropTypes.string,
   messages: PropTypes.object
-};
+}
 
-export default Form.create()(translate('User')(UserForm));
+export default Form.create()(translate('User')(UserForm))

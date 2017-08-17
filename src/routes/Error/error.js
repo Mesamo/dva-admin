@@ -1,6 +1,6 @@
-import React from 'react';
-import { Icon } from 'antd';
-import styles from './error.less';
+import React from 'react'
+import { Icon } from 'antd'
+import styles from './error.less'
 
 class Error extends React.Component {
   render() {
@@ -11,8 +11,8 @@ class Error extends React.Component {
           <h1>404 Not Found</h1>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Error;
+export default Error

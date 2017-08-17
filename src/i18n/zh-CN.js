@@ -51,4 +51,4 @@ export default {
     correctAge: '请输入正确的年龄',
     correctPhone: '请输入正确的电话'
   }
-};
+}

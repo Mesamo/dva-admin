@@ -1,7 +1,7 @@
-import React from 'react';
-import { connect } from 'dva';
+import React from 'react'
+import { connect } from 'dva'
 
-import styles from './index.less';
+import styles from './index.less'
 
 class IndexPage extends React.Component {
   render() {
@@ -13,11 +13,11 @@ class IndexPage extends React.Component {
           <li><a href="https://github.com/dvajs/dva-docs/blob/master/v1/en-us/getting-started.md">Getting Started</a></li>
         </ul>
       </div>
-    );
+    )
   }
 }
 
 IndexPage.propTypes = {
-};
+}
 
-export default connect()(IndexPage);
+export default connect()(IndexPage)

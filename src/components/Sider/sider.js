@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import QueueAnim from 'rc-queue-anim';
-import { Layout, Menu, Icon, Switch } from 'antd';
+import React from 'react'
+import PropTypes from 'prop-types'
+import QueueAnim from 'rc-queue-anim'
+import { Layout, Menu, Icon, Switch } from 'antd'
 
-import translate from '../../i18n/translate';
-import getMenus from '../Menus/menus';
-import styles from './sider.less';
+import translate from '../../i18n/translate'
+import getMenus from '../Menus/menus'
+import styles from './sider.less'
 
 const Sider = ({
   collapsible,
@@ -20,11 +20,11 @@ const Sider = ({
   pathname,
   messages
 }) => {
-  const menuItems = getMenus(menus, currentLanguage);
-  const menuTheme = darkTheme ? 'dark' : 'light';
+  const menuItems = getMenus(menus, currentLanguage)
+  const menuTheme = darkTheme ? 'dark' : 'light'
   const textColor = {
     color: darkTheme ? 'rgba(255, 255, 255, 0.67)' : 'rgba(0, 0, 0, 0.65)'
-  };
+  }
 
   const props = {
     collapsible,
@@ -32,21 +32,21 @@ const Sider = ({
     onCollapse,
     breakpoint,
     trigger: null
-  };
+  }
 
   const {
         changeThemeText,
     darkText,
     lightText
-    } = messages;
+    } = messages
 
   const handleToIndex = () => {
-    toIndex();
-  };
+    toIndex()
+  }
 
   const handleOnChange = (checked) => {
-    onChangeTheme(checked);
-  };
+    onChangeTheme(checked)
+  }
 
   return (
     <Layout.Sider
@@ -77,8 +77,8 @@ const Sider = ({
         </div>
       </QueueAnim>}
     </Layout.Sider>
-  );
-};
+  )
+}
 
 Sider.defaultProps = {
   messages: {
@@ -89,7 +89,7 @@ Sider.defaultProps = {
   currentLanguage: 'en',
   breakpoint: 'lg',
   darkTheme: true
-};
+}
 
 Sider.propTypes = {
   collapsible: PropTypes.bool,
@@ -103,6 +103,6 @@ Sider.propTypes = {
   currentLanguage: PropTypes.string,
   pathname: PropTypes.string,
   messages: PropTypes.object
-};
+}
 
-export default translate('Sider')(Sider);
+export default translate('Sider')(Sider)

@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Table, Menu, Icon, Dropdown } from 'antd';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Table, Menu, Icon, Dropdown } from 'antd'
 
-import translate from '../../i18n/translate';
+import translate from '../../i18n/translate'
 
 const UserTable = ({
   actionFunc,
@@ -13,7 +13,7 @@ const UserTable = ({
   loading,
   messages
  }) => {
-  const onClick = ({ item, key }) => actionFunc[key](item.props.recordKey);
+  const onClick = ({ item, key }) => actionFunc[key](item.props.recordKey)
 
   const getMenus = record => (
     <Menu onClick={onClick}>
@@ -23,7 +23,7 @@ const UserTable = ({
         </Menu.Item>
       ))}
     </Menu>
-  );
+  )
 
   const columns = [{
     title: 'Name',
@@ -60,22 +60,22 @@ const UserTable = ({
         </a>
       </Dropdown>
     )
-  }];
+  }]
 
   columns.map((col) => {
-    const n = col;
+    const n = col
     if (messages[col.key]) {
-      n.title = messages[col.key];
+      n.title = messages[col.key]
     }
-    return n;
-  });
+    return n
+  })
 
   const rowSelection = {
     selectedRowKeys: selectedKeys,
     onChange: (selectedRowKeys, selectedRows) => {
-      onSelectedChange(selectedRowKeys, selectedRows);
+      onSelectedChange(selectedRowKeys, selectedRows)
     }
-  };
+  }
 
   return (
     <Table
@@ -84,8 +84,8 @@ const UserTable = ({
       dataSource={data}
       rowSelection={rowSelection}
     />
-  );
-};
+  )
+}
 
 UserTable.defaultProps = {
   loading: true,
@@ -94,7 +94,7 @@ UserTable.defaultProps = {
     addButton: 'Add User',
     delButton: 'Delete User'
   }
-};
+}
 
 UserTable.propTypes = {
   actionFunc: PropTypes.object,
@@ -104,6 +104,6 @@ UserTable.propTypes = {
   onSelectedChange: PropTypes.func,
   loading: PropTypes.bool,
   messages: PropTypes.object
-};
+}
 
-export default translate('User')(UserTable);
+export default translate('User')(UserTable)

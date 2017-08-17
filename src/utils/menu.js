@@ -15,6 +15,6 @@ const menus = [
     },
     icon: 'user'
   }
-];
+]
 
-export default menus;
+export default menus

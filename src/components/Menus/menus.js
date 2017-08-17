@@ -1,12 +1,12 @@
-import React from 'react';
-import { Link } from 'dva/router';
-import { Menu, Icon } from 'antd';
+import React from 'react'
+import { Link } from 'dva/router'
+import { Menu, Icon } from 'antd'
 
-const SubMenu = Menu.SubMenu;
+const SubMenu = Menu.SubMenu
 
 const getMenus = (menuArray, currentLanguage, parentPath = '/') => {
   return menuArray.map((menu) => {
-    const linkTo = parentPath + menu.key;
+    const linkTo = parentPath + menu.key
     if (menu.subMenu && menu.subMenu.length > 0) {
       return (
         <SubMenu
@@ -19,7 +19,7 @@ const getMenus = (menuArray, currentLanguage, parentPath = '/') => {
         >
           {getMenus(menu.subMenu, currentLanguage, `${linkTo}/`)}
         </SubMenu>
-      );
+      )
     } else {
       return (
         <Menu.Item key={linkTo}>
@@ -28,9 +28,9 @@ const getMenus = (menuArray, currentLanguage, parentPath = '/') => {
             <span>{menu.name[currentLanguage]}</span>
           </Link>
         </Menu.Item>
-      );
+      )
     }
-  });
-};
+  })
+}
 
-export default getMenus;
+export default getMenus

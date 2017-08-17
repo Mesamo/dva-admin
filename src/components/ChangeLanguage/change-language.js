@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Menu, Dropdown, Icon } from 'antd';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Menu, Dropdown, Icon } from 'antd'
 
-import translate from '../../i18n/translate';
-import styles from './change-language.less';
+import translate from '../../i18n/translate'
+import styles from './change-language.less'
 
 const ChangeLanguage = ({
   messages,
@@ -11,10 +11,10 @@ const ChangeLanguage = ({
   supportLanguages,
   onMenuClick
 }) => {
-  const { translations } = messages;
+  const { translations } = messages
   const handleMenuClick = ({ key }) => {
-    onMenuClick(key);
-  };
+    onMenuClick(key)
+  }
 
   const menus = (
     <Menu onClick={handleMenuClick}>
@@ -23,10 +23,10 @@ const ChangeLanguage = ({
           <Menu.Item key={language}>
             {language}
           </Menu.Item>
-        );
+        )
       })}
     </Menu>
-  );
+  )
 
   return (
     <div className={styles.normal}>
@@ -36,8 +36,8 @@ const ChangeLanguage = ({
         </a>
       </Dropdown>
     </div>
-  );
-};
+  )
+}
 
 ChangeLanguage.defaultProps = {
   messages: {
@@ -45,13 +45,13 @@ ChangeLanguage.defaultProps = {
   },
   supportLanguages: [],
   onMenuClick: () => { }
-};
+}
 
 ChangeLanguage.propTypes = {
   messages: PropTypes.object,
   currentLanguage: PropTypes.string,
   supportLanguages: PropTypes.array,
   onMenuClick: PropTypes.func.isRequired
-};
+}
 
-export default translate('ChangeLanguage')(ChangeLanguage);
+export default translate('ChangeLanguage')(ChangeLanguage)

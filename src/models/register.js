@@ -1,4 +1,4 @@
-import { fetchRegister } from '../services/login.service.';
+import { fetchRegister } from '../services/login.service.'
 
 export default {
   namespace: 'register',
@@ -8,21 +8,21 @@ export default {
   },
   effects: {
     *register({ payload, onSuccess, onError }, { call }) {
-      const { email, password } = payload;
+      const { email, password } = payload
       try {
-        const response = yield call(fetchRegister, email, password);
+        const response = yield call(fetchRegister, email, password)
         if (response) {
           // 调用登录成功回调
-          yield onSuccess('Register success : )');
+          yield onSuccess('Register success : )')
         } else {
           // 调用登录失败回调
-          yield onError(response.message);
+          yield onError(response.message)
         }
       } catch (error) {
-        yield onError(error.code, error.message);
+        yield onError(error.code, error.message)
       }
     }
   },
   subscriptions: {
   }
-};
+}

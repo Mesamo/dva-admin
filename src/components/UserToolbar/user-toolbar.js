@@ -1,13 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Button, Modal } from 'antd';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Button, Modal } from 'antd'
 
-import UserForm from '../UserForm/user-form';
-import translate from '../../i18n/translate';
+import UserForm from '../UserForm/user-form'
+import translate from '../../i18n/translate'
 
-import styles from './user-toolbar.less';
+import styles from './user-toolbar.less'
 
-let formRef = null;
+let formRef = null
 
 const UserToolbar = ({
   addModalVisible,
@@ -18,25 +18,25 @@ const UserToolbar = ({
   messages
 }) => {
   const handleShowAddModal = () => {
-    onShowAddModal();
-  };
+    onShowAddModal()
+  }
 
   const handleHideAddModal = () => {
-    onHideAddModal();
-  };
+    onHideAddModal()
+  }
 
   const handleCreate = () => {
     formRef.validateFields((err, values) => {
       if (err) {
-        return;
+        return
       }
-      onCreate(values);
-    });
-  };
+      onCreate(values)
+    })
+  }
 
   const saveFormRef = (form) => {
-    formRef = form;
-  };
+    formRef = form
+  }
 
   return (
     <div>
@@ -58,8 +58,8 @@ const UserToolbar = ({
         <UserForm ref={saveFormRef} />
       </Modal> : ''}
     </div>
-  );
-};
+  )
+}
 
 UserToolbar.defaultProps = {
   messages: {
@@ -67,13 +67,13 @@ UserToolbar.defaultProps = {
     ok: 'OK',
     cancel: 'Cancel'
   }
-};
+}
 
 UserToolbar.propTypes = {
   addModalVisible: PropTypes.bool.isRequired,
   onShowAddModal: PropTypes.func,
   onHideAddModal: PropTypes.func,
   messages: PropTypes.object
-};
+}
 
-export default translate('User')(UserToolbar);
+export default translate('User')(UserToolbar)
