@@ -12,49 +12,38 @@ import menus from '../../utils/menu'
 const { Content, Footer } = Layout
 
 class App extends React.Component {
+
   getChildContext() {
-    const { currentLanguage } = this.props.app
     return {
-      currentLanguage
+      currentLanguage: this.props.app.currentLanguage
     }
   }
 
-  render() {
-    const {
-      app,
-      onCollapse,
-      onChangeTheme,
-      toIndex,
-      onLogout,
-      onChangeLanguage,
-      children,
-      location
-    } = this.props
+  get children() {
+    return this.props.children
+  }
 
-    const {
-      isNavbar,
-      collapsed,
-      darkTheme,
-      username,
-      currentLanguage,
-      supportLanguages
-    } = app
+  get isNavbar() {
+    return this.props.app.isNavbar
+  }
 
-    const siderProps = {
-      collapsible: true,
-      collapsed,
-      onCollapse,
+  get siderProps() {
+    return {
       breakpoint: 'lg',
-      darkTheme,
       menus,
-      toIndex,
-      onChangeTheme,
-      currentLanguage,
-      pathname: location.pathname
+      collapsed: this.props.app.collapsed,
+      darkTheme: this.props.app.darkTheme,
+      currentLanguage: this.props.app.currentLanguage,
+      pathname: this.props.location.pathname,
+      toIndex: this.props.toIndex,
+      onCollapse: this.props.onCollapse,
+      onChangeTheme: this.props.onChangeTheme
     }
+  }
 
+  get headerProps() {
     const headerMenusFunc = {
-      logout: onLogout
+      logout: this.props.onLogout
     }
 
     const headerMenus = [
@@ -64,27 +53,29 @@ class App extends React.Component {
       }
     ]
 
-    const headerProps = {
-      isNavbar,
+    return {
+      isNavbar: this.props.app.isNavbar,
+      collapsed: this.props.app.collapsed,
+      username: this.props.app.username,
+      pathname: this.props.location.pathname,
+      currentLanguage: this.props.app.currentLanguage,
+      supportLanguages: this.props.app.supportLanguages,
       menus,
-      pathname: location.pathname,
-      onSwitchSider: onCollapse,
-      collapsed,
       headerMenus,
-      menusFunc: headerMenusFunc,
-      currentLanguage,
-      supportLanguages,
-      onChangeLanguage,
-      username
+      headerMenusFunc,
+      onSwitchSider: this.props.onCollapse,
+      onChangeLanguage: this.props.onChangeLanguage
     }
+  }
 
+  render() {
     return (
       <Layout className={styles.normal}>
-        {!isNavbar ? <Sider {...siderProps} /> : ''}
+        {!this.isNavbar ? <Sider {...this.siderProps} /> : ''}
         <Layout className={styles.layout}>
-          <Header {...headerProps} />
+          <Header {...this.headerProps} />
           <Content className={styles.content}>
-            {children}
+            {this.children}
           </Content>
           <Footer />
         </Layout>

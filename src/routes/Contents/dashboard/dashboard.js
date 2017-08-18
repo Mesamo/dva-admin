@@ -11,12 +11,12 @@ class Dashboard extends React.Component {
   }
 }
 
-Dashboard.propTypes = {
-  title: PropTypes.string
-}
-
 Dashboard.defaultProps = {
   title: 'Dash board'
+}
+
+Dashboard.propTypes = {
+  title: PropTypes.string
 }
 
 export default connect()(Dashboard)

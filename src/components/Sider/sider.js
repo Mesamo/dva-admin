@@ -8,7 +8,6 @@ import getMenus from '../Menus/menus'
 import styles from './sider.less'
 
 const Sider = ({
-  collapsible,
   collapsed,
   onCollapse,
   breakpoint,
@@ -27,7 +26,6 @@ const Sider = ({
   }
 
   const props = {
-    collapsible,
     collapsed,
     onCollapse,
     breakpoint,
@@ -92,7 +90,6 @@ Sider.defaultProps = {
 }
 
 Sider.propTypes = {
-  collapsible: PropTypes.bool,
   collapsed: PropTypes.bool,
   onCollapse: PropTypes.func,
   breakpoint: PropTypes.string,

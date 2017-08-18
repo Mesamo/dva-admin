@@ -10,29 +10,23 @@ import styles from './reset.less'
 class Reset extends React.Component {
 
   getChildContext() {
-    const currentLanguage = this.props.currentLanguage
     return {
-      currentLanguage
+      currentLanguage: this.props.currentLanguage
+    }
+  }
+
+  get resetFormProps() {
+    return {
+      loading: this.props.loading,
+      onSendEmail: this.props.onSendEmail
     }
   }
 
   render() {
-    const {
-      reset,
-      loading,
-      onSendEmail
-    } = this.props
-
-    const resetFormProps = {
-      reset,
-      loading,
-      onSendEmail
-    }
-
     return (
       <Row type="flex" justify="center" align="middle" className={styles.normal}>
         <Col xs={22} sm={12} md={8} lg={6} xl={4}>
-          <ResetForm {...resetFormProps} />
+          <ResetForm {...this.resetFormProps} />
         </Col>
       </Row>
     )

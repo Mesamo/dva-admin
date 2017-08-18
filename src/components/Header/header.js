@@ -15,7 +15,7 @@ const Header = ({
   onSwitchSider,
   collapsed,
   headerMenus,
-  menusFunc,
+  headerMenusFunc,
   currentLanguage,
   supportLanguages,
   onChangeLanguage,
@@ -23,7 +23,7 @@ const Header = ({
   messages
 }) => {
   const { translations } = messages
-  const handleClickMenu = e => menusFunc[e.key]()
+  const handleClickMenu = e => headerMenusFunc[e.key]()
   const handleSwitchSider = () => onSwitchSider()
   const handleChangeLanguage = ({ key }) => {
     onChangeLanguage(key)
@@ -99,7 +99,7 @@ Header.propTypes = {
   onSwitchSider: PropTypes.func.isRequired,
   collapsed: PropTypes.bool,
   headerMenus: PropTypes.array,
-  menusFunc: PropTypes.object,
+  headerMenusFunc: PropTypes.object,
   currentLanguage: PropTypes.string,
   supportLanguages: PropTypes.array,
   onChangeLanguage: PropTypes.func,

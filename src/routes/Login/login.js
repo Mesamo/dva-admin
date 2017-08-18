@@ -9,42 +9,36 @@ import { noticeSuccess, noticeError } from '../../utils/notice'
 import styles from './login.less'
 
 class Login extends React.Component {
+
   getChildContext() {
-    const currentLanguage = this.props.currentLanguage
     return {
-      currentLanguage
+      currentLanguage: this.props.currentLanguage
+    }
+  }
+
+  get loginFormProps() {
+    return {
+      login: this.props.login,
+      loading: this.props.loading,
+      onLogin: this.props.onLogin,
+      onChange: this.props.onChange
+    }
+  }
+
+  get changeLanguageProps() {
+    return {
+      currentLanguage: this.props.currentLanguage,
+      supportLanguages: this.props.supportLanguages,
+      onMenuClick: this.props.onMenuClick
     }
   }
 
   render() {
-    const {
-      login,
-      currentLanguage,
-      supportLanguages,
-      loading,
-      onLogin,
-      onChange,
-      onMenuClick
-    } = this.props
-
-    const loginFormProps = {
-      login,
-      loading,
-      onLogin,
-      onChange
-    }
-
-    const changeLanguageProps = {
-      currentLanguage,
-      supportLanguages,
-      onMenuClick
-    }
-
     return (
       <Row type="flex" justify="center" align="middle" className={styles.normal}>
-        <ChangeLanguage {...changeLanguageProps} />
+        <ChangeLanguage {...this.changeLanguageProps} />
         <Col xs={22} sm={12} md={8} lg={6} xl={4}>
-          <LoginForm {...loginFormProps} />
+          <LoginForm {...this.loginFormProps} />
         </Col>
       </Row>
     )

@@ -8,25 +8,25 @@ import { noticeSuccess, noticeError } from '../../utils/notice'
 import styles from './register.less'
 
 class Register extends React.Component {
+
   getChildContext() {
-    const currentLanguage = this.props.currentLanguage
     return {
-      currentLanguage
+      currentLanguage: this.props.currentLanguage
+    }
+  }
+
+  get registerFormProps() {
+    return {
+      loading: this.props.loading,
+      onRegister: this.props.onRegister
     }
   }
 
   render() {
-    const { onRegister, loading } = this.props
-
-    const registerFormProps = {
-      onRegister,
-      loading
-    }
-
     return (
       <Row type="flex" justify="center" align="middle" className={styles.normal}>
         <Col xs={22} sm={18} md={12} lg={10} xl={7}>
-          <RegisterForm {...registerFormProps} />
+          <RegisterForm {...this.registerFormProps} />
         </Col>
       </Row>
     )
