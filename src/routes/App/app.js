@@ -68,19 +68,29 @@ class App extends React.Component {
     }
   }
 
-  render() {
+  get layout() {
     return (
-      <Layout className={styles.normal}>
-        {!this.isNavbar ? <Sider {...this.siderProps} /> : ''}
-        <Layout className={styles.layout}>
-          <Header {...this.headerProps} />
-          <Content className={styles.content}>
-            {this.children}
-          </Content>
-          <Footer />
-        </Layout>
+      <Layout className={styles.layout}>
+        <Header {...this.headerProps} />
+        <Content className={styles.content}>
+          {this.children}
+        </Content>
+        <Footer />
       </Layout>
     )
+  }
+
+  hasSider(children) {
+    return (
+      <Layout className={styles.normal}>
+        <Sider {...this.siderProps} />
+        { children }
+      </Layout>
+    )
+  }
+
+  render() {
+    return this.isNavbar ? this.layout : this.hasSider(this.layout)
   }
 }
 
