@@ -29,82 +29,77 @@ const RouterConfig = ({ history, app }) => {
 
   registerModel(app, require('./models/app'))
 
-  const routes = [
+  const routes = [{
     // app
-    {
-      path: '/',
-      component: App,
-      onEnter: requireAuth,
-      getIndexRoute(nextState, callback) {
-        require.ensure([], (require) => {
-          callback(null, {
-            component: require('./routes/IndexPage/index')
-          })
+    path: '/',
+    component: App,
+    onEnter: requireAuth,
+    getIndexRoute(nextState, callback) {
+      require.ensure([], (require) => {
+        callback(null, {
+          component: require('./routes/IndexPage/index')
         })
-      },
-      childRoutes: [
-        {
-          path: 'users',
-          getComponent(nextState, callback) {
-            require.ensure([], (require) => {
-              registerModel(app, require('./models/user'))
-              callback(null, require('./routes/Contents/users/users'))
-            })
-          }
-        },
-        {
-          path: 'dashboard',
-          getComponent(nextState, callback) {
-            require.ensure([], (require) => {
-              callback(null, require('./routes/Contents/dashboard/dashboard'))
-            })
-          }
-        }
-      ]
+      })
     },
+    childRoutes: [{
+      // Dashboard
+      path: 'dashboard',
+      getComponent(nextState, callback) {
+        require.ensure([], (require) => {
+          callback(null, require('./routes/Contents/dashboard/dashboard'))
+        })
+      }
+    }, {
+      // Users
+      path: 'users',
+      getComponent(nextState, callback) {
+        require.ensure([], (require) => {
+          registerModel(app, require('./models/user'))
+          callback(null, require('./routes/Contents/users/users'))
+        })
+      }
+    }]
+  }, {
     // login
-    {
-      path: 'login',
-      name: 'login',
-      getComponent(nextState, callback) {
-        require.ensure([], (require) => {
-          registerModel(app, require('./models/login'))
-          callback(null, require('./routes/Login/login'))
-        })
-      }
-    },
-    // Register
-    {
-      path: 'register',
-      name: 'register',
-      getComponent(nextState, callback) {
-        require.ensure([], (require) => {
-          registerModel(app, require('./models/register'))
-          callback(null, require('./routes/Register/register'))
-        })
-      }
-    },
-    {
-      path: 'reset',
-      name: 'reset',
-      getComponent(nextState, callback) {
-        require.ensure([], (require) => {
-          registerModel(app, require('./models/reset'))
-          callback(null, require('./routes/Reset/reset'))
-        })
-      }
-    },
-    // error
-    {
-      path: '*',
-      name: 'error',
-      getComponent(nextState, callback) {
-        require.ensure([], (require) => {
-          callback(null, require('./routes/Error/error'))
-        })
-      }
+    path: 'login',
+    name: 'login',
+    getComponent(nextState, callback) {
+      require.ensure([], (require) => {
+        registerModel(app, require('./models/login'))
+        callback(null, require('./routes/Login/login'))
+      })
     }
-  ]
+  }, {
+    // Register
+    path: 'register',
+    name: 'register',
+    getComponent(nextState, callback) {
+      require.ensure([], (require) => {
+        registerModel(app, require('./models/register'))
+        callback(null, require('./routes/Register/register'))
+      })
+    }
+  }, {
+    // Reset
+    path: 'reset',
+    name: 'reset',
+    getComponent(nextState, callback) {
+      require.ensure([], (require) => {
+        registerModel(app, require('./models/reset'))
+        callback(null, require('./routes/Reset/reset'))
+      })
+    }
+  }, {
+    // Error
+    path: '*',
+    name: 'error',
+    getComponent(nextState, callback) {
+      require.ensure([], (require) => {
+        callback(null, require('./routes/Error/error'))
+      })
+    }
+  }]
+
   return (
     <Router history={history} routes={routes} />
   )
