@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { routerRedux } from 'dva/router'
 import { connect } from 'dva'
 import { Layout } from 'antd'
+import QueueAnim from 'rc-queue-anim'
 
 import styles from './app.less'
 import Header from '../../components/Header/header'
@@ -17,14 +18,6 @@ class App extends React.Component {
     return {
       currentLanguage: this.props.app.currentLanguage
     }
-  }
-
-  get children() {
-    return this.props.children
-  }
-
-  get isNavbar() {
-    return this.props.app.isNavbar
   }
 
   get siderProps() {
@@ -68,12 +61,19 @@ class App extends React.Component {
     }
   }
 
+  get content() {
+    return this.props.children
+      && React.cloneElement(this.props.children, { key: this.props.location.pathname })
+  }
+
   get layout() {
     return (
       <Layout className={styles.layout}>
         <Header {...this.headerProps} />
         <Content className={styles.content}>
-          {this.children}
+          <QueueAnim delay={[450, 0]} type={['right', 'left']} appear={false}>
+            { this.content }
+          </QueueAnim>
         </Content>
         <Footer />
       </Layout>
@@ -84,13 +84,13 @@ class App extends React.Component {
     return (
       <Layout className={styles.normal}>
         <Sider {...this.siderProps} />
-        { children }
+        {children}
       </Layout>
     )
   }
 
   render() {
-    return this.isNavbar ? this.layout : this.hasSider(this.layout)
+    return this.props.app.isNavbar ? this.layout : this.hasSider(this.layout)
   }
 }
 
