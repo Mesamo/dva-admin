@@ -39,7 +39,7 @@ const Header = ({
     )
 
     headerButton = (
-      <Popover placement="bottomLeft" trigger="click" overlayClassName={styles.popovermenu} content={content}>
+      <Popover placement="bottomLeft" overlayClassName={styles.popovermenu} content={content}>
         <div className={styles.button}>
           <Icon type="bars" />
         </div>
@@ -57,7 +57,7 @@ const Header = ({
     <Layout.Header className={styles.header}>
       {headerButton}
       <div className={styles.right}>
-        <Menu mode="horizontal" onClick={handleChangeLanguage} style={{ zIndex: 1 }}>
+        <Menu mode="horizontal" onClick={handleChangeLanguage} style={{ textAlign: 'center', zIndex: 1 }}>
           <SubMenu title={<span>{translations}</span>}>
             {supportLanguages
               .filter(language => language !== currentLanguage)
