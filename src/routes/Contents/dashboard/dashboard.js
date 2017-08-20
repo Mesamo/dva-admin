@@ -47,8 +47,8 @@ class Dashboard extends React.Component {
       percent: 100
     }]
 
-    return cards.map(card => (
-      <Col className={styles.card} xs={24} sm={12} lg={6}>
+    return cards.map((card, index) => (
+      <Col className={styles.card} key={index} xs={24} sm={12} lg={6}>
         <NumberCard {...card} currentLanguage={this.props.currentLanguage} />
       </Col>
     ))

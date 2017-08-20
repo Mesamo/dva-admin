@@ -31,14 +31,14 @@ const NumberCard = ({
 NumberCard.defaultProps = {
   color: '#64ea91',
   icon: 'android',
-  title: '',
+  title: {},
   number: 50,
   percent: 50,
   currentLanguage: 'en-US'
 }
 
 NumberCard.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.object,
   icon: PropTypes.string,
   color: PropTypes.string,
   number: PropTypes.number,
