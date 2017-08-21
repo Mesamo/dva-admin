@@ -12,7 +12,7 @@ This live demo is deploy on firebase hosting. You can view a live version of thi
 # Based on
 * [Dva][dva-repo] - React and redux based, lightweight and elm-style framework. 
 * [Ant Design][antd-repo] - A UI Design Language
-* [Firebase][firebase-url]
+* [Firebase][firebase-url] - Firebase helps you build better mobile apps and grow your business.
 
 ## Getting Started
 Install dependencies
