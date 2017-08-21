@@ -1,7 +1,7 @@
 import pathToRegexp from 'path-to-regexp'
 
 import { addUser, delUser } from '../services/user.service'
-import firebaseApp from '../firebase'
+import firebaseApp from '../utils/firebase'
 
 export default {
   namespace: 'user',
@@ -69,15 +69,17 @@ export default {
   },
   subscriptions: {
     onUsersChange({ history, dispatch }) {
-      const userRef = firebaseApp.database().ref('users')
+      let userRef
       history.listen(({ pathname }) => {
         const match = pathToRegexp('/users').exec(pathname)
-        if (match) {
+        if (match && !userRef) {
+          userRef = firebaseApp.database().ref('users')
           userRef.on('value', (snapshort) => {
             dispatch({ type: 'convert', payload: { usersObj: snapshort } })
           })
-        } else {
+        } else if (!match && userRef) {
           userRef.off()
+          userRef = null
         }
       })
     }

@@ -1,4 +1,4 @@
-import firebaseApp from '../firebase'
+import firebaseApp from '../utils/firebase'
 
 export const getUsers = () => {
   const userListRef = firebaseApp.database().ref('users')

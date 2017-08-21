@@ -2,7 +2,7 @@ import React from 'react'
 import { Router } from 'dva/router'
 
 import App from './routes/App/app'
-import firebaseApp from './firebase'
+import firebaseApp from './utils/firebase'
 
 const cached = {}
 // 注册model

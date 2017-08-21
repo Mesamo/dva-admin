@@ -3,7 +3,7 @@ import { routerRedux } from 'dva/router'
 import { fetchLogout } from '../services/login.service.'
 import { takeLatest } from '../utils/sageHelper'
 import { read, write } from '../utils/localstorge'
-import firebaseApp from '../firebase'
+import firebaseApp from '../utils/firebase'
 
 export default {
   namespace: 'app',

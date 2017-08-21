@@ -1,4 +1,4 @@
-import firebaseApp from '../firebase'
+import firebaseApp from '../utils/firebase'
 
 export const fetchLogin = (email, password) => {
   return firebaseApp.auth().signInWithEmailAndPassword(email, password)
