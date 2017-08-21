@@ -30,6 +30,32 @@ Build
 $ npm run build
 ```
 
+## Debugging in the Editor
+
+Need to have the latest version of VS Code and VS Code Chrome [Debugger Extension0][extension] installed.  
+Then add the block below to your launch.json file and put it inside the .vscode folder in your app’s root directory.
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome",
+      "url": "http://localhost:8000",
+      "sourceMaps": true,
+      "webRoot": "${workspaceRoot}/src",
+      "smartStep": true,
+      "internalConsoleOptions": "openOnSessionStart",
+      "sourceMapPathOverrides": {
+        "webpack:///src/*": "${webRoot}/*"
+      }
+    }
+  ]
+}
+```
+Start your app by running `npm start`, and start debugging in VS Code by pressing F5 or by clicking the green debug icon. You can now write code, set breakpoints, make changes to the code, and debug your newly modified code—all from your editor.
+
 ## Talk
 * [Slack](https://mesamo.slack.com)
 
@@ -47,3 +73,4 @@ pmg1989: [https://github.com/pmg1989/dva-admin](https://github.com/pmg1989/dva-a
 [dva-repo]: https://github.com/dvajs/dva  
 [antd-repo]: https://github.com/ant-design/ant-design  
 [firebase-url]: https://firebase.google.com/  
+[extension]: https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome
