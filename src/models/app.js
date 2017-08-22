@@ -62,6 +62,15 @@ export default {
       yield call(fetchLogout)
       yield put({ type: 'redirectToLogin', payload: { attemptedUrl: '/' } })
     }),
+    *checkAuth({ payload, callback }, { put }) {
+      const { attemptedUrl } = payload
+      const user = firebaseApp.auth().currentUser
+      if (!user) {
+        yield put({ type: 'app/redirectToLogin', payload: { attemptedUrl } })
+      } else {
+        callback()
+      }
+    },
     *redirectToLogin({ payload }, { put }) {
       yield put({ type: 'saveAttemptedUrl', payload })
       yield put(routerRedux.push('/login'))
@@ -89,7 +98,7 @@ export default {
         dispatch({ type: 'changeTheme', darkTheme: darkTheme === 'true' })
       }
     },
-    checkLogin({ dispatch }) {
+    onAuthStateChanged({ dispatch }) {
       firebaseApp.auth().onAuthStateChanged((user) => {
         if (user) {
           const username = user.email.split('@')[0]

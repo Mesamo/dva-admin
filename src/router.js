@@ -2,7 +2,7 @@ import React from 'react'
 import { Router } from 'dva/router'
 
 import App from './routes/App/app'
-import firebaseApp from './utils/firebase'
+import AppModel from './models/app';
 
 const cached = {}
 // 注册model
@@ -16,18 +16,14 @@ const registerModel = (app, model) => {
 const RouterConfig = ({ history, app }) => {
   // 登录验证
   const requireAuth = (nextState, replace, callback) => {
-    const user = firebaseApp.auth().currentUser
-    if (!user) {
-      app._store.dispatch({
-        type: 'app/redirectToLogin',
-        payload: { attemptedUrl: nextState.location.pathname }
-      })
-    } else {
-      callback()
-    }
+    app._store.dispatch({
+      type: 'app/checkAuth',
+      payload: { attemptedUrl: nextState.location.pathname },
+      callback
+    })
   }
 
-  registerModel(app, require('./models/app'))
+  registerModel(app, AppModel)
 
   const routes = [{
     // app
