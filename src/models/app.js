@@ -66,7 +66,7 @@ export default {
       const { attemptedUrl } = payload
       const user = firebaseApp.auth().currentUser
       if (!user) {
-        yield put({ type: 'app/redirectToLogin', payload: { attemptedUrl } })
+        yield put({ type: 'redirectToLogin', payload: { attemptedUrl } })
       } else {
         callback()
       }
