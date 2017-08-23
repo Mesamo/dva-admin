@@ -1,0 +1,15 @@
+{
+  "name": "Dva Admin -- Mesamo",
+  "short_name": "Dva Admin",
+  "display": "standalone",
+  "start_url": "/",
+  "theme_color": "#8fc9fb",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "400x400",
+      "type": "image/png"
+    }
+  ]
+}
