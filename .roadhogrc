@@ -1,5 +1,9 @@
 {
-  "entry": "src/index.js",
+  "entry": {
+    "index": "./src/index.js",
+    "common": "./src/vendor.js"
+  },
+  "multipage": true,
   "hash": true,
   "env": {
     "development": {
@@ -25,21 +29,5 @@
   },
   "theme": {
       "@icon-url": "'/assets/iconfont/iconfont'"
-  },
-  "dllPlugin": {
-    "exclude": [
-      "babel-runtime"
-    ],
-    "include": [
-      "react",
-      "react-dom",
-      "antd",
-      "dva/router",
-      "dva/saga",
-      "dva/fetch",
-      "firebase/app",
-      "firebase/auth",
-      "firebase/database"
-    ]
   }
 }
