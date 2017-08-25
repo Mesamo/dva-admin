@@ -15,12 +15,9 @@ const app = dva({
 // 2. Plugins
 app.use(createLoading({ effect: true }))
 
-// 3. Model
-// app.model(require('./models/app'))
-
-// 4. Router
+// 3. Router
 app.router(require('./router'))
 
-// 5. Start
+// 4. Start
 app.start('#root')
 
