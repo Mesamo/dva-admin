@@ -6,16 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="manifest" href="manifest.json" />
   <link rel="Shortcut Icon" href="favicon.ico" />
+  <script type="text/javascript" src="/register-service-worker.js"></script>
   <title>Dva Admin</title>
 </head>
 
 <body>
   <div id="root">loading</div>
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js');
-    }
-  </script>
 </body>
 
 </html>

@@ -42,6 +42,7 @@
     "localStorage": true,
     "sessionStorage": true,
     "window": true,
+    "navigator": true,
     "document": true
   }
 }
