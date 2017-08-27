@@ -4,12 +4,12 @@ export const read = (key) => {
 }
 
 export const readObject = (key) => {
-  const text = read(key)
+  const text = this.read(key)
   let obj = {}
   try {
     obj = JSON.parse(text)
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
   return obj
 }
@@ -20,7 +20,7 @@ export const write = (key, data) => {
 
 export const writeObject = (key, data) => {
   const text = JSON.stringify(data)
-  write(key, text)
+  this.write(key, text)
 }
 
 export const remove = (key) => {
