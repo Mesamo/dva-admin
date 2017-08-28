@@ -25,7 +25,7 @@ class Register extends React.Component {
   render() {
     return (
       <Row type="flex" justify="center" align="middle" className={styles.normal}>
-        <Col xs={22} sm={18} md={12} lg={10} xl={7}>
+        <Col xs={22} sm={14} md={10} lg={8} xl={6}>
           <RegisterForm {...this.registerFormProps} />
         </Col>
       </Row>

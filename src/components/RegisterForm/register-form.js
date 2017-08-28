@@ -23,7 +23,7 @@ const RegisterForm = ({
   }
 }) => {
   const {
-        emailText,
+    emailText,
     passwordText,
     confirmText,
     registerText,
@@ -32,31 +32,7 @@ const RegisterForm = ({
     correctEmail,
     requiredPassword,
     passwordNotSame
-    } = messages
-
-  const formItemLayout = {
-    labelCol: {
-      xs: { span: 24 },
-      sm: { span: 4 }
-    },
-    wrapperCol: {
-      xs: { span: 24 },
-      sm: { span: 18 }
-    }
-  }
-
-  const tailFormItemLayout = {
-    wrapperCol: {
-      xs: {
-        span: 24,
-        offset: 0
-      },
-      sm: {
-        span: 8,
-        offset: 4
-      }
-    }
-  }
+  } = messages
 
   // 输入密码时，检查是否与确认密码一致
   const checkConfirm = (rule, value, callback) => {
@@ -88,9 +64,9 @@ const RegisterForm = ({
   }
 
   return (
-    <Form className={styles.normal} label="用户注册">
+    <Form className={styles.normal} label="用户注册" layout="horizontal">
       <QueueAnim>
-        <FormItem {...formItemLayout} hasFeedback label={emailText} key="1">
+        <FormItem hasFeedback label={emailText} key="1">
           {getFieldDecorator('email', {
             rules: [
               {
@@ -104,7 +80,7 @@ const RegisterForm = ({
             ]
           })(<Input />)}
         </FormItem>
-        <FormItem {...formItemLayout} hasFeedback label={passwordText} key="2">
+        <FormItem hasFeedback label={passwordText} key="2">
           {getFieldDecorator('password', {
             rules: [
               {
@@ -117,7 +93,7 @@ const RegisterForm = ({
             ]
           })(<Input type="password" />)}
         </FormItem>
-        <FormItem {...formItemLayout} hasFeedback label={confirmText} key="3">
+        <FormItem hasFeedback label={confirmText} key="3">
           {getFieldDecorator('confirm', {
             rules: [
               {
@@ -130,7 +106,7 @@ const RegisterForm = ({
             ]
           })(<Input type="password" />)}
         </FormItem>
-        <FormItem {...tailFormItemLayout} key="4">
+        <FormItem key="4">
           <Button
             className={styles.button}
             type="primary" htmlType="submit" size="large"
