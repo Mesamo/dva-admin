@@ -33,10 +33,10 @@ const Sider = ({
   }
 
   const {
-        changeThemeText,
+    changeThemeText,
     darkText,
     lightText
-    } = messages
+  } = messages
 
   const handleToIndex = () => {
     toIndex()
