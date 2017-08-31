@@ -1,7 +1,6 @@
 module.exports = {
   stripPrefix: 'dist/',
   staticFileGlobs: [
-    'dist/*.html',
     'dist/favicon.ico',
     'dist/manifest.json',
     'dist/assets/**/*',
