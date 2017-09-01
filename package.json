@@ -2,7 +2,7 @@
   "name": "dva-admin",
   "version": "0.0.1",
   "description": "dva admin",
-  "repository": "https://github.com/Mesamo/911-maintenance-web.git",
+  "repository": "https://github.com/Mesamo/dva-admin.git",
   "author": "mesamo <mesamo@foxmail.com>",
   "private": true,
   "scripts": {
