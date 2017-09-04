@@ -4,7 +4,6 @@
   "description": "dva admin",
   "repository": "https://github.com/Mesamo/dva-admin.git",
   "author": "mesamo <mesamo@foxmail.com>",
-  "private": true,
   "scripts": {
     "start": "roadhog server",
     "build": "roadhog build && sw-precache --config=sw-precache-config.js",
