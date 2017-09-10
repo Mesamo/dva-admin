@@ -1,9 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { routerRedux } from 'dva/router'
+import { withRouter, routerRedux } from 'dva/router'
 import { connect } from 'dva'
 import { Layout } from 'antd'
-import QueueAnim from 'rc-queue-anim'
 
 import styles from './app.less'
 import Header from '../../components/Header/header'
@@ -12,11 +11,19 @@ import menus from '../../utils/menu'
 
 const { Content, Footer } = Layout
 
+const publicPages = ['/login', '/register', '/reset']
+
 class App extends React.Component {
 
   getChildContext() {
     return {
       currentLanguage: this.props.app.currentLanguage
+    }
+  }
+
+  componentWillMount() {
+    if (!this.isPublicPages) {
+      this.props.checkAuth(this.props.location.pathname)
     }
   }
 
@@ -61,9 +68,8 @@ class App extends React.Component {
     }
   }
 
-  get content() {
-    return this.props.children
-      && React.cloneElement(this.props.children, { key: this.props.location.pathname })
+  get isPublicPages() {
+    return publicPages.includes(this.props.location.pathname)
   }
 
   get layout() {
@@ -71,9 +77,7 @@ class App extends React.Component {
       <Layout className={styles.layout}>
         <Header {...this.headerProps} />
         <Content className={styles.content}>
-          <QueueAnim delay={[450, 0]} type={['right', 'left']} appear={false}>
-            { this.content }
-          </QueueAnim>
+          {this.props.children}
         </Content>
         <Footer />
       </Layout>
@@ -90,6 +94,13 @@ class App extends React.Component {
   }
 
   render() {
+    if (this.isPublicPages) {
+      return (
+        <div className={styles.normal}>
+          {this.props.children}
+        </div>
+      )
+    }
     return this.props.app.isNavbar ? this.layout : this.hasSider(this.layout)
   }
 }
@@ -113,6 +124,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    checkAuth: pathname => dispatch({
+      type: 'app/checkAuth',
+      payload: { attemptedUrl: pathname }
+    }),
     onCollapse: () => dispatch({ type: 'app/toggleCollapse' }),
     onChangeTheme: checked => dispatch({ type: 'app/changeTheme', darkTheme: checked }),
     toIndex: () => dispatch(routerRedux.push('/')),
@@ -121,4 +136,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))

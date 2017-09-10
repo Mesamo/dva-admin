@@ -1,6 +1,6 @@
 import pathToRegexp from 'path-to-regexp'
 
-import { fetchLogin } from '../services/login.service.'
+import { fetchLogin } from '../services/login.service'
 import { write, read, remove } from '../utils/localstorge'
 import { takeLatest } from '../utils/sageHelper'
 

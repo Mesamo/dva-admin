@@ -1,6 +1,6 @@
 import { routerRedux } from 'dva/router'
 
-import { sendResetPasswordEmail } from '../services/login.service.'
+import { sendResetPasswordEmail } from '../services/login.service'
 
 export default {
   namespace: 'reset',

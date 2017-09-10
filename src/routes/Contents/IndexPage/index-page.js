@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'dva'
 
-import styles from './index.less'
+import styles from './index-page.less'
 
 class IndexPage extends React.Component {
   render() {

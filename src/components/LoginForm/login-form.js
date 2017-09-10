@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router';
-import QueueAnim from 'rc-queue-anim';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Link } from 'dva/router'
+import QueueAnim from 'rc-queue-anim'
+import { Form, Icon, Input, Button, Checkbox } from 'antd'
 
-import translate from '../../i18n/translate';
-import styles from './login-form.less';
+import translate from '../../i18n/translate'
+import styles from './login-form.less'
 
 const FormItem = Form.Item;
 
@@ -22,7 +22,7 @@ const LoginForm = ({
   }
 }) => {
   const {
-        emailText,
+    emailText,
     passwordText,
     rememberMeText,
     forgetPasswdText,

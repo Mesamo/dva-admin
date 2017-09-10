@@ -1,4 +1,4 @@
-import { fetchRegister } from '../services/login.service.'
+import { fetchRegister } from '../services/login.service'
 
 export default {
   namespace: 'register',

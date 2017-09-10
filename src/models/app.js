@@ -1,6 +1,6 @@
 import { routerRedux } from 'dva/router'
 
-import { fetchLogout } from '../services/login.service.'
+import { fetchLogout } from '../services/login.service'
 import { takeLatest } from '../utils/sageHelper'
 import { read, write } from '../utils/localstorge'
 import firebaseApp from '../utils/firebase'
