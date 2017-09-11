@@ -18,7 +18,7 @@
     "antd": "^2.13.0",
     "babel-runtime": "^6.26.0",
     "dva": "^2.0.1",
-    "dva-loading": "^0.3.0",
+    "dva-loading": "^1.0.0",
     "firebase": "^4.3.0",
     "path-to-regexp": "^2.0.0",
     "promise-polyfill": "^6.0.2",
