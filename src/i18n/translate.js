@@ -41,11 +41,6 @@ export default function translate(key) {
       }
     }
 
-    // 包装antd的Sider组件需要这样设置，否则样式不正确
-    if (key === 'Sider') {
-      TranslationComponent.__ANT_LAYOUT_SIDER = true
-    }
-
     TranslationComponent.displayName = `Translated(${getDisplayName(WrappedComponent)})`
 
     TranslationComponent.contextTypes = {

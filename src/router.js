@@ -2,7 +2,7 @@ import React from 'react'
 import { Switch, Route, routerRedux } from 'dva/router'
 import dynamic from 'dva/dynamic'
 
-import App from './routes/App/app'
+import App from './routes/App'
 import AppModel from './models/app'
 
 const { ConnectedRouter } = routerRedux

@@ -9,15 +9,14 @@ import styles from './sider.less'
 
 const Sider = ({
   collapsed,
-  onCollapse,
   breakpoint,
   darkTheme,
   menus,
-  toIndex,
-  onChangeTheme,
   currentLanguage,
   pathname,
-  messages
+  messages,
+  toIndex,
+  onChangeTheme
 }) => {
   const menuItems = getMenus(menus, currentLanguage)
   const menuTheme = darkTheme ? 'dark' : 'light'
@@ -27,7 +26,6 @@ const Sider = ({
 
   const props = {
     collapsed,
-    onCollapse,
     breakpoint,
     trigger: null
   }
@@ -91,15 +89,14 @@ Sider.defaultProps = {
 
 Sider.propTypes = {
   collapsed: PropTypes.bool,
-  onCollapse: PropTypes.func,
   breakpoint: PropTypes.string,
   darkTheme: PropTypes.bool,
   menus: PropTypes.any,
-  toIndex: PropTypes.func,
-  onChangeTheme: PropTypes.func,
   currentLanguage: PropTypes.string,
   pathname: PropTypes.string,
-  messages: PropTypes.object
+  messages: PropTypes.object,
+  toIndex: PropTypes.func,
+  onChangeTheme: PropTypes.func
 }
 
 export default translate('Sider')(Sider)

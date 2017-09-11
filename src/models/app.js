@@ -14,7 +14,7 @@ export default {
     collapsed: false,
     isNavbar: document.body.clientWidth < 769,
     darkTheme: true,
-    attemptedUrl: ''
+    attemptedUrl: '/'
   },
   reducers: {
     toggleCollapse(state) {
