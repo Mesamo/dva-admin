@@ -5,7 +5,7 @@ export default {
     cancel: 'Cancel',
     emailText: 'Email',
     passwordText: 'Password',
-    registerText: 'Sing up',
+    registerText: 'Sign up',
     returnLogin: 'Return to Sign in',
     requiredEmail: 'Please enter email',
     correctEmail: 'Please enter correct email address',
@@ -17,7 +17,7 @@ export default {
   LoginForm: {
     rememberMeText: 'Remember Email',
     forgetPasswdText: 'Forget Password ?',
-    loginButtonText: 'Sing in'
+    loginButtonText: 'Sign in'
   },
   RegisterForm: {
     confirmText: 'Confirm',
@@ -34,7 +34,7 @@ export default {
     lightText: 'light'
   },
   Header: {
-    logoutText: 'Sing out'
+    logoutText: 'Sign out'
   },
   User: {
     name: 'Name',
