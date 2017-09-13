@@ -18,21 +18,27 @@ This live demo is deploy on firebase hosting. You can view a live version of thi
 Install dependencies
 ```bash
 $ npm install
+# or
+$ yarn
 ```
 
 Start dev server
 ```bash
 $ npm start
+# or
+$ yarn start
 ```
 
 Build
 ```bash
 $ npm run build
+# or
+$ yarn build
 ```
 
 ## Debugging in the Editor
 
-Need to have the latest version of VS Code and VS Code Chrome [Debugger Extension0][extension] installed.  
+Need to have the latest version of VS Code and VS Code Chrome [Debugger Extension][extension] installed.  
 Then add the block below to your launch.json file and put it inside the .vscode folder in your app’s root directory.
 ```json
 {
