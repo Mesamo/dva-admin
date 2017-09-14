@@ -1,6 +1,7 @@
 import 'react'
 import 'react-dom'
 import 'react-router'
+import 'react-router-dom'
 import 'core-js'
 import 'rc-queue-anim';
 import 'prop-types'
