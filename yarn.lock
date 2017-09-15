@@ -2386,9 +2386,9 @@ duplexer@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/duplexer/-/duplexer-0.1.1.tgz#ace6ff808c1ce66b57d1ebf97977acb02334cfc1"
 
-dva-core@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/dva-core/-/dva-core-1.0.1.tgz#a2d10052e4290decb1f4bf2e8a9ed9b3dc58bc15"
+dva-core@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/dva-core/-/dva-core-1.1.0.tgz#a231afdde0f0ee9838bcc4afc0843da0f167b3f5"
   dependencies:
     babel-runtime "^6.26.0"
     flatten "^1.0.2"
@@ -2399,18 +2399,18 @@ dva-core@^1.0.1:
     redux-saga "^0.15.4"
     warning "^3.0.0"
 
-dva-loading@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/dva-loading/-/dva-loading-1.0.0.tgz#813765d31906ad02974fe379c5f066840b683b38"
+dva-loading@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/dva-loading/-/dva-loading-1.0.2.tgz#5f1800e09b44dd5236ab1c1a31dc92a4ba1d240a"
   dependencies:
     babel-runtime "^6.26.0"
 
-dva@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/dva/-/dva-2.0.1.tgz#c513583fec81998efecc5cad50ce53ecb7f52881"
+dva@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/dva/-/dva-2.0.3.tgz#686e0c09030c197949ee38a66a74dbb0e000c94a"
   dependencies:
     babel-runtime "^6.26.0"
-    dva-core "^1.0.1"
+    dva-core "^1.1.0"
     global "^4.3.2"
     history "^4.6.3"
     invariant "^2.2.2"
