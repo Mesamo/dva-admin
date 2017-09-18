@@ -50,5 +50,11 @@ export default {
     delete: '删除',
     correctAge: '请输入正确的年龄',
     correctPhone: '请输入正确的电话'
+  },
+  SalesChart: {
+    title: '年销售额',
+    food: '食品',
+    clothes: '衣物',
+    electronics: '电子产品'
   }
 }

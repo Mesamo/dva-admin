@@ -1,12 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'dva'
-import { Row, Col } from 'antd';
+import { Row, Col } from 'antd'
 
-import NumberCard from '../../../components/NumberCard/number-card';
+import NumberCard from '../../../components/NumberCard/number-card'
+import SalesChart from '../../../components/SalesChart/sales-chart'
 import styles from './dashboard.less'
 
 class Dashboard extends React.Component {
+
+  getChildContext() {
+    return {
+      currentLanguage: this.props.currentLanguage
+    }
+  }
 
   get cards() {
     const cards = [{
@@ -55,14 +62,64 @@ class Dashboard extends React.Component {
   }
 
   render() {
+    const data = [{
+      year: '2010',
+      food: 123,
+      clothes: 432,
+      electronics: 343
+    }, {
+      year: '2011',
+      food: 456,
+      clothes: 745,
+      electronics: 634
+    }, {
+      year: '2012',
+      food: 386,
+      clothes: 672,
+      electronics: 253
+    }, {
+      year: '2013',
+      food: 633,
+      clothes: 222,
+      electronics: 643
+    }, {
+      year: '2014',
+      food: 433,
+      clothes: 442,
+      electronics: 783
+    }, {
+      year: '2015',
+      food: 563,
+      clothes: 432,
+      electronics: 853
+    }, {
+      year: '2016',
+      food: 673,
+      clothes: 432,
+      electronics: 973
+    }, {
+      year: '2017',
+      food: 283,
+      clothes: 432,
+      electronics: 593
+    }]
     return (
       <div>
         <Row gutter={10}>
           {this.cards}
         </Row>
+        <Row>
+          <Col xs={24}>
+            <SalesChart data={data} />
+          </Col>
+        </Row>
       </div>
     )
   }
+}
+
+Dashboard.childContextTypes = {
+  currentLanguage: PropTypes.string
 }
 
 Dashboard.defaultProps = {

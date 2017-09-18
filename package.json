@@ -25,7 +25,8 @@
     "promise-polyfill": "^6.0.2",
     "rc-queue-anim": "^1.2.0",
     "react": "^15.6.0",
-    "react-dom": "^15.6.0"
+    "react-dom": "^15.6.0",
+    "recharts": "^1.0.0-apha.5"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",

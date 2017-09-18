@@ -11,6 +11,7 @@ import 'dva-loading'
 import 'firebase/app'
 import 'firebase/auth'
 import 'firebase/database'
+import 'recharts'
 
 import antd from 'antd'
 

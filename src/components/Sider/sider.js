@@ -61,7 +61,7 @@ const Sider = ({
         </Menu>
       </QueueAnim>
       {collapsed ? '' :
-      <QueueAnim delay={600} type="bottom">
+      <QueueAnim delay={600} type="left">
         <div className={styles.switchtheme} key="1">
           <span style={textColor}><Icon type="bulb" />{changeThemeText}</span>
           <Switch

@@ -50,5 +50,11 @@ export default {
     delete: 'Delete',
     correctAge: 'Please enter correct age',
     correctPhone: 'Please enter correct phone number'
+  },
+  SalesChart: {
+    title: 'Yearly Sales',
+    food: 'Food',
+    clothes: 'Clothes',
+    electronics: 'Electronics'
   }
 }
