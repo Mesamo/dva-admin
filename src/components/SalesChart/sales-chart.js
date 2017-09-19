@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { ResponsiveContainer, LineChart, Legend, XAxis, YAxis, Tooltip, Line, CartesianGrid } from 'recharts'
 
-import translate from '../../i18n/translate'
 import styles from './sales-chart.less'
 
 const SalesChart = ({
@@ -75,4 +74,4 @@ SalesChart.propTypes = {
   messages: PropTypes.object
 }
 
-export default translate('SalesChart')(SalesChart)
+export default SalesChart

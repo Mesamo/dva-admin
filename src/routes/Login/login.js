@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'dva'
 import { Row, Col } from 'antd'
 
-import LoginForm from '../../components/LoginForm/login-form'
-import ChangeLanguage from '../../components/ChangeLanguage/change-language'
+import LoginForm from '../../components/LoginForm'
+import ChangeLanguage from '../../components/ChangeLanguage'
 import { noticeSuccess, noticeError } from '../../utils/notice'
 import styles from './login.less'
 

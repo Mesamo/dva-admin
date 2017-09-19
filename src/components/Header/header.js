@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Layout, Menu, Icon, Popover } from 'antd'
 
-import translate from '../../i18n/translate'
 import getMenus from '../Menus/menus'
 import styles from './header.less'
 
@@ -107,4 +106,4 @@ Header.propTypes = {
   messages: PropTypes.object
 }
 
-export default translate('Header')(Header)
+export default Header

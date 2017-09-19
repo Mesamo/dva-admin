@@ -4,7 +4,6 @@ import { Link } from 'dva/router'
 import QueueAnim from 'rc-queue-anim'
 import { Form, Icon, Input, Button, Checkbox } from 'antd'
 
-import translate from '../../i18n/translate'
 import styles from './login-form.less'
 
 const FormItem = Form.Item;
@@ -30,7 +29,8 @@ const LoginForm = ({
     registerText,
     requiredEmail,
     correctEmail,
-    requiredPassword } = messages;
+    requiredPassword
+  } = messages;
 
   const { rememberMe, email } = login;
 
@@ -121,4 +121,4 @@ LoginForm.propTypes = {
   onLogin: PropTypes.func.isRequired
 };
 
-export default Form.create()(translate('LoginForm')(LoginForm));
+export default Form.create()(LoginForm);

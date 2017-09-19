@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'dva'
 import { Row, Col } from 'antd'
 
-import NumberCard from '../../../components/NumberCard/number-card'
-import SalesChart from '../../../components/SalesChart/sales-chart'
+import NumberCard from '../../../components/NumberCard'
+import SalesChart from '../../../components/SalesChart'
 import styles from './dashboard.less'
 
 class Dashboard extends React.Component {
@@ -56,7 +56,7 @@ class Dashboard extends React.Component {
 
     return cards.map((card, index) => (
       <Col className={styles.card} key={index} xs={24} sm={12} lg={6}>
-        <NumberCard {...card} currentLanguage={this.props.currentLanguage} />
+        <NumberCard {...card} title={card.title[this.props.currentLanguage]} />
       </Col>
     ))
   }

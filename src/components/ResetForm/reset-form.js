@@ -4,7 +4,6 @@ import { Link } from 'dva/router'
 import QueueAnim from 'rc-queue-anim'
 import { Form, Input, Button, Alert } from 'antd'
 
-import translate from '../../i18n/translate'
 import styles from './reset-form.less'
 
 const FormItem = Form.Item
@@ -92,4 +91,4 @@ ResetForm.propTypes = {
   onSendEmail: PropTypes.func.isRequired
 }
 
-export default Form.create()(translate('ResetForm')(ResetForm))
+export default Form.create()(ResetForm)

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'dva'
 import { Row, Col } from 'antd'
 
-import ResetForm from '../../components/ResetForm/reset-form'
+import ResetForm from '../../components/ResetForm'
 import { noticeSuccess, noticeError } from '../../utils/notice'
 import styles from './reset.less'
 

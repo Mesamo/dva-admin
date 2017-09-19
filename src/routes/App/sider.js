@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { routerRedux } from 'dva/router'
 import { connect } from 'dva'
 
-import Sider from '../../components/Sider/sider'
+import Sider from '../../components/Sider'
 import menus from '../../utils/menu'
 
 class SiderContainer extends React.Component {

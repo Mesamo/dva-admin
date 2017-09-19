@@ -2,8 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Button, Modal } from 'antd'
 
-import UserForm from '../UserForm/user-form'
-import translate from '../../i18n/translate'
+import UserForm from '../UserForm'
 
 import styles from './user-toolbar.less'
 
@@ -76,4 +75,4 @@ UserToolbar.propTypes = {
   messages: PropTypes.object
 }
 
-export default translate('User')(UserToolbar)
+export default UserToolbar

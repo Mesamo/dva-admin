@@ -2,8 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Table, Menu, Icon, Dropdown } from 'antd'
 
-import translate from '../../i18n/translate'
-
 const UserTable = ({
   actionFunc,
   actionMenu,
@@ -106,4 +104,4 @@ UserTable.propTypes = {
   messages: PropTypes.object
 }
 
-export default translate('User')(UserTable)
+export default UserTable

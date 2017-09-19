@@ -9,15 +9,14 @@ const NumberCard = ({
   icon,
   title,
   number,
-  percent,
-  currentLanguage
+  percent
 }) => {
   return (
     <Card className={styles.numberCard} bordered={false} bodyStyle={{ padding: 0 }}>
       <div className={styles.flexBox}>
         <Icon className={styles.iconWarp} style={{ backgroundColor: color }} type={icon} />
         <div className={styles.content}>
-          <p className={styles.title}>{title[currentLanguage] || 'No Title'}</p>
+          <p className={styles.title}>{title}</p>
           <Progress percent={percent} strokeWidth={3} />
           <p className={styles.number}>
             {number}
@@ -31,19 +30,17 @@ const NumberCard = ({
 NumberCard.defaultProps = {
   color: '#64ea91',
   icon: 'android',
-  title: {},
+  title: 'No Title',
   number: 50,
-  percent: 50,
-  currentLanguage: 'en-US'
+  percent: 50
 }
 
 NumberCard.propTypes = {
-  title: PropTypes.object,
+  title: PropTypes.string,
   icon: PropTypes.string,
   color: PropTypes.string,
   number: PropTypes.number,
-  percent: PropTypes.number,
-  currentLanguage: PropTypes.string.isRequired
+  percent: PropTypes.number
 };
 
 export default NumberCard;

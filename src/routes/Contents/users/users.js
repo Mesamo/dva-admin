@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'dva'
 import { Row, Col, message } from 'antd'
 
-import UserTable from '../../../components/UserTable/user-table'
-import UserToolbar from '../../../components/UserToolbar/user-toolbar'
+import UserTable from '../../../components/UserTable'
+import UserToolbar from '../../../components/UserToolbar'
 import styles from './users.less'
 
 class Users extends React.Component {

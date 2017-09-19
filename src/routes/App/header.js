@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'dva'
 
-import Header from '../../components/Header/header'
+import Header from '../../components/Header'
 import menus from '../../utils/menu'
 
 class HeaderContainer extends React.Component {

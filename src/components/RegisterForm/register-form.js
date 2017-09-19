@@ -4,7 +4,6 @@ import { Link } from 'dva/router'
 import QueueAnim from 'rc-queue-anim'
 import { Form, Input, Button } from 'antd'
 
-import translate from '../../i18n/translate'
 import styles from './register-form.less'
 
 const FormItem = Form.Item
@@ -142,4 +141,4 @@ RegisterForm.propTypes = {
   onRegister: PropTypes.func.isRequired
 }
 
-export default Form.create()(translate('RegisterForm')(RegisterForm))
+export default Form.create()(RegisterForm)

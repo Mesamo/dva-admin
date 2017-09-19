@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import QueueAnim from 'rc-queue-anim'
 import { Layout, Menu, Icon, Switch } from 'antd'
 
-import translate from '../../i18n/translate'
 import getMenus from '../Menus/menus'
 import styles from './sider.less'
 
@@ -99,4 +98,4 @@ Sider.propTypes = {
   onChangeTheme: PropTypes.func
 }
 
-export default translate('Sider')(Sider)
+export default Sider

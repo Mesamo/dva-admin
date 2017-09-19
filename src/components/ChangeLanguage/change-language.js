@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Menu, Dropdown, Icon } from 'antd'
 
-import translate from '../../i18n/translate'
 import styles from './change-language.less'
 
 const ChangeLanguage = ({
@@ -54,4 +53,4 @@ ChangeLanguage.propTypes = {
   onMenuClick: PropTypes.func.isRequired
 }
 
-export default translate('ChangeLanguage')(ChangeLanguage)
+export default ChangeLanguage

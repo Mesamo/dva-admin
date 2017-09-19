@@ -29,7 +29,7 @@ export default function translate(key) {
         // 获取全局词条
         const globalMessages = languages[currentLanguage][global]
         // 获取组件词条
-        const partialMessages = languages[currentLanguage][key]
+        const partialMessages = key ? languages[currentLanguage][key] : {}
 
         // 合并词条
         // 如有重复, 组件词条会覆盖全局词条

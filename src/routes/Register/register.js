@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'dva'
 import { Row, Col } from 'antd'
 
-import RegisterForm from '../../components/RegisterForm/register-form'
+import RegisterForm from '../../components/RegisterForm'
 import { noticeSuccess, noticeError } from '../../utils/notice'
 import styles from './register.less'
 
