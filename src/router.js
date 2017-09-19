@@ -3,6 +3,7 @@ import { Switch, Route, routerRedux } from 'dva/router'
 import dynamic from 'dva/dynamic'
 
 import App from './routes/App'
+import AuthorizedRoute from './routes/AuthorizedRoute/authorized-route'
 import AppModel from './models/app'
 
 const { ConnectedRouter } = routerRedux
@@ -10,7 +11,7 @@ const { ConnectedRouter } = routerRedux
 const Routers = ({ history, app }) => {
   app.model(AppModel)
 
-  const routes = [{
+  const publicRoutes = [{
     path: '/login',
     models: () => [import('./models/login')],
     component: () => import('./routes/Login/login')
@@ -22,7 +23,9 @@ const Routers = ({ history, app }) => {
     path: '/reset',
     models: () => [import('./models/reset')],
     component: () => import('./routes/Reset/reset')
-  }, {
+  }]
+
+  const AuthRoutes = [{
     path: '/',
     component: () => import('./routes/Contents/IndexPage/index-page')
   }, {
@@ -39,23 +42,30 @@ const Routers = ({ history, app }) => {
     component: () => import('./routes/Error/error')
   })
 
+  const getPublickRoutes = () => publicRoutes.map(({ path, ...dynamics }) => (
+    <Route
+      key={`public-${path}`}
+      exact
+      path={path}
+      component={dynamic({ app, ...dynamics })}
+    />
+  ))
+
+  const getAuthRoutes = () => AuthRoutes.map(({ path, ...dynamics }) => (
+    <AuthorizedRoute
+      key={`product-${path}`}
+      exact
+      path={path}
+      asyncComponent={dynamic({ app, ...dynamics })}
+    />
+  ))
+
   return (
     <ConnectedRouter history={history}>
-      <App>
+      <App publicPaths={publicRoutes.map(({ path }) => path)}>
         <Switch>
-          {
-            routes.map(({ path, ...dynamics }, key) => (
-              <Route
-                key={key}
-                exact
-                path={path}
-                component={dynamic({
-                  app,
-                  ...dynamics
-                })}
-              />
-            ))
-          }
+          {getPublickRoutes()}
+          {getAuthRoutes()}
           <Route component={error} />
         </Switch>
       </App>

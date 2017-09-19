@@ -62,15 +62,6 @@ export default {
       yield call(fetchLogout)
       yield put({ type: 'redirectToLogin', payload: { attemptedUrl: '/' } })
     }),
-    *checkAuth({ payload, callback }, { put }) {
-      const { attemptedUrl } = payload
-      const user = firebaseApp.auth().currentUser
-      if (!user) {
-        yield put({ type: 'redirectToLogin', payload: { attemptedUrl } })
-      } else {
-        callback()
-      }
-    },
     *redirectToLogin({ payload }, { put }) {
       yield put({ type: 'saveAttemptedUrl', payload })
       yield put(routerRedux.push('/login'))

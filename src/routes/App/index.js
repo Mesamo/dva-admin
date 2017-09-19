@@ -9,18 +9,12 @@ import SiderContainer from './sider'
 import styles from './index.less'
 
 const { Content, Footer } = Layout
-const publicPages = ['/login', '/register', '/reset']
 
 class App extends React.Component {
 
-  componentWillMount() {
-    if (!this.isPublicPages) {
-      this.props.checkAuth(this.props.pathname)
-    }
-  }
-
   get isPublicPages() {
-    return publicPages.includes(this.props.pathname)
+    const { publicPaths, pathname } = this.props
+    return publicPaths.includes(pathname)
   }
 
   get publicPagesLayout() {
@@ -62,8 +56,7 @@ class App extends React.Component {
 
 App.propTypes = {
   isNavbar: PropTypes.bool.isRequired,
-  pathname: PropTypes.string.isRequired,
-  checkAuth: PropTypes.func.isRequired
+  pathname: PropTypes.string.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -71,11 +64,4 @@ const mapStateToProps = state => ({
   pathname: state.routing.location.pathname
 })
 
-const mapDispatchToProps = dispatch => ({
-  checkAuth: pathname => dispatch({
-    type: 'app/checkAuth',
-    payload: { attemptedUrl: pathname }
-  })
-})
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
+export default withRouter(connect(mapStateToProps)(App))
