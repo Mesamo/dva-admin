@@ -54,7 +54,9 @@ const LoginForm = ({
   return (
     <Form className={styles.normal}>
       <QueueAnim>
-        <div className={styles.dva} key="1" />
+        <div className={styles.logo} key="1">
+          <img alt="logo" src="/favicon.ico" className={styles.dva} />
+        </div>
         <FormItem hasFeedback key="2" >
           {getFieldDecorator('email', {
             rules: [

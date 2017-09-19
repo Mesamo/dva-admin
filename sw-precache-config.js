@@ -5,7 +5,8 @@ module.exports = {
     'dist/manifest.json',
     'dist/assets/**/*',
     'dist/static/*',
-    'dist/*common*'
+    'dist/*.js',
+    'dist/*.css'
   ],
   dontCacheBustUrlsMatching: /\.\w{8}\./,
   swFilePath: 'dist/service-worker.js'
