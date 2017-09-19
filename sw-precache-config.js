@@ -3,6 +3,7 @@ module.exports = {
   staticFileGlobs: [
     'dist/favicon.ico',
     'dist/manifest.json',
+    'dist/index.html',
     'dist/assets/**/*',
     'dist/static/*',
     'dist/*.js',
