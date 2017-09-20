@@ -2,8 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Form, Input, Radio } from 'antd'
 
-import translate from '../../i18n/translate'
-
 const FormItem = Form.Item
 
 const UserForm = ({
@@ -133,4 +131,4 @@ UserForm.propTypes = {
   messages: PropTypes.object
 }
 
-export default Form.create()(translate('User')(UserForm))
+export default Form.create()(UserForm)

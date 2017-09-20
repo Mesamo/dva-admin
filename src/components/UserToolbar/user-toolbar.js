@@ -1,18 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button, Modal } from 'antd'
+import { Form, Button, Modal } from 'antd'
 
 import UserForm from '../UserForm'
 
 import styles from './user-toolbar.less'
-
-let formRef = null
 
 const UserToolbar = ({
   addModalVisible,
   onShowAddModal,
   onHideAddModal,
   onCreate,
+  form,
   loading,
   messages
 }) => {
@@ -25,16 +24,11 @@ const UserToolbar = ({
   }
 
   const handleCreate = () => {
-    formRef.validateFields((err, values) => {
-      if (err) {
-        return
+    form.validateFields((err, values) => {
+      if (!err) {
+        onCreate(values)
       }
-      onCreate(values)
     })
-  }
-
-  const saveFormRef = (form) => {
-    formRef = form
   }
 
   return (
@@ -54,7 +48,7 @@ const UserToolbar = ({
         okText={messages.ok}
         cancelText={messages.cancel}
       >
-        <UserForm ref={saveFormRef} />
+        <UserForm form={form} />
       </Modal> : ''}
     </div>
   )
@@ -75,4 +69,4 @@ UserToolbar.propTypes = {
   messages: PropTypes.object
 }
 
-export default UserToolbar
+export default Form.create()(UserToolbar)

@@ -1,3 +1,5 @@
 import UserForm from './user-form'
 
-export default UserForm
+import translate from '../../i18n/translate'
+
+export default translate('User')(UserForm)
