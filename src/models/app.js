@@ -10,7 +10,7 @@ export default {
   state: {
     currentLanguage: 'en-US',
     supportLanguages: ['zh-CN', 'en-US'],
-    username: 'user',
+    username: 'anonymous',
     collapsed: false,
     isNavbar: document.body.clientWidth < 769,
     darkTheme: true,
@@ -60,6 +60,7 @@ export default {
   effects: {
     logout: takeLatest(function* logout({ payload }, { call, put }) {
       yield call(fetchLogout)
+      yield put(({ type: 'saveUsername', username: 'anonymous' }))
       yield put({ type: 'redirectToLogin', payload: { attemptedUrl: '/' } })
     }),
     *redirectToLogin({ payload }, { put }) {
