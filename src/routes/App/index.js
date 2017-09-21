@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import NProgress from 'nprogress'
 import { withRouter } from 'dva/router'
 import { connect } from 'dva'
 import { Layout } from 'antd'
@@ -9,8 +10,15 @@ import SiderContainer from './sider'
 import styles from './index.less'
 
 const { Content, Footer } = Layout
+let lastHref
 
 class App extends React.Component {
+
+  componentDidUpdate() {
+    if (NProgress.isStarted()) {
+      NProgress.done()
+    }
+  }
 
   get isPublicPages() {
     const { publicPaths, pathname } = this.props
@@ -47,6 +55,10 @@ class App extends React.Component {
   }
 
   render() {
+    const href = window.location.href
+    if (lastHref !== href) {
+      NProgress.start()
+    }
     if (this.isPublicPages) {
       return this.publicPagesLayout
     }

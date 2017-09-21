@@ -21,6 +21,7 @@
     "dva": "^2.0.3",
     "dva-loading": "^1.0.2",
     "firebase": "^4.3.0",
+    "nprogress": "^0.2.0",
     "path-to-regexp": "^2.0.0",
     "promise-polyfill": "^6.0.2",
     "rc-queue-anim": "^1.2.0",
