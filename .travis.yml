@@ -4,12 +4,12 @@ node_js:
   - "8.4.0"
 
 script:
-  - yarn
+  - cd ./functions && yarn
+  - cd ../ && yarn
   - yarn build
 
 install:
   - yarn global add firebase-tools
-  - cd ./functions && yarn
 
 after_success:
   - firebase deploy --token $FIREBASE_TOKEN --non-interactive
