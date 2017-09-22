@@ -30,6 +30,7 @@ const Routers = ({ history, app }) => {
     component: () => import('./routes/Contents/IndexPage/index-page')
   }, {
     path: '/dashboard',
+    models: () => [import('./models/dashboard')],
     component: () => import('./routes/Contents/dashboard/dashboard')
   }, {
     path: '/users',
