@@ -14,6 +14,12 @@ let lastHref
 
 class App extends React.Component {
 
+  componentDidMount() {
+    if (NProgress.isStarted()) {
+      NProgress.done()
+    }
+  }
+
   componentDidUpdate() {
     if (NProgress.isStarted()) {
       NProgress.done()
