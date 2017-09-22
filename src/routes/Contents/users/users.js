@@ -8,7 +8,6 @@ import UserToolbar from '../../../components/UserToolbar'
 import styles from './users.less'
 
 class Users extends React.Component {
-
   getChildContext() {
     return {
       currentLanguage: this.props.currentLanguage

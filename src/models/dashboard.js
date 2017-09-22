@@ -23,11 +23,11 @@ export default {
     }
   },
   effects: {
-    *getCards({ payload }, { call, put }) {
+    *getCards(action, { call, put }) {
       const response = yield call(getCards)
       yield put({ type: 'saveCards', payload: { cards: response.data } })
     },
-    *getSales({ payload }, { call, put }) {
+    *getSales(action, { call, put }) {
       const response = yield call(getSales)
       yield put({ type: 'saveSales', payload: { sales: response.data } })
     }

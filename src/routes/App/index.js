@@ -13,7 +13,6 @@ const { Content, Footer } = Layout
 let lastHref
 
 class App extends React.Component {
-
   componentDidMount() {
     if (NProgress.isStarted()) {
       NProgress.done()

@@ -8,7 +8,6 @@ import SalesChart from '../../../components/SalesChart'
 import styles from './dashboard.less'
 
 class Dashboard extends React.Component {
-
   getChildContext() {
     return {
       currentLanguage: this.props.currentLanguage
@@ -17,7 +16,7 @@ class Dashboard extends React.Component {
 
   get cards() {
     return this.props.cards.map((card, index) => (
-      <Col className={styles.card} key={index} xs={24} sm={12} lg={6}>
+      <Col className={styles.card} key={`card-${index}`} xs={24} sm={12} lg={6}>
         <NumberCard {...card} title={card.title[this.props.currentLanguage]} />
       </Col>
     ))

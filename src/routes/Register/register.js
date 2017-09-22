@@ -8,7 +8,6 @@ import { noticeSuccess, noticeError } from '../../utils/notice'
 import styles from './register.less'
 
 class Register extends React.Component {
-
   getChildContext() {
     return {
       currentLanguage: this.props.currentLanguage

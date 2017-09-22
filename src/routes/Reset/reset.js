@@ -8,7 +8,6 @@ import { noticeSuccess, noticeError } from '../../utils/notice'
 import styles from './reset.less'
 
 class Reset extends React.Component {
-
   getChildContext() {
     return {
       currentLanguage: this.props.currentLanguage

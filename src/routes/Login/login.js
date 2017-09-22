@@ -9,7 +9,6 @@ import { noticeSuccess, noticeError } from '../../utils/notice'
 import styles from './login.less'
 
 class Login extends React.Component {
-
   getChildContext() {
     return {
       currentLanguage: this.props.currentLanguage
