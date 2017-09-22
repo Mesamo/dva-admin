@@ -50,7 +50,9 @@ Dashboard.childContextTypes = {
 }
 
 Dashboard.defaultProps = {
-  currentLanguage: 'en-US'
+  currentLanguage: 'en-US',
+  cards: [],
+  sales: []
 }
 
 Dashboard.propTypes = {

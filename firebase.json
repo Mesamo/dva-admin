@@ -3,6 +3,18 @@
     "public": "dist",
     "rewrites": [
       {
+        "source": "/helloWorld",
+        "function": "helloWorld"
+      },
+      {
+        "source": "/cards",
+        "function": "cards"
+      },
+      {
+        "source": "/sales",
+        "function": "sales"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
