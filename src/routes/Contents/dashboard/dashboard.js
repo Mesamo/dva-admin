@@ -24,15 +24,11 @@ class Dashboard extends React.Component {
   }
 
   get salesChart() {
-    if (this.props.sales && this.props.sales.length > 0) {
-      return (
-        <Col xs={24}>
-          <SalesChart data={this.props.sales} />
-        </Col>
-      )
-    } else {
-      return ''
-    }
+    return this.props.sales && this.props.sales.length > 0 ? (
+      <Col xs={24}>
+        <SalesChart data={this.props.sales} />
+      </Col>
+    ) : ''
   }
 
   render() {
@@ -41,7 +37,7 @@ class Dashboard extends React.Component {
         <Row gutter={10}>
           {this.cards}
         </Row>
-        <Row>
+        <Row gutter={10}>
           {this.salesChart}
         </Row>
       </div>
