@@ -1,5 +1,5 @@
 module.exports = {
-  'GET /cards': (req, res) => {
+  'GET /api/v1/cards': (req, res) => {
     const response = [{
       icon: 'pay-circle-o',
       color: '#64ea91',
@@ -39,7 +39,7 @@ module.exports = {
     }]
     res.json(response)
   },
-  'GET /sales': (req, res) => {
+  'GET /api/v1/sales': (req, res) => {
     const response = [{
       year: '2010',
       food: 123,

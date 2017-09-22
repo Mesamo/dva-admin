@@ -3,15 +3,11 @@
     "public": "dist",
     "rewrites": [
       {
-        "source": "/helloWorld",
-        "function": "helloWorld"
-      },
-      {
-        "source": "/cards",
+        "source": "/api/v1/cards",
         "function": "cards"
       },
       {
-        "source": "/sales",
+        "source": "/api/v1/sales",
         "function": "sales"
       },
       {
