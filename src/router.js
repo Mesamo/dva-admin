@@ -25,7 +25,7 @@ const Routers = ({ history, app }) => {
     component: () => import('./routes/Reset/reset')
   }]
 
-  const AuthRoutes = [{
+  const authRoutes = [{
     path: '/',
     component: () => import('./routes/Contents/IndexPage/index-page')
   }, {
@@ -52,7 +52,7 @@ const Routers = ({ history, app }) => {
     />
   ))
 
-  const getAuthRoutes = () => AuthRoutes.map(({ path, ...dynamics }) => (
+  const getAuthRoutes = () => authRoutes.map(({ path, ...dynamics }) => (
     <AuthorizedRoute
       key={`product-${path}`}
       exact
