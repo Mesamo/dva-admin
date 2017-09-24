@@ -29,10 +29,8 @@ export default {
       const { email, password } = payload
       const rememberMe = yield select(state => state.login.rememberMe)
       try {
-        // 调用登录服务
         const response = yield call(fetchLogin, email, password)
         if (response) {
-          // 调用登录成功回调
           yield onSuccess('Login success : )')
           if (rememberMe) {
             yield write('email', email)
@@ -40,7 +38,6 @@ export default {
             yield remove('email')
           }
         } else {
-          // 调用登录失败回调
           yield onError(response.message)
         }
       } catch (error) {

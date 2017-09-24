@@ -4,10 +4,8 @@ import { sendResetPasswordEmail } from '../services/login.service'
 
 export default {
   namespace: 'reset',
-  state: {
-  },
-  reducers: {
-  },
+  state: {},
+  reducers: {},
   effects: {
     *sendEmil({ payload, onSuccess, onError }, { call, put }) {
       const { email } = payload
@@ -20,6 +18,5 @@ export default {
       }
     }
   },
-  subscriptions: {
-  }
+  subscriptions: {}
 }
