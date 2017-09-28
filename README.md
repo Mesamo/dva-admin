@@ -17,22 +17,16 @@ This live demo is deploy on firebase hosting. You can view a live version of thi
 ## Getting Started
 Install dependencies
 ```bash
-$ npm install
-# or
 $ yarn
 ```
 
 Start dev server
 ```bash
-$ npm start
-# or
 $ yarn start
 ```
 
 Build
 ```bash
-$ npm run build
-# or
 $ yarn build
 ```
 
