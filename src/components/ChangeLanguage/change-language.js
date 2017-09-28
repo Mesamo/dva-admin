@@ -42,8 +42,8 @@ ChangeLanguage.defaultProps = {
   messages: {
     translations: 'Translations'
   },
-  supportLanguages: [],
-  onMenuClick: () => { }
+  currentLanguage: 'en-US',
+  supportLanguages: []
 }
 
 ChangeLanguage.propTypes = {

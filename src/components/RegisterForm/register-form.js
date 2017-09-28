@@ -108,9 +108,12 @@ const RegisterForm = ({
         <FormItem key="4">
           <Button
             className={styles.button}
-            type="primary" htmlType="submit" size="large"
-            onClick={handleSubmit} loading={loginButtonLoading}
+            type="primary"
+            htmlType="submit"
+            size="large"
+            loading={loginButtonLoading}
             disabled={hasErrors(getFieldsError())}
+            onClick={handleSubmit}
           >
             {registerText}
           </Button>
@@ -122,6 +125,7 @@ const RegisterForm = ({
 }
 
 RegisterForm.defaultProps = {
+  loading: false,
   messages: {
     emailText: 'email',
     passwordText: 'password',

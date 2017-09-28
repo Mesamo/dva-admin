@@ -58,20 +58,20 @@ export default {
     }
   },
   effects: {
-    logout: takeLatest(function* logout({ payload }, { call, put }) {
+    logout: takeLatest(function* logout(action, { call, put }) {
       yield call(fetchLogout)
-      yield put(({ type: 'saveUsername', username: 'anonymous' }))
+      yield put({ type: 'saveUsername', username: 'anonymous' })
       yield put({ type: 'redirectToLogin', payload: { attemptedUrl: '/' } })
     }),
     *redirectToLogin({ payload }, { put }) {
       yield put({ type: 'saveAttemptedUrl', payload })
       yield put(routerRedux.push('/login'))
     },
-    *redirectToApp({ payload }, { put, select }) {
+    *redirectToApp(action, { put, select }) {
       const attemptedUrl = yield select(state => state.app.attemptedUrl)
       yield put(routerRedux.push({ pathname: attemptedUrl }))
     },
-    *siderResponsive({ payload }, { put, select }) {
+    *siderResponsive(action, { put, select }) {
       const { app } = yield select(state => state)
       const isResponsive = document.body.clientWidth < 769
       if (isResponsive !== app.siderRespons) {

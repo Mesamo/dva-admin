@@ -7,7 +7,6 @@ import Sider from '../../components/Sider'
 import menus from '../../utils/menu'
 
 class SiderContainer extends React.Component {
-
   getChildContext() {
     return {
       currentLanguage: this.props.currentLanguage

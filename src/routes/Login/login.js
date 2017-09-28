@@ -17,7 +17,8 @@ class Login extends React.Component {
 
   get loginFormProps() {
     return {
-      login: this.props.login,
+      email: this.props.email,
+      rememberMe: this.props.rememberMe,
       loading: this.props.loading,
       onLogin: this.props.onLogin,
       onChange: this.props.onChange
@@ -48,18 +49,24 @@ Login.childContextTypes = {
   currentLanguage: PropTypes.string
 }
 
+Login.defaultProps = {
+  loading: false
+}
+
 Login.propTypes = {
-  login: PropTypes.object.isRequired,
+  email: PropTypes.string.isRequired,
+  rememberMe: PropTypes.bool.isRequired,
+  loading: PropTypes.bool,
   currentLanguage: PropTypes.string.isRequired,
-  supportLanguages: PropTypes.array.isRequired,
-  loading: PropTypes.bool
+  supportLanguages: PropTypes.array.isRequired
 }
 
 const mapStateToProps = state => ({
-  login: state.login,
+  email: state.login.email,
+  rememberMe: state.login.rememberMe,
+  loading: state.loading.models.login,
   currentLanguage: state.app.currentLanguage,
-  supportLanguages: state.app.supportLanguages,
-  loading: state.loading.models.login
+  supportLanguages: state.app.supportLanguages
 })
 
 const mapDispatchToProps = (dispatch) => {

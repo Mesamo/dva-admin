@@ -59,8 +59,7 @@ const Sider = ({
           {menuItems}
         </Menu>
       </QueueAnim>
-      {collapsed ? '' :
-      <QueueAnim delay={600} type="left">
+      {collapsed ? '' : <QueueAnim delay={600} type="left">
         <div className={styles.switchtheme} key="1">
           <span style={textColor}><Icon type="bulb" />{changeThemeText}</span>
           <Switch
@@ -81,21 +80,19 @@ Sider.defaultProps = {
     darkText: 'dark',
     lightText: 'light'
   },
-  currentLanguage: 'en',
-  breakpoint: 'lg',
-  darkTheme: true
+  breakpoint: 'lg'
 }
 
 Sider.propTypes = {
-  collapsed: PropTypes.bool,
+  collapsed: PropTypes.bool.isRequired,
   breakpoint: PropTypes.string,
-  darkTheme: PropTypes.bool,
-  menus: PropTypes.any,
-  currentLanguage: PropTypes.string,
-  pathname: PropTypes.string,
+  darkTheme: PropTypes.bool.isRequired,
+  menus: PropTypes.any.isRequired,
+  currentLanguage: PropTypes.string.isRequired,
+  pathname: PropTypes.string.isRequired,
   messages: PropTypes.object,
-  toIndex: PropTypes.func,
-  onChangeTheme: PropTypes.func
+  toIndex: PropTypes.func.isRequired,
+  onChangeTheme: PropTypes.func.isRequired
 }
 
 export default Sider

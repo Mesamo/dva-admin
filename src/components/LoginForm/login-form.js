@@ -9,7 +9,8 @@ import styles from './login-form.less'
 const FormItem = Form.Item;
 
 const LoginForm = ({
-  login,
+  email,
+  rememberMe,
   loading: loginButtonLoading,
   onLogin,
   onChange,
@@ -31,8 +32,6 @@ const LoginForm = ({
     correctEmail,
     requiredPassword
   } = messages;
-
-  const { rememberMe, email } = login;
 
   const handleChange = (e) => {
     e.stopPropagation();
@@ -70,9 +69,7 @@ const LoginForm = ({
               }
             ],
             initialValue: email
-          })(<Input
-            prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder={emailText}
-          />)}
+          })(<Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder={emailText} />)}
         </FormItem>
         <FormItem hasFeedback key="3" >
           {getFieldDecorator('password', {
@@ -90,9 +87,13 @@ const LoginForm = ({
           </Checkbox>
           <Link className={styles.forgot} to="/reset">{forgetPasswdText}</Link>
           <Button
-            type="primary" size="large" htmlType="submit" className={styles.button}
-            onClick={handleLogin} loading={loginButtonLoading}
+            className={styles.button}
+            type="primary"
+            htmlType="submit"
+            size="large"
+            loading={loginButtonLoading}
             disabled={hasErrors(getFieldsError())}
+            onClick={handleLogin}
           >
             {loginButtonText}
           </Button>
@@ -104,6 +105,7 @@ const LoginForm = ({
 };
 
 LoginForm.defaultProps = {
+  loading: false,
   messages: {
     emailText: 'Email',
     passwordText: 'Password',
@@ -118,6 +120,9 @@ LoginForm.defaultProps = {
 };
 
 LoginForm.propTypes = {
+  email: PropTypes.string.isRequired,
+  rememberMe: PropTypes.bool.isRequired,
+  loading: PropTypes.bool,
   messages: PropTypes.object,
   onChange: PropTypes.func.isRequired,
   onLogin: PropTypes.func.isRequired

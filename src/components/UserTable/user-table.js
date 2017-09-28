@@ -10,7 +10,7 @@ const UserTable = ({
   onSelectedChange,
   loading,
   messages
- }) => {
+}) => {
   const onClick = ({ item, key }) => actionFunc[key](item.props.recordKey)
 
   const getMenus = record => (
@@ -95,11 +95,11 @@ UserTable.defaultProps = {
 }
 
 UserTable.propTypes = {
-  actionFunc: PropTypes.object,
-  actionMenu: PropTypes.array,
-  data: PropTypes.array,
-  selectedKeys: PropTypes.array,
-  onSelectedChange: PropTypes.func,
+  actionFunc: PropTypes.object.isRequired,
+  actionMenu: PropTypes.array.isRequired,
+  data: PropTypes.array.isRequired,
+  selectedKeys: PropTypes.array.isRequired,
+  onSelectedChange: PropTypes.func.isRequired,
   loading: PropTypes.bool,
   messages: PropTypes.object
 }

@@ -36,6 +36,10 @@ Reset.childContextTypes = {
   currentLanguage: PropTypes.string
 }
 
+Reset.defaultProps = {
+  loading: false
+}
+
 Reset.propTypes = {
   currentLanguage: PropTypes.string.isRequired,
   loading: PropTypes.bool,

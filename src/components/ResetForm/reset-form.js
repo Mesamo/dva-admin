@@ -62,9 +62,12 @@ const ResetForm = ({
         <FormItem key="3">
           <Button
             className={styles.button}
-            type="primary" htmlType="submit" size="large"
-            onClick={handleSendEmail} loading={buttonLoading}
+            type="primary"
+            htmlType="submit"
+            size="large"
+            loading={buttonLoading}
             disabled={hasErrors(getFieldsError())}
+            onClick={handleSendEmail}
           >
             {emailButtonText}
           </Button>
@@ -76,6 +79,7 @@ const ResetForm = ({
 }
 
 ResetForm.defaultProps = {
+  loading: false,
   messages: {
     emailText: 'email',
     emailButtonText: 'Send Email',
@@ -87,6 +91,7 @@ ResetForm.defaultProps = {
 }
 
 ResetForm.propTypes = {
+  loading: PropTypes.bool,
   messages: PropTypes.object,
   onSendEmail: PropTypes.func.isRequired
 }

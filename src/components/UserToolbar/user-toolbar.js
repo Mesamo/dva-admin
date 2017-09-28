@@ -35,7 +35,10 @@ const UserToolbar = ({
     <div>
       <Button
         className={styles.button}
-        type="primary" icon="plus-circle-o" size="large" onClick={handleShowAddModal}
+        type="primary"
+        icon="plus-circle-o"
+        size="large"
+        onClick={handleShowAddModal}
       >
         {messages.addButton}
       </Button>
@@ -64,8 +67,8 @@ UserToolbar.defaultProps = {
 
 UserToolbar.propTypes = {
   addModalVisible: PropTypes.bool.isRequired,
-  onShowAddModal: PropTypes.func,
-  onHideAddModal: PropTypes.func,
+  onShowAddModal: PropTypes.func.isRequired,
+  onHideAddModal: PropTypes.func.isRequired,
   messages: PropTypes.object
 }
 

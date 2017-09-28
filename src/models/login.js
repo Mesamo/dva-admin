@@ -51,7 +51,9 @@ export default {
         const match = pathToRegexp('/login').exec(pathname)
         if (match) {
           const email = read('email')
-          dispatch({ type: 'saveEmail', payload: { email } })
+          if (email) {
+            dispatch({ type: 'saveEmail', payload: { email } })
+          }
         }
       })
     }

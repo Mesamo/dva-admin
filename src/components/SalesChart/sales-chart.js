@@ -22,8 +22,8 @@ const SalesChart = ({
           <Tooltip
             wrapperStyle={{ border: 'none', boxShadow: '4px 4px 40px rgba(0, 0, 0, 0.05)' }}
             content={(content) => {
-              const list = content.payload.map((item, key) => (
-                <li key={key} className={styles.tipitem}>
+              const list = content.payload.map(item => (
+                <li key={item.value} className={styles.tipitem}>
                   <span className={styles.radiusdot} style={{ background: item.color }} />
                   {`${messages[item.name]}: ${item.value}`}
                 </li>
@@ -41,8 +41,8 @@ const SalesChart = ({
             content={(props) => {
               const { payload } = props
               return (<ul className={`${styles.legend} clearfix`}>
-                {payload.map((item, key) => (
-                  <li key={key}>
+                {payload.map(item => (
+                  <li key={item.value}>
                     <span className={styles.radiusdot} style={{ background: item.color }} />
                     {messages[item.value]}
                   </li>
@@ -61,6 +61,7 @@ const SalesChart = ({
 }
 
 SalesChart.defaultProps = {
+  data: [],
   messages: {
     title: 'Yearly Sales',
     food: 'Food',

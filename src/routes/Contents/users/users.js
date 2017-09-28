@@ -69,7 +69,6 @@ Users.childContextTypes = {
 Users.propTypes = {
   user: PropTypes.object.isRequired,
   currentLanguage: PropTypes.string.isRequired,
-  loading: PropTypes.bool,
   onSelectedChange: PropTypes.func.isRequired,
   onShowAddModal: PropTypes.func.isRequired,
   onHideAddModal: PropTypes.func.isRequired,

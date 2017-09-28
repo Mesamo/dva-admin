@@ -88,20 +88,22 @@ Header.defaultProps = {
   messages: {
     translations: 'Translations'
   },
+  currentLanguage: 'en-US',
+  supportLanguages: [],
   username: 'user'
 }
 
 Header.propTypes = {
-  menus: PropTypes.array,
-  pathname: PropTypes.string,
-  isNavbar: PropTypes.bool,
+  menus: PropTypes.array.isRequired,
+  pathname: PropTypes.string.isRequired,
+  isNavbar: PropTypes.bool.isRequired,
   onSwitchSider: PropTypes.func.isRequired,
-  collapsed: PropTypes.bool,
-  headerMenus: PropTypes.array,
-  headerMenusFunc: PropTypes.object,
+  collapsed: PropTypes.bool.isRequired,
+  headerMenus: PropTypes.array.isRequired,
+  headerMenusFunc: PropTypes.object.isRequired,
   currentLanguage: PropTypes.string,
   supportLanguages: PropTypes.array,
-  onChangeLanguage: PropTypes.func,
+  onChangeLanguage: PropTypes.func.isRequired,
   username: PropTypes.string,
   messages: PropTypes.object
 }

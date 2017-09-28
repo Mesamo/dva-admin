@@ -6,7 +6,6 @@ import Header from '../../components/Header'
 import menus from '../../utils/menu'
 
 class HeaderContainer extends React.Component {
-
   getChildContext() {
     return {
       currentLanguage: this.props.currentLanguage

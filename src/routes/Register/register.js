@@ -36,6 +36,10 @@ Register.childContextTypes = {
   currentLanguage: PropTypes.string
 }
 
+Register.defaultProps = {
+  loading: false
+}
+
 Register.propTypes = {
   currentLanguage: PropTypes.string.isRequired,
   loading: PropTypes.bool,
