@@ -57,12 +57,9 @@ export default {
       }
     },
     *convert({ payload }, { put }) {
-      const { usersObj } = payload
       const users = []
-      usersObj.forEach((snapshort) => {
-        const user = snapshort.val()
-        user.key = snapshort.key
-        users.push(user)
+      payload.usersObj.forEach((snapshort) => {
+        users.push({ key: snapshort.key, ...snapshort.val() })
       })
       yield put({ type: 'saveUsers', users })
     }

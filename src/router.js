@@ -11,32 +11,40 @@ const { ConnectedRouter } = routerRedux
 const Routers = ({ history, app }) => {
   app.model(AppModel)
 
-  const publicRoutes = [{
-    path: '/login',
-    models: () => [import('./models/login')],
-    component: () => import('./routes/Login/login')
-  }, {
-    path: '/register',
-    models: () => [import('./models/register')],
-    component: () => import('./routes/Register/register')
-  }, {
-    path: '/reset',
-    models: () => [import('./models/reset')],
-    component: () => import('./routes/Reset/reset')
-  }]
+  const publicRoutes = [
+    {
+      path: '/login',
+      models: () => [import('./models/login')],
+      component: () => import('./routes/Login/login')
+    },
+    {
+      path: '/register',
+      models: () => [import('./models/register')],
+      component: () => import('./routes/Register/register')
+    },
+    {
+      path: '/reset',
+      models: () => [import('./models/reset')],
+      component: () => import('./routes/Reset/reset')
+    }
+  ]
 
-  const authRoutes = [{
-    path: '/',
-    component: () => import('./routes/Contents/IndexPage/index-page')
-  }, {
-    path: '/dashboard',
-    models: () => [import('./models/dashboard')],
-    component: () => import('./routes/Contents/dashboard/dashboard')
-  }, {
-    path: '/users',
-    models: () => [import('./models/user')],
-    component: () => import('./routes/Contents/users/users')
-  }]
+  const authRoutes = [
+    {
+      path: '/',
+      component: () => import('./routes/Contents/IndexPage/index-page')
+    },
+    {
+      path: '/dashboard',
+      models: () => [import('./models/dashboard')],
+      component: () => import('./routes/Contents/dashboard/dashboard')
+    },
+    {
+      path: '/users',
+      models: () => [import('./models/user')],
+      component: () => import('./routes/Contents/users/users')
+    }
+  ]
 
   const error = dynamic({
     app,
