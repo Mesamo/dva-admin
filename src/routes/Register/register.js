@@ -53,18 +53,16 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onRegister: (email, password) => dispatch({
-      type: 'register/register',
-      payload: {
-        email,
-        password
-      },
-      onSuccess: msg => noticeSuccess(msg),
-      onError: (code, msg) => noticeError(code, msg)
-    })
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  onRegister: (email, password) => dispatch({
+    type: 'register/register',
+    payload: {
+      email,
+      password
+    },
+    onSuccess: msg => noticeSuccess(msg),
+    onError: (code, msg) => noticeError(code, msg)
+  })
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register)

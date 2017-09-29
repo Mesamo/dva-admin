@@ -58,7 +58,10 @@ Login.propTypes = {
   rememberMe: PropTypes.bool.isRequired,
   loading: PropTypes.bool,
   currentLanguage: PropTypes.string.isRequired,
-  supportLanguages: PropTypes.array.isRequired
+  supportLanguages: PropTypes.array.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onMenuClick: PropTypes.func.isRequired,
+  onLogin: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -69,26 +72,18 @@ const mapStateToProps = state => ({
   supportLanguages: state.app.supportLanguages
 })
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onChange: (values) => {
-      dispatch({ type: 'login/triggerCheckBox', payload: { rememberMe: values } })
+const mapDispatchToProps = dispatch => ({
+  onChange: values => dispatch({ type: 'login/triggerCheckBox', payload: { rememberMe: values } }),
+  onMenuClick: language => dispatch({ type: 'app/changeLanguage', currentLanguage: language }),
+  onLogin: (email, password) => dispatch({
+    type: 'login/login',
+    payload: {
+      email,
+      password
     },
-    onLogin: (email, password) => {
-      dispatch({
-        type: 'login/login',
-        payload: {
-          email,
-          password
-        },
-        onSuccess: msg => noticeSuccess(msg),
-        onError: (code, msg) => noticeError(code, msg)
-      })
-    },
-    onMenuClick: (language) => {
-      dispatch({ type: 'app/changeLanguage', currentLanguage: language })
-    }
-  }
-}
+    onSuccess: msg => noticeSuccess(msg),
+    onError: (code, msg) => noticeError(code, msg)
+  })
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

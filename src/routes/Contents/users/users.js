@@ -82,16 +82,22 @@ const mapStateToProps = state => ({
   loading: state.loading.models.user
 })
 
-const mapDispatchToProps = (dispatch) => {
-  const onSuccess = msg => message.success(msg)
-  const onError = msg => message.error(msg)
-  return {
-    onSelectedChange: keys => dispatch({ type: 'user/onSelectedChange', selectedKeys: keys }),
-    onShowAddModal: () => dispatch({ type: 'user/showAddModal' }),
-    onHideAddModal: () => dispatch({ type: 'user/hideAddModal' }),
-    onCreate: values => dispatch({ type: 'user/addUser', payload: { user: values }, onSuccess, onError }),
-    onDelete: key => dispatch({ type: 'user/delUser', payload: { key }, onSuccess, onError })
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  onSelectedChange: keys => dispatch({ type: 'user/onSelectedChange', selectedKeys: keys }),
+  onShowAddModal: () => dispatch({ type: 'user/showAddModal' }),
+  onHideAddModal: () => dispatch({ type: 'user/hideAddModal' }),
+  onCreate: values => dispatch({
+    type: 'user/addUser',
+    payload: { user: values },
+    onSuccess: msg => message.success(msg),
+    onError: msg => message.error(msg)
+  }),
+  onDelete: key => dispatch({
+    type: 'user/delUser',
+    payload: { key },
+    onSuccess: msg => message.success(msg),
+    onError: msg => message.error(msg)
+  })
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Users)

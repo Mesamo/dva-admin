@@ -14,13 +14,6 @@ function getDisplayName(WrappedComponent) {
   return WrappedComponent.displayName || WrappedComponent.name || 'Component'
 }
 
-/**
- * 国际化高阶组件
- *
- * @export
- * @param {string} key 组件名称
- * @returns
- */
 export default function translate(key) {
   return (WrappedComponent) => {
     class TranslationComponent extends React.Component {

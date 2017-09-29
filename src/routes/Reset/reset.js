@@ -53,19 +53,17 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onSendEmail: (email) => {
-      dispatch({
-        type: 'reset/sendEmil',
-        payload: {
-          email
-        },
-        onSuccess: msg => noticeSuccess(msg),
-        onError: (code, msg) => noticeError(code, msg)
-      })
-    }
+const mapDispatchToProps = dispatch => ({
+  onSendEmail: (email) => {
+    dispatch({
+      type: 'reset/sendEmil',
+      payload: {
+        email
+      },
+      onSuccess: msg => noticeSuccess(msg),
+      onError: (code, msg) => noticeError(code, msg)
+    })
   }
-}
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Reset)
