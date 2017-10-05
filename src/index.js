@@ -2,6 +2,7 @@ import dva from 'dva'
 import createHistory from 'history/createBrowserHistory'
 import createLoading from 'dva-loading'
 
+import { noticeError } from './utils/notice'
 import './index.less'
 
 // 1. Initialize
@@ -9,7 +10,7 @@ const app = dva({
   ...createLoading({ effects: true }),
   history: createHistory(),
   onError(error) {
-    console.error('app onError --', error)
+    noticeError('App OnError', error, 0)
   }
 });
 
