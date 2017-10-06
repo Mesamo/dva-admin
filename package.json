@@ -9,7 +9,7 @@
     "start": "roadhog server",
     "build": "roadhog build && sw-precache --config=sw-precache-config.js",
     "analyze": "roadhog build --analyze",
-    "lint": "eslint --ext .js src test",
+    "lint": "eslint --ext .js src",
     "precommit": "npm run lint"
   },
   "engines": {
