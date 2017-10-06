@@ -24,8 +24,8 @@
     "nprogress": "^0.2.0",
     "path-to-regexp": "^2.0.0",
     "rc-queue-anim": "^1.2.3",
-    "react": "^15.6.0",
-    "react-dom": "^15.6.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "recharts": "^1.0.0-apha.5"
   },
   "devDependencies": {
