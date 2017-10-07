@@ -43,11 +43,22 @@ const Sider = ({
     onChangeTheme(checked)
   }
 
+  const switchTheme = (
+    <QueueAnim delay={600} type="left">
+      <div className={styles.switchtheme} key="1">
+        <span style={textColor}><Icon type="bulb" />{changeThemeText}</span>
+        <Switch
+          onChange={handleOnChange}
+          defaultChecked={darkTheme}
+          checkedChildren={darkText}
+          unCheckedChildren={lightText}
+        />
+      </div>
+    </QueueAnim>
+  )
+
   return (
-    <Layout.Sider
-      {...props}
-      className={darkTheme ? '' : styles.white}
-    >
+    <Layout.Sider className={darkTheme ? '' : styles.white} {...props}>
       <QueueAnim delay={200} type="top" onClick={handleToIndex}>
         <div className={styles.logo} key="1">
           <img alt="logo" src="/favicon.ico" className={styles.dva} />
@@ -59,17 +70,7 @@ const Sider = ({
           {menuItems}
         </Menu>
       </QueueAnim>
-      {collapsed ? '' : <QueueAnim delay={600} type="left">
-        <div className={styles.switchtheme} key="1">
-          <span style={textColor}><Icon type="bulb" />{changeThemeText}</span>
-          <Switch
-            onChange={handleOnChange}
-            defaultChecked={darkTheme}
-            checkedChildren={darkText}
-            unCheckedChildren={lightText}
-          />
-        </div>
-      </QueueAnim>}
+      {collapsed ? '' : switchTheme}
     </Layout.Sider>
   )
 }

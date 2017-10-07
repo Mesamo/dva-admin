@@ -7,7 +7,9 @@ import { currentUser } from '../../services/login.service'
 
 class AuthorizedRoute extends React.Component {
   render() {
-    const { path, exact, asyncComponent, location, dispatch } = this.props
+    const {
+      path, exact, asyncComponent, location, dispatch
+    } = this.props
     if (currentUser()) {
       return (
         <Route path={path} exact={exact} component={asyncComponent} />

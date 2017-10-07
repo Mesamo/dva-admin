@@ -22,6 +22,14 @@ const UserForm = ({
     }
   }
 
+  const genderSelector = (
+    <Radio.Group>
+      <Radio.Button value="male">{messages.male}</Radio.Button>
+      <Radio.Button value="female">{messages.female}</Radio.Button>
+      <Radio.Button value="unknow">{messages.unknow}</Radio.Button>
+    </Radio.Group>
+  )
+
   return (
     <Form layout={layout}>
       <FormItem hasFeedback label={messages.name} {...formItemLayout}>
@@ -42,13 +50,7 @@ const UserForm = ({
               message: messages.fieldRequired
             }
           ]
-        })(
-          <Radio.Group>
-            <Radio.Button value="male">{messages.male}</Radio.Button>
-            <Radio.Button value="female">{messages.female}</Radio.Button>
-            <Radio.Button value="unknow">{messages.unknow}</Radio.Button>
-          </Radio.Group>
-        )}
+        })(genderSelector)}
       </FormItem>
       <FormItem hasFeedback label={messages.age} {...formItemLayout}>
         {getFieldDecorator('age', {

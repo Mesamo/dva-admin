@@ -5,7 +5,7 @@ import { Layout, Menu, Icon, Popover } from 'antd'
 import getMenus from '../Menus/menus'
 import styles from './header.less'
 
-const SubMenu = Menu.SubMenu
+const { SubMenu } = Menu
 
 const Header = ({
   menus,
@@ -24,9 +24,7 @@ const Header = ({
   const { translations } = messages
   const handleClickMenu = e => headerMenusFunc[e.key]()
   const handleSwitchSider = () => onSwitchSider()
-  const handleChangeLanguage = ({ key }) => {
-    onChangeLanguage(key)
-  }
+  const handleChangeLanguage = ({ key }) => onChangeLanguage(key)
 
   let headerButton
 

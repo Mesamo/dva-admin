@@ -40,14 +40,16 @@ const SalesChart = ({
             verticalAlign="top"
             content={(props) => {
               const { payload } = props
-              return (<ul className={`${styles.legend} clearfix`}>
-                {payload.map(item => (
-                  <li key={item.value}>
-                    <span className={styles.radiusdot} style={{ background: item.color }} />
-                    {messages[item.value]}
-                  </li>
-                ))}
-              </ul>)
+              return (
+                <ul className={`${styles.legend} clearfix`}>
+                  {payload.map(item => (
+                    <li key={item.value}>
+                      <span className={styles.radiusdot} style={{ background: item.color }} />
+                      {messages[item.value]}
+                    </li>
+                  ))}
+                </ul>
+              )
             }}
           />
           <CartesianGrid strokeDasharray="3 3" />

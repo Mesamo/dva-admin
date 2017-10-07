@@ -18,7 +18,7 @@ export default function translate(key) {
   return (WrappedComponent) => {
     class TranslationComponent extends React.Component {
       render() {
-        const currentLanguage = this.context.currentLanguage
+        const { currentLanguage } = this.context
         const globalMessages = languages[currentLanguage][global]
         const partialMessages = key ? languages[currentLanguage][key] : {}
 

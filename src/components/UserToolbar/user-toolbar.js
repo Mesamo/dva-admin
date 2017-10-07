@@ -42,17 +42,18 @@ const UserToolbar = ({
       >
         {messages.addButton}
       </Button>
-      {addModalVisible ? <Modal
-        title={messages.addButton}
-        visible
-        onOk={handleCreate}
-        confirmLoading={loading}
-        onCancel={handleHideAddModal}
-        okText={messages.ok}
-        cancelText={messages.cancel}
-      >
-        <UserForm form={form} />
-      </Modal> : ''}
+      {addModalVisible ?
+        <Modal
+          title={messages.addButton}
+          visible
+          onOk={handleCreate}
+          confirmLoading={loading}
+          onCancel={handleHideAddModal}
+          okText={messages.ok}
+          cancelText={messages.cancel}
+        >
+          <UserForm form={form} />
+        </Modal> : ''}
     </div>
   )
 }

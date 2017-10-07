@@ -60,7 +60,7 @@ class App extends React.Component {
   }
 
   render() {
-    const href = window.location.href
+    const { href } = window.location
     if (lastHref !== href) {
       NProgress.start()
     }

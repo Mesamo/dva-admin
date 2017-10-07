@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'dva/router'
 import { Menu, Icon } from 'antd'
 
-const SubMenu = Menu.SubMenu
+const { SubMenu } = Menu
 
 const getMenus = (menuArray, currentLanguage, parentPath = '/') => {
   return menuArray.map((menu) => {

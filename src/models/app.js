@@ -43,7 +43,7 @@ export default {
       }
     },
     changeLanguage(state, action) {
-      const currentLanguage = action.currentLanguage
+      const { currentLanguage } = action
       write('currentLanguage', currentLanguage)
       return {
         ...state,
