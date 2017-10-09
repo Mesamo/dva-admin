@@ -151,9 +151,9 @@ ansi-styles@^3.1.0, ansi-styles@^3.2.0:
   dependencies:
     color-convert "^1.9.0"
 
-antd@^2.13.4:
-  version "2.13.4"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-2.13.4.tgz#8c1ccd3622eb36677e68889899342508de96ef05"
+antd@^2.13.5:
+  version "2.13.5"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-2.13.5.tgz#f2f4ce9fff92ccd0486bdf2cd7065f32d661e720"
   dependencies:
     array-tree-filter "~1.0.0"
     babel-runtime "6.x"
@@ -5012,7 +5012,11 @@ mocha@^3.4.2:
     mkdirp "0.5.1"
     supports-color "3.1.2"
 
-moment@2.x, moment@2.x.x, moment@^2.18.1:
+moment@2.x, moment@^2.18.1:
+  version "2.19.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.19.0.tgz#44f675ef6b944942762581b1c179fb679e599d67"
+
+moment@2.x.x:
   version "2.18.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
 
@@ -6251,8 +6255,8 @@ rc-notification@~2.0.0:
     rc-util "^4.0.4"
 
 rc-pagination@~1.12.4:
-  version "1.12.9"
-  resolved "https://registry.yarnpkg.com/rc-pagination/-/rc-pagination-1.12.9.tgz#cebfa53946dcf8ad9e615db15d5e72ceecb3e197"
+  version "1.12.10"
+  resolved "https://registry.yarnpkg.com/rc-pagination/-/rc-pagination-1.12.10.tgz#212c24107fb0bea0ca86fbd6dcfda0ea709a45a2"
   dependencies:
     babel-runtime "6.x"
     prop-types "^15.5.7"
