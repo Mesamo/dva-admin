@@ -39,7 +39,7 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
-    "expect": "^21.2.0",
+    "expect": "^21.2.1",
     "husky": "^0.14.3",
     "redbox-react": "^1.5.0",
     "roadhog": "^1.2.2",
