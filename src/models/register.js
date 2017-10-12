@@ -2,10 +2,8 @@ import { fetchRegister } from '../services/login.service'
 
 export default {
   namespace: 'register',
-  state: {
-  },
-  reducers: {
-  },
+  state: {},
+  reducers: {},
   effects: {
     *register({ payload, onSuccess, onError }, { call }) {
       const { email, password } = payload
@@ -21,6 +19,5 @@ export default {
       }
     }
   },
-  subscriptions: {
-  }
+  subscriptions: {}
 }

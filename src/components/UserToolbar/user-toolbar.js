@@ -31,6 +31,20 @@ const UserToolbar = ({
     })
   }
 
+  const modal = (
+    <Modal
+      title={messages.addButton}
+      visible
+      onOk={handleCreate}
+      confirmLoading={loading}
+      onCancel={handleHideAddModal}
+      okText={messages.ok}
+      cancelText={messages.cancel}
+    >
+      <UserForm form={form} />
+    </Modal>
+  )
+
   return (
     <div>
       <Button
@@ -42,18 +56,7 @@ const UserToolbar = ({
       >
         {messages.addButton}
       </Button>
-      {addModalVisible ?
-        <Modal
-          title={messages.addButton}
-          visible
-          onOk={handleCreate}
-          confirmLoading={loading}
-          onCancel={handleHideAddModal}
-          okText={messages.ok}
-          cancelText={messages.cancel}
-        >
-          <UserForm form={form} />
-        </Modal> : ''}
+      {addModalVisible ? modal : ''}
     </div>
   )
 }

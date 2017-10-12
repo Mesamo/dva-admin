@@ -58,13 +58,11 @@ const Header = ({
           <SubMenu title={<span>{translations}</span>}>
             {supportLanguages
               .filter(language => language !== currentLanguage)
-              .map((language) => {
-                return (
-                  <Menu.Item key={language}>
-                    {language}
-                  </Menu.Item>
-                )
-              })
+              .map(language => (
+                <Menu.Item key={language}>
+                  {language}
+                </Menu.Item>
+              ))
             }
           </SubMenu>
         </Menu>
