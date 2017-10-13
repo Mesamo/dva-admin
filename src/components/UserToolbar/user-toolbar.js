@@ -1,16 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Form, Button, Modal } from 'antd'
+import { Form, Button } from 'antd'
 
-import UserForm from '../UserForm'
+import UserModal from '../UserModal'
 
 import styles from './user-toolbar.less'
 
 const UserToolbar = ({
-  addModalVisible,
+  mode,
+  initUser,
+  modalVisible,
   onShowAddModal,
-  onHideAddModal,
+  onHideModal,
   onCreate,
+  onEdit,
   form,
   loading,
   messages
@@ -19,31 +22,16 @@ const UserToolbar = ({
     onShowAddModal()
   }
 
-  const handleHideAddModal = () => {
-    onHideAddModal()
+  const modelProps = {
+    mode,
+    initUser,
+    modalVisible,
+    onCreate,
+    onEdit,
+    onHideModal,
+    form,
+    loading
   }
-
-  const handleCreate = () => {
-    form.validateFields((err, values) => {
-      if (!err) {
-        onCreate(values)
-      }
-    })
-  }
-
-  const modal = (
-    <Modal
-      title={messages.addButton}
-      visible
-      onOk={handleCreate}
-      confirmLoading={loading}
-      onCancel={handleHideAddModal}
-      okText={messages.ok}
-      cancelText={messages.cancel}
-    >
-      <UserForm form={form} />
-    </Modal>
-  )
 
   return (
     <div>
@@ -56,7 +44,7 @@ const UserToolbar = ({
       >
         {messages.addButton}
       </Button>
-      {addModalVisible ? modal : ''}
+      <UserModal {...modelProps} />
     </div>
   )
 }
@@ -70,9 +58,10 @@ UserToolbar.defaultProps = {
 }
 
 UserToolbar.propTypes = {
-  addModalVisible: PropTypes.bool.isRequired,
+  mode: PropTypes.string.isRequired,
+  modalVisible: PropTypes.bool.isRequired,
   onShowAddModal: PropTypes.func.isRequired,
-  onHideAddModal: PropTypes.func.isRequired,
+  onHideModal: PropTypes.func.isRequired,
   messages: PropTypes.object
 }
 

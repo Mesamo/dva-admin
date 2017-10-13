@@ -1,20 +1,28 @@
 import pathToRegexp from 'path-to-regexp'
 
-import { addUser, delUser } from '../services/user.service'
+import { addUser, delUser, updateUser } from '../services/user.service'
 import firebaseApp from '../utils/firebase'
 
 export default {
   namespace: 'user',
   state: {
+    mode: '',
     users: [],
+    selectedUser: undefined,
     selectedKeys: [],
-    addModalVisible: false
+    modalVisible: false
   },
   reducers: {
     saveUsers(state, action) {
       return {
         ...state,
         users: action.users
+      }
+    },
+    saveSelectedUser(state, action) {
+      return {
+        ...state,
+        selectedUser: action.user
       }
     },
     onSelectedChange(state, action) {
@@ -26,13 +34,23 @@ export default {
     showAddModal(state) {
       return {
         ...state,
-        addModalVisible: true
+        mode: 'add',
+        modalVisible: true
       }
     },
-    hideAddModal(state) {
+    showEditModal(state) {
       return {
         ...state,
-        addModalVisible: false
+        mode: 'edit',
+        modalVisible: true
+      }
+    },
+    hideModal(state) {
+      return {
+        ...state,
+        mode: '',
+        modalVisible: false,
+        selectedUser: undefined
       }
     }
   },
@@ -42,7 +60,21 @@ export default {
       try {
         yield call(addUser, user)
         onSuccess('add success : )')
-        yield put({ type: 'hideAddModal' })
+        yield put({ type: 'hideModal' })
+      } catch (error) {
+        onError(error.message)
+      }
+    },
+    *editUser({ payload, onSuccess, onError }, { call, put, select }) {
+      try {
+        const key = yield select(state => state.user.selectedUser.key)
+        const user = {
+          ...payload.user,
+          key
+        }
+        yield call(updateUser, user)
+        onSuccess('edit success : )')
+        yield put({ type: 'hideModal' })
       } catch (error) {
         onError(error.message)
       }
@@ -55,6 +87,12 @@ export default {
       } catch (error) {
         onError(error.message)
       }
+    },
+    *getSelectedUser({ payload }, { put, select }) {
+      const { key } = payload
+      const users = yield select(state => state.user.users)
+      const user = users.find(u => u.key === key)
+      yield put({ type: 'saveSelectedUser', user })
     },
     *convert({ payload }, { put }) {
       const users = []

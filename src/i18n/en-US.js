@@ -48,6 +48,9 @@ export default {
     address: 'Address',
     action: 'Action',
     delete: 'Delete',
+    edit: 'Edit',
+    addTitle: 'Add User',
+    editTitle: 'Edit User',
     correctAge: 'Please enter correct age',
     correctPhone: 'Please enter correct phone number'
   },

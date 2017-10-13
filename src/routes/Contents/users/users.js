@@ -16,23 +16,33 @@ class Users extends React.Component {
 
   get userToolbarProps() {
     return {
-      addModalVisible: this.props.user.addModalVisible,
+      mode: this.props.user.mode,
+      initUser: this.props.user.selectedUser,
+      modalVisible: this.props.user.modalVisible,
       loading: this.props.loading,
       onShowAddModal: this.props.onShowAddModal,
-      onHideAddModal: this.props.onHideAddModal,
-      onCreate: this.props.onCreate
+      onHideModal: this.props.onHideModal,
+      onCreate: this.props.onCreate,
+      onEdit: this.props.onEdit
     }
   }
 
   get userTableProps() {
     const actionFunc = {
-      delete: this.props.onDelete
+      delete: this.props.onDelete,
+      edit: this.props.onShowEditModal
     }
 
-    const actionMenu = [{
-      key: 'delete',
-      name: 'delete'
-    }]
+    const actionMenu = [
+      {
+        key: 'delete',
+        name: 'delete'
+      },
+      {
+        key: 'edit',
+        name: 'edit'
+      }
+    ]
 
     return {
       actionFunc,
@@ -71,9 +81,11 @@ Users.propTypes = {
   currentLanguage: PropTypes.string.isRequired,
   onSelectedChange: PropTypes.func.isRequired,
   onShowAddModal: PropTypes.func.isRequired,
-  onHideAddModal: PropTypes.func.isRequired,
+  onShowEditModal: PropTypes.func.isRequired,
+  onHideModal: PropTypes.func.isRequired,
   onCreate: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired
+  onDelete: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -85,16 +97,26 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onSelectedChange: keys => dispatch({ type: 'user/onSelectedChange', selectedKeys: keys }),
   onShowAddModal: () => dispatch({ type: 'user/showAddModal' }),
-  onHideAddModal: () => dispatch({ type: 'user/hideAddModal' }),
-  onCreate: values => dispatch({
+  onShowEditModal: (key) => {
+    dispatch({ type: 'user/getSelectedUser', payload: { key } })
+    dispatch({ type: 'user/showEditModal' })
+  },
+  onHideModal: () => dispatch({ type: 'user/hideModal' }),
+  onCreate: value => dispatch({
     type: 'user/addUser',
-    payload: { user: values },
+    payload: { user: value },
     onSuccess: msg => message.success(msg),
     onError: msg => message.error(msg)
   }),
   onDelete: key => dispatch({
     type: 'user/delUser',
     payload: { key },
+    onSuccess: msg => message.success(msg),
+    onError: msg => message.error(msg)
+  }),
+  onEdit: value => dispatch({
+    type: 'user/editUser',
+    payload: { user: value },
     onSuccess: msg => message.success(msg),
     onError: msg => message.error(msg)
   })

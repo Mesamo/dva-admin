@@ -48,6 +48,9 @@ export default {
     address: '地址',
     action: '操作',
     delete: '删除',
+    edit: '编辑',
+    addTitle: '添加用户',
+    editTitle: '编辑用户',
     correctAge: '请输入正确的年龄',
     correctPhone: '请输入正确的电话'
   },

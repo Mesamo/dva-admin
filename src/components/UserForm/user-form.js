@@ -6,6 +6,7 @@ const FormItem = Form.Item
 
 const UserForm = ({
   layout,
+  initUser,
   messages,
   form: {
     getFieldDecorator
@@ -39,7 +40,8 @@ const UserForm = ({
               required: true,
               message: messages.fieldRequired
             }
-          ]
+          ],
+          initialValue: initUser ? initUser.name : ''
         })(<Input />)}
       </FormItem>
       <FormItem hasFeedback label={messages.gender} {...formItemLayout}>
@@ -49,7 +51,8 @@ const UserForm = ({
               required: true,
               message: messages.fieldRequired
             }
-          ]
+          ],
+          initialValue: initUser ? initUser.gender : ''
         })(genderSelector)}
       </FormItem>
       <FormItem hasFeedback label={messages.age} {...formItemLayout}>
@@ -63,7 +66,8 @@ const UserForm = ({
               pattern: '^\\d{1,3}$',
               message: messages.correctAge
             }
-          ]
+          ],
+          initialValue: initUser ? initUser.age : ''
         })(<Input />)}
       </FormItem>
       <FormItem hasFeedback label={messages.email} {...formItemLayout}>
@@ -77,7 +81,8 @@ const UserForm = ({
               type: 'email',
               message: messages.correctEmail
             }
-          ]
+          ],
+          initialValue: initUser ? initUser.email : ''
         })(<Input />)}
       </FormItem>
       <FormItem hasFeedback label={messages.phone} {...formItemLayout}>
@@ -91,7 +96,8 @@ const UserForm = ({
               pattern: '^\\d{6,}$',
               message: messages.correctPhone
             }
-          ]
+          ],
+          initialValue: initUser ? initUser.phone : ''
         })(<Input />)}
       </FormItem>
       <FormItem hasFeedback label={messages.address} {...formItemLayout}>
@@ -101,7 +107,8 @@ const UserForm = ({
               required: true,
               message: messages.fieldRequired
             }
-          ]
+          ],
+          initialValue: initUser ? initUser.address : ''
         })(<Input />)}
       </FormItem>
     </Form>
@@ -110,6 +117,7 @@ const UserForm = ({
 
 UserForm.defaultProps = {
   layout: 'horizontal',
+  initUser: undefined,
   messages: {
     name: 'Name',
     gender: 'Gender',
@@ -130,6 +138,7 @@ UserForm.defaultProps = {
 
 UserForm.propTypes = {
   layout: PropTypes.string,
+  initUser: PropTypes.object,
   messages: PropTypes.object
 }
 
