@@ -19,8 +19,8 @@
   "dependencies": {
     "antd": "^2.13.6",
     "babel-runtime": "^6.26.0",
-    "dva": "^2.0.3",
-    "dva-loading": "^1.0.2",
+    "dva": "^2.0.4",
+    "dva-loading": "^1.0.3",
     "firebase": "^4.5.2",
     "nprogress": "^0.2.0",
     "path-to-regexp": "^2.0.0",

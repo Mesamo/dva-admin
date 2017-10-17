@@ -2559,15 +2559,15 @@ dva-core@^1.1.0:
     redux-saga "^0.15.4"
     warning "^3.0.0"
 
-dva-loading@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/dva-loading/-/dva-loading-1.0.2.tgz#5f1800e09b44dd5236ab1c1a31dc92a4ba1d240a"
+dva-loading@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/dva-loading/-/dva-loading-1.0.3.tgz#effa94496fb4f3a3af1e159410f0edc55acf9de8"
   dependencies:
     babel-runtime "^6.26.0"
 
-dva@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/dva/-/dva-2.0.3.tgz#686e0c09030c197949ee38a66a74dbb0e000c94a"
+dva@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/dva/-/dva-2.0.4.tgz#564094274c2f434ed8aaaba29d22b13cacdb07b4"
   dependencies:
     babel-runtime "^6.26.0"
     dva-core "^1.1.0"
@@ -2578,7 +2578,7 @@ dva@^2.0.3:
     react-async-component "^1.0.0-beta.3"
     react-redux "^5.0.5"
     react-router-dom "^4.1.2"
-    react-router-redux "^5.0.0-alpha.6"
+    react-router-redux "5.0.0-alpha.6"
     redux "^3.7.2"
 
 ecc-jsbn@~0.1.1:
@@ -6447,8 +6447,8 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     strip-json-comments "~2.0.1"
 
 react-async-component@^1.0.0-beta.3:
-  version "1.0.0-beta.3"
-  resolved "https://registry.yarnpkg.com/react-async-component/-/react-async-component-1.0.0-beta.3.tgz#72f79feecd47c7345dc15e24eec86d81a0ce320c"
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-async-component/-/react-async-component-1.0.2.tgz#b041722bf7734a95c51dc9fc2f28ec9e918e9659"
 
 react-dev-utils@^2.0.1:
   version "2.0.1"
@@ -6522,7 +6522,7 @@ react-router-dom@^4.1.2:
     react-router "^4.2.0"
     warning "^3.0.0"
 
-react-router-redux@^5.0.0-alpha.6:
+react-router-redux@5.0.0-alpha.6:
   version "5.0.0-alpha.6"
   resolved "https://registry.yarnpkg.com/react-router-redux/-/react-router-redux-5.0.0-alpha.6.tgz#7418663c2ecd3c51be856fcf28f3d1deecc1a576"
   dependencies:
