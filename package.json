@@ -17,7 +17,7 @@
     "npm": "5.3.0"
   },
   "dependencies": {
-    "antd": "^2.13.6",
+    "antd": "^2.13.7",
     "babel-runtime": "^6.26.0",
     "dva": "^2.0.4",
     "dva-loading": "^1.0.3",
