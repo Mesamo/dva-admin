@@ -11,33 +11,14 @@ export const delUser = (key) => {
 }
 
 export const addUser = (user) => {
-  const {
-    name, gender, age, email, phone, address
-  } = user
   const userRef = firebaseApp.database().ref('users').push()
-  return userRef.set({
-    name,
-    gender,
-    age,
-    email,
-    phone,
-    address
-  })
+  return userRef.set(user)
 }
 
 export const updateUser = (user) => {
-  const {
-    key, name, gender, age, email, phone, address
-  } = user
+  const { key, ...withOutKeyUser } = user
   const userRef = firebaseApp.database().ref('users').child(key)
   if (userRef) {
-    userRef.update({
-      name,
-      gender,
-      age,
-      email,
-      phone,
-      address
-    })
+    userRef.update(withOutKeyUser)
   }
 }
