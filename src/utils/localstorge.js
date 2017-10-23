@@ -1,3 +1,4 @@
+import { message } from 'antd'
 
 export const read = (key) => {
   return localStorage.getItem(key)
@@ -9,7 +10,7 @@ export const readObject = (key) => {
   try {
     obj = JSON.parse(text)
   } catch (error) {
-    console.error(error);
+    message.error(error)
   }
   return obj
 }
