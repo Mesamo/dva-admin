@@ -54,7 +54,7 @@ Then add the block below to your launch.json file and put it inside the .vscode 
   ]
 }
 ```
-Start your app by running `npm start`, and start debugging in VS Code by pressing F5 or by clicking the green debug icon. You can now write code, set breakpoints, make changes to the code, and debug your newly modified code—all from your editor.
+Start your app by running `yarn start`, and start debugging in VS Code by pressing F5 or by clicking the green debug icon. You can now write code, set breakpoints, make changes to the code, and debug your newly modified code—all from your editor.
 
 ## Talk
 * [Slack](https://mesamo.slack.com)
